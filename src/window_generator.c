@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   window_generator.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 21:05:14 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/26 20:23:29 by yzaytoun         ###   ########.fr       */
+/*   Created: 2023/04/24 20:02:06 by yzaytoun          #+#    #+#             */
+/*   Updated: 2023/04/26 20:25:33 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/fdf.h"
+#include "../include/fdf.h"
 
-int	main(int ac, char **av)
+void	*ft_window(int action)
 {
-	t_map		*map;
-	t_window	*window;
+	void	*mlx;
 
-	if (ac == 2)
+	if (action == 'CREATE')
 	{
-		map = ft_readmap(av);
-		if (!map)
-		{
-			ft_putstr_fd("Error\n", 2);
-			return (EXIT_FAILURE);
-		}
-		window = ft_window(CREATE);
-		window = ft_window(DESTROY);
-		ft_deletemap(&map);
+		mlx = mlx_init();
+		if (mlx == NULL)
+			return (NULL);
 	}
-	else
+	else if (action == 'DESTROY')
 	{
-		ft_putstr_fd("Wrong number of arguments\n", 2);
-		return (EXIT_FAILURE);
+		//Destroy
 	}
-	return (EXIT_SUCCESS);
+	return (mlx);
 }

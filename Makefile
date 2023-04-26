@@ -49,11 +49,15 @@ INC = include
 CFLAGS = -Wall -Wextra -Werror -I $(INC) -g3
 RM = rm -fr
 SANITIAZE = -fsanitize=address -g3
+# --------------------- MLX  ------------------------------------
+MLX = minilibx/minilibx_macos
+LIBX = minilibx/minilibx_macos/libmlx.a
+FLAGX = -lmlx -framework OpenGL -framework AppKit
 # ------------------ Libft and printf ------------------------------
 PRINTF = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
-# ------------------------ Push Swap ------------------------------
-SRC = map_reader.c map_aux.c
+# ------------------------ FDF ------------------------------
+SRC = map_reader.c map_aux.c window_generator.c
 
 OBJDIR = obj
 
@@ -65,11 +69,11 @@ $(OBJDIR)/%.o:%.c
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(PRINTF) $(FDF_OBJ)
+$(NAME): $(LIBFT) $(PRINTF) $(LIBX) $(FDF_OBJ)
 	@echo "$(YELLOW)Compiling" $@
-	@$(AR) $(ARFLAGS) $@ $(FDF_OBJ)
+	@$(AR) $(ARFLAGS) $@ $(FDF_OBJ) 
 	@echo "$(GREEN)Done!!"
-	@$(CC) $(NAME) $(LIBFT) $(PRINTF) main.c -o fdf $(SANITIAZE)
+	@$(CC) $(NAME) $(LIBFT) $(PRINTF) -L$(MLX) $(LIBX) $(FLAGX) main.c -o fdf $(SANITIAZE)
 	@chmod +x fdf
 	@echo "$(PURPLE)************Ready****************\n"
 
@@ -80,6 +84,9 @@ $(PRINTF) $(LIBFT) &:
 	@$(MAKE) -C ft_printf
 	@echo "$(GREEN)Finished!!!"
 
+$(LIBX):
+	@$(MAKE) -C $(MLX)
+
 fclean: clean
 	@$(RM) $(NAME) fdf
 
@@ -87,6 +94,7 @@ clean:
 	@echo "$(RED)Cleaning libft and ft_printf"
 	@(cd libft; make fclean)
 	@(cd ft_printf; make fclean)
+	@(cd $(MLX); make clean)
 	@echo "Cleaning Object files"
 	@$(RM) $(FDF_OBJ) $(OBJDIR)
 	@echo "Cleaning fdf"

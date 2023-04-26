@@ -6,13 +6,38 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/22 18:37:23 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:22:12 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 //SECTION - Map AUX
+//FIXME - To be deleted -> Printer
+void	ft_printmap(t_map *map)
+{
+	t_map	*node;
+	int		index;
+
+	index = 0;
+	if (map == NULL || map->size == 0)
+		return ;
+	node = map;
+	while (node != NULL)
+	{
+		index = 0;
+		printf("x = ");
+		while (index < map->size)
+		{
+			printf("%d\r", node->x[index]);
+			index++;
+		}
+
+		printf("\t index = %d", node->y);
+		node = node->next;
+	}
+}
+
 //ANCHOR - From string array to integer array
 int	*ft_arr(char **str)
 {
