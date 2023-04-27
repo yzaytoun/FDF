@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/24 20:22:12 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/27 20:28:52 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_printmap(t_map *map)
 }
 
 //ANCHOR - From string array to integer array
-int	*ft_arr(char **str)
+int	*ft_arr(char **str, int *size)
 {
 	int	index;
 	int	*arr;
@@ -56,6 +56,7 @@ int	*ft_arr(char **str)
 			arr[index] = ft_atoi(str[index]);
 		++index;
 	}
+	*size = index;
 	return (arr);
 }
 //!SECTION

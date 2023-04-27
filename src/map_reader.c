@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:12:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/22 18:40:42 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/27 20:29:06 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_createmap(t_map **map, char *x, int y)
 	if (!new)
 		return (FALSE);
 	buff = ft_split(x, ' ');
-	new->x = ft_arr(buff);
+	new->x = ft_arr(buff, &new->size);
 	if (new->x == FALSE)
 	{
 		free(new);
@@ -80,10 +80,9 @@ t_map	*ft_readmap(char **av)
 	{
 		if (ft_createmap(&map, buff[index], index) != TRUE)
 		{
-			ft_putstr_fd("Error\n", 2);
 			ft_freestr_arr(buff);
 			ft_deletemap(&map);
-			return (NULL);
+			ft_exception("Readmap");
 		}
 		index++;
 	}
@@ -102,6 +101,7 @@ void	ft_deletemap(t_map **map)
 	while (node != NULL)
 	{
 		(*map) = (*map)->next;
+		free(node->x);
 		free(node);
 		node = (*map);
 	}

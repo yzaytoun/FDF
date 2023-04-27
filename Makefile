@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf.a
+NAME = fdf
 
 vpath %.c src
 vpath %.h include
@@ -50,14 +50,16 @@ CFLAGS = -Wall -Wextra -Werror -I $(INC) -g3
 RM = rm -fr
 SANITIAZE = -fsanitize=address -g3
 # --------------------- MLX  ------------------------------------
-MLX = minilibx/minilibx_macos
-LIBX = minilibx/minilibx_macos/libmlx.a
+MLX = minilibx_macos
+LIBX = minilibx_macos/libmlx.a
 FLAGX = -lmlx -framework OpenGL -framework AppKit
+BETA = mlx_image.swiftdoc mlx_init.swiftmodule mlx_window.swiftmodule
+BETADIC = minilibx_mms_20191025_beta
 # ------------------ Libft and printf ------------------------------
 PRINTF = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
 # ------------------------ FDF ------------------------------
-SRC = map_reader.c map_aux.c window_generator.c
+SRC = map_reader.c map_aux.c window_manager.c aux_functions.c
 
 OBJDIR = obj
 
@@ -69,13 +71,11 @@ $(OBJDIR)/%.o:%.c
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(PRINTF) $(LIBX) $(FDF_OBJ)
+$(NAME): $(LIBFT) $(PRINTF) $(LIBX) $(FDF_OBJ) $(BETA)
 	@echo "$(YELLOW)Compiling" $@
-	@$(AR) $(ARFLAGS) $@ $(FDF_OBJ) 
-	@echo "$(GREEN)Done!!"
-	@$(CC) $(NAME) $(LIBFT) $(PRINTF) -L$(MLX) $(LIBX) $(FLAGX) main.c -o fdf $(SANITIAZE)
+	@$(CC) $(FDF_OBJ) $(LIBFT) $(PRINTF) -L$(MLX) $(LIBX) $(FLAGX) main.c -o $@ $(SANITIAZE)
 	@chmod +x fdf
-	@echo "$(PURPLE)************Ready****************\n"
+	@echo "$(PURPLE)************DONE****************\n"
 
 $(PRINTF) $(LIBFT) &:
 	@echo "$(YELLOW)Making Libft"
@@ -87,6 +87,9 @@ $(PRINTF) $(LIBFT) &:
 $(LIBX):
 	@$(MAKE) -C $(MLX)
 
+$(BETA):
+	@$(MAKE) -C $(BETADIC)
+
 fclean: clean
 	@$(RM) $(NAME) fdf
 
@@ -94,8 +97,10 @@ clean:
 	@echo "$(RED)Cleaning libft and ft_printf"
 	@(cd libft; make fclean)
 	@(cd ft_printf; make fclean)
+	@echo "$(PURPLE)Cleaning Minilibx"
 	@(cd $(MLX); make clean)
-	@echo "Cleaning Object files"
+	@(cd $(BETADIC); make clean)
+	@echo "$(YELLOW)Cleaning Object files"
 	@$(RM) $(FDF_OBJ) $(OBJDIR)
 	@echo "Cleaning fdf"
 	@echo "$(BLUE)\n*****************DONE Cleaning********************\n\n"
