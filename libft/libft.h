@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 17:24:56 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/22 18:04:34 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:28:55 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,7 @@ void	ft_freestr_arr(char **s);
 char	**ft_copystrarr(char **s, int input, int *count);
 int		ft_isdigitstr(char *str);
 int		ft_strlen_arr(char **str);
+int		ft_findchr(char *str, char c);
+int		ft_charpos(const char *str, char c);
+void	ft_lstrev(t_list **lst);
 #endif	/*LIBFT HEADER*/

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:12:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/27 20:29:06 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:31:42 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,10 @@ int	ft_createmap(t_map **map, char *x, int y)
 	if (!new)
 		return (FALSE);
 	buff = ft_split(x, ' ');
-	new->x = ft_arr(buff, &new->size);
-	if (new->x == FALSE)
-	{
-		free(new);
-		ft_freestr_arr(buff);
+	if (ft_readarr(buff, &new) == FALSE)
 		return (FALSE);
-	}
+	if (new->color == NULL)
+		new->color = ft_strdup("0xFFFFFF");
 	new->y = y;
 	new->next = (*map);
 	(*map) = new;
@@ -76,17 +73,20 @@ t_map	*ft_readmap(char **av)
 	if (ft_strnstr(av[1], ".fdf", ft_strlen(av[1])) == NULL)
 		return (NULL);
 	buff = ft_split(ft_readfile(av), '\n');
+	if (buff == NULL)
+		return (NULL);
 	while (buff[index] != NULL)
 	{
 		if (ft_createmap(&map, buff[index], index) != TRUE)
 		{
 			ft_freestr_arr(buff);
 			ft_deletemap(&map);
-			ft_exception("Readmap");
+			ft_exception("Read map");
 		}
 		index++;
 	}
 	ft_freestr_arr(buff);
+	ft_mapreverse(&map);
 	return (map);
 }
 
@@ -102,10 +102,19 @@ void	ft_deletemap(t_map **map)
 	{
 		(*map) = (*map)->next;
 		free(node->x);
+		free(node->color);
 		free(node);
 		node = (*map);
 	}
 	free((*map));
+}
+
+//ANCHOR - Check Map
+int	ft_checkmap(t_map *map)
+{
+	if (map->size != map->y + 1)
+		return (FALSE);
+	return (TRUE);
 }
 
 //!SECTION

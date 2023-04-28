@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_drawer.c                                       :+:      :+:    :+:   */
+/*   ft_charpos.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 19:12:34 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/28 17:30:16 by yzaytoun         ###   ########.fr       */
+/*   Created: 2023/04/28 19:04:27 by yzaytoun          #+#    #+#             */
+/*   Updated: 2023/04/28 19:04:30 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "libft.h"
 
-/*void	ft_map_drawer(t_window *window, t_map *map)
+int	ft_charpos(const char *str, char c)
 {
-	mlx_string_put(window->mlx, window->win, map->size, map->y)//, color, string);
-}*/
+	int	i;
+
+	i = 0;
+	if (!str || !c)
+		return (0);
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			return (i);
+		++i;
+	}
+	return (0);
+}

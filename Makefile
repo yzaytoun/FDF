@@ -59,7 +59,8 @@ BETADIC = minilibx_mms_20191025_beta
 PRINTF = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
 # ------------------------ FDF ------------------------------
-SRC = map_reader.c map_aux.c window_manager.c aux_functions.c
+SRC = map_reader.c map_aux.c window_manager.c aux_functions.c key_events.c\
+	mouse_events.c
 
 OBJDIR = obj
 

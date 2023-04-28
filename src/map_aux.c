@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/27 20:28:52 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:28:34 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,36 +27,80 @@ void	ft_printmap(t_map *map)
 	{
 		index = 0;
 		printf("x = ");
-		while (index < map->size)
+		while (index < node->size)
 		{
-			printf("%d\r", node->x[index]);
+			printf("%d ", node->x[index]);
 			index++;
 		}
 
-		printf("\t index = %d", node->y);
+		printf("\t\t index = %d\n", node->y);
 		node = node->next;
 	}
 }
 
+//ANCHOR - Get color
+static int	ft_getcolor(char *str, t_map *map, int index)
+{
+	int	pos;
+
+	if (!str || !map)
+		return (FALSE);
+	pos = ft_charpos(str, ',');
+	map->color = ft_strdup((ft_strchr(str, ',') + 1));
+	if (ft_isdigitstr(ft_substr(str, 0, pos)) == TRUE)
+		map->x[index] = ft_atoi(ft_substr(str, 0, pos));
+	else
+		return (FALSE);
+	return (TRUE);
+}
+
 //ANCHOR - From string array to integer array
-int	*ft_arr(char **str, int *size)
+int	ft_readarr(char **str, t_map **map)
 {
 	int	index;
-	int	*arr;
 
-	arr = ft_calloc(ft_strlen_arr(str), sizeof(int));
-	if (!arr)
-		return (0);
 	index = 0;
 	if (!str || *str == NULL)
-		return (0);
+		return (FALSE);
+	(*map)->x = ft_calloc(ft_strlen_arr(str), sizeof(int));
+	if (!(*map)->x)
+		return (FALSE);
+	(*map)->color = NULL;
 	while (str[index])
 	{
-		if (ft_isdigitstr(str[index]) == TRUE)
-			arr[index] = ft_atoi(str[index]);
+		if (ft_findchr(str[index], ',') == TRUE)
+		{
+			if (ft_getcolor(str[index], *map, index) != TRUE)
+				ft_exception("Invalid Map");
+		}
+		else if (ft_isdigitstr(str[index]) == TRUE)
+			(*map)->x[index] = ft_atoi(str[index]);
+		else
+			ft_exception("Invalid Map");
 		++index;
 	}
-	*size = index;
-	return (arr);
+	(*map)->size = index;
+	return (TRUE);
 }
+
+//ANCHOR - Map Reverse
+void	ft_mapreverse(t_map **map)
+{
+	t_map	*next;
+	t_map	*current;
+	t_map	*prev;
+
+	next = NULL;
+	prev = NULL;
+	current = (*map);
+	while (current != NULL)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	(*map) = prev;
+}
+
 //!SECTION
