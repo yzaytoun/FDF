@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/28 20:28:34 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/02 20:30:30 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_printmap(t_map *map)
 		node = node->next;
 	}
 }
-
+//FIXME - Finish Atoi base
 //ANCHOR - Get color
 static int	ft_getcolor(char *str, t_map *map, int index)
 {
@@ -46,7 +46,7 @@ static int	ft_getcolor(char *str, t_map *map, int index)
 	if (!str || !map)
 		return (FALSE);
 	pos = ft_charpos(str, ',');
-	map->color = ft_strdup((ft_strchr(str, ',') + 1));
+	map->color = ft_atoibase((ft_strchr(str, ',') + 1), 16);
 	if (ft_isdigitstr(ft_substr(str, 0, pos)) == TRUE)
 		map->x[index] = ft_atoi(ft_substr(str, 0, pos));
 	else

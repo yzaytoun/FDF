@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:12:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/28 20:31:42 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/29 11:33:26 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,15 @@ void	ft_deletemap(t_map **map)
 //ANCHOR - Check Map
 int	ft_checkmap(t_map *map)
 {
-	if (map->size != map->y + 1)
-		return (FALSE);
+	t_map	*node;
+
+	node = map;
+	if (node->next != NULL)
+	{
+		if (node->size != node->next->size)
+			return (FALSE);
+		node = node->next;
+	}
 	return (TRUE);
 }
 

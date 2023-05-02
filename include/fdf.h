@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/28 20:38:16 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/02 19:30:02 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 # include <math.h>
 # include "../minilibx_macos/mlx.h"
 
-/*Marcos*/
+/***********************Marcos************************/
+/*Keyboard keys*/
+# define KEY_ESCAPE	0x35
 
 /*Struct*/
 typedef struct s_map
@@ -27,7 +29,7 @@ typedef struct s_map
 	int				*x;
 	int				size;
 	int				y;
-	char			*color;
+	int				color;
 	struct s_map	*next;
 }					t_map;
 
@@ -35,8 +37,11 @@ typedef struct s_window
 {
 	void	*mlx;
 	void	*win;
+	void	*img;
+	int		endian;
+	int		size;
+	int		bpp;
 }				t_window;
-
 
 /*Basic Functions*/
 //ANCHOR - Map Reader
@@ -54,7 +59,7 @@ void		ft_mapreverse(t_map **map);
 //ANCHOR - Window Generator
 t_window	*ft_createwindow(t_map *map, char *title);
 void		ft_destroywindow(t_window **window, t_map *map);
-void		ft_runwindow(t_window *window);
+void		ft_runwindow(t_window *window, t_map *map);
 
 //ANCHOR - AUX
 void		ft_exception(char *str);
@@ -62,4 +67,9 @@ void		ft_exception(char *str);
 //ANCHOR - Mouse Events
 void		ft_mousehooks(t_window *window);
 
+//ANCHOR - Key Events
+void		ft_keyhooks(t_window *window);
+
+//ANCHOR - Key Events
+void		ft_drawmap(t_window *window, t_map *map);
 #endif /*FDF HEADER*/

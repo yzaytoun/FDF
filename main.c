@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:05:14 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/28 20:34:00 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:42:22 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int ac, char **av)
 		window = ft_createwindow(map, av[1]);
 		if (window == NULL)
 			ft_exception("Window");
-		ft_runwindow(window);
+		ft_runwindow(window, map);
 		ft_destroywindow(&window, map);
 	}
 	else

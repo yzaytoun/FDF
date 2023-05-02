@@ -60,7 +60,7 @@ PRINTF = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
 # ------------------------ FDF ------------------------------
 SRC = map_reader.c map_aux.c window_manager.c aux_functions.c key_events.c\
-	mouse_events.c
+	mouse_events.c map_drawer.c
 
 OBJDIR = obj
 
