@@ -5,69 +5,74 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/02 19:51:14 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/02 20:02:56 by yzaytoun         ###   ########.fr       */
+/*   Created: 2023/05/03 19:29:20 by yzaytoun          #+#    #+#             */
+/*   Updated: 2023/05/03 19:35:29 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tobinary(char *str)
+static int	ft_checkdigit(char c, int base)
 {
-	int	bit;
-	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
-		result = (result * 2) + (str[i++] - '0');
+	int		i;
+	char	*str;
+
+	i = 0;
+	str = "0123456789abcdef";
+	while (i < base)
+	{
+		if (str[i] == c || ft_toupper(str[i]) == c)
+			return (TRUE);
+		++i;
+	}
+	return (FALSE);
 }
 
-int	ft_tohex(char *str)
+static int	ft_getbase(char c)
 {
-
+	if (ft_isdigit(c))
+		return (c - '0');
+	else if (c >= 'a' && c <= 'f')
+		return (c - 'a' + 10);
+	else if (c >= 'A' && c <= 'F')
+		return (c - 'A' + 10);
+	return (-1);
 }
 
-int	ft_toocta(char *str)
+static int	ft_convert(const char *str, int base, int index)
 {
-
-}
-
-int	ft_convert(char *str, int base)
-{
-	int	result;
+	int		result;
 
 	result = 0;
-	if (str == NULL)
-		return (0);
-	if (base == 2)
-		result = ft_tobinary(str);
-	else if (base == 16)
-		result = ft_tohex(str);
-	else if (base == 8)
-		result = ft_toocta(str);
-	else
+	while (str[index] != '\0' && ft_checkdigit(str[index], base) != 0)
 	{
-		while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
-			result = (result * 10) + (str[i++] - '0');
+		if (str[index] == '0'
+			&& (str[index + 1] == 'x' || str[index + 1] == 'X'))
+			index += 2;
+		result = (result * base) + ft_getbase(str[index]);
+		++index;
 	}
-	return (result);
+	if (result < INT_MIN || result > INT_MAX)
+		return (-1);
+	else
+		return (result);
 }
 
 int	ft_atoibase(const char *str, int base)
 {
-	int		i;
+	int		index;
 	int		sign;
 
-	if (!str)
+	if (!str || !base)
 		return (0);
-	result = 0;
 	sign = 1;
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		++i;
-	if (str[i] != '\0' && str[i] == '-')
+	index = 0;
+	while (!ft_isprint(str[index]) && str[index] != '\0')
+		++index;
+	if (index > 0)
 	{
-		sign = -1;
-		i++;
+		if (str[index - 1] == '-')
+			sign = -1;
 	}
-	else if (str[i] == '+')
-		i++;
-	return (ft_convert(str) * sign);
+	return (ft_convert(str, base, index) * sign);
 }

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:12:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/29 11:33:26 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:34:14 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	ft_createmap(t_map **map, char *x, int y)
 	buff = ft_split(x, ' ');
 	if (ft_readarr(buff, &new) == FALSE)
 		return (FALSE);
-	if (new->color == NULL)
-		new->color = ft_strdup("0xFFFFFF");
+	ft_colorflood(&new->color, new->size, 0xFFFFFF);
 	new->y = y;
 	new->next = (*map);
 	(*map) = new;

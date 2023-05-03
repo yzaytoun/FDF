@@ -3,12 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42madrid>       +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 10:46:25 by yzaytoun          #+#    #+#             */
-/*   Updated: 2022/04/17 15:37:28 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/03 18:40:37 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+
 int	ft_tolower(int c)
 {
 	if (c >= 65 && c <= 90)

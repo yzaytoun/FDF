@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 17:24:56 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/28 20:28:55 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:28:28 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_list
 }					t_list;
 
 /*Basic Functions*/
+int		ft_toupper(int c);
+int		ft_tolower(int c);
 int		ft_isalpha(int c);
 int		ft_isprint(int c);
 int		ft_isdigit(int c);
@@ -91,4 +93,6 @@ int		ft_strlen_arr(char **str);
 int		ft_findchr(char *str, char c);
 int		ft_charpos(const char *str, char c);
 void	ft_lstrev(t_list **lst);
+int		ft_atoibase(const char *str, int base);
+int		*ft_createarray(int size);
 #endif	/*LIBFT HEADER*/

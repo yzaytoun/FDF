@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/02 19:30:02 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:16:20 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_map
 	int				*x;
 	int				size;
 	int				y;
-	int				color;
+	int				*color;
 	struct s_map	*next;
 }					t_map;
 
@@ -55,6 +55,7 @@ int			ft_checkmap(t_map *map);
 int			ft_readarr(char **str, t_map **map);
 void		ft_printmap(t_map *map);
 void		ft_mapreverse(t_map **map);
+void		ft_colorflood(int **array, int size, int color);
 
 //ANCHOR - Window Generator
 t_window	*ft_createwindow(t_map *map, char *title);

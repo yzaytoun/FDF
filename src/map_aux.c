@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/02 20:30:30 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:34:47 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_printmap(t_map *map)
 		node = node->next;
 	}
 }
-//FIXME - Finish Atoi base
+
 //ANCHOR - Get color
 static int	ft_getcolor(char *str, t_map *map, int index)
 {
@@ -46,7 +46,7 @@ static int	ft_getcolor(char *str, t_map *map, int index)
 	if (!str || !map)
 		return (FALSE);
 	pos = ft_charpos(str, ',');
-	map->color = ft_atoibase((ft_strchr(str, ',') + 1), 16);
+	map->color[index] = ft_atoibase((ft_strchr(str, ',') + 1), 16);
 	if (ft_isdigitstr(ft_substr(str, 0, pos)) == TRUE)
 		map->x[index] = ft_atoi(ft_substr(str, 0, pos));
 	else
@@ -62,10 +62,10 @@ int	ft_readarr(char **str, t_map **map)
 	index = 0;
 	if (!str || *str == NULL)
 		return (FALSE);
-	(*map)->x = ft_calloc(ft_strlen_arr(str), sizeof(int));
-	if (!(*map)->x)
-		return (FALSE);
-	(*map)->color = NULL;
+	(*map)->x = ft_createarray(ft_strlen_arr(str));
+	(*map)->color = ft_createarray(ft_strlen_arr(str));
+	if ((*map)->color < 0 || (*map)->x < 0)
+		ft_exception("Failed to create int array");
 	while (str[index])
 	{
 		if (ft_findchr(str[index], ',') == TRUE)
@@ -101,6 +101,22 @@ void	ft_mapreverse(t_map **map)
 		current = next;
 	}
 	(*map) = prev;
+}
+
+//ANCHOR - Color Flood
+void	ft_colorflood(int **array, int size, int color)
+{
+	int	index;
+
+	index = 0;
+	if (!*array || !size || !color || size == 0)
+		return ;
+	while (index < size)
+	{
+		if ((*array)[index] == 0)
+			(*array)[index] = color;
+		index++;
+	}
 }
 
 //!SECTION
