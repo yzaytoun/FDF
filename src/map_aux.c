@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/03 20:34:47 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:21:25 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ void	ft_printmap(t_map *map)
 		while (index < node->size)
 		{
 			printf("%d ", node->x[index]);
+			printf("color%d", node->color[index]);
 			index++;
 		}
-
 		printf("\t\t index = %d\n", node->y);
+		printf("\n");
 		node = node->next;
 	}
 }

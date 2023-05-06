@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/03 20:16:20 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/06 17:51:27 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,23 @@ typedef struct s_window
 	void	*mlx;
 	void	*win;
 	void	*img;
-	int		endian;
-	int		size;
+	char	*addr;
 	int		bpp;
+	int		size_line;
+	int		endian;
+	t_map	*map;
 }				t_window;
+
+typedef struct s_point
+{
+	int		dx;
+	int		dy;
+	int		x;
+	int		y;
+	int		step;
+	int		i;
+}			t_point;
+
 
 /*Basic Functions*/
 //ANCHOR - Map Reader
