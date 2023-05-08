@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/06 17:51:27 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/08 20:23:31 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 typedef struct s_map
 {
 	int				*x;
-	int				size;
+	int				width;
 	int				y;
 	int				*color;
 	struct s_map	*next;
@@ -42,17 +42,17 @@ typedef struct s_window
 	int		bpp;
 	int		size_line;
 	int		endian;
-	t_map	*map;
 }				t_window;
 
 typedef struct s_point
 {
-	int		dx;
-	int		dy;
 	int		x;
 	int		y;
 	int		step;
-	int		i;
+	int		scale;
+	int		width;
+	int		height;
+	int		linelength;
 }			t_point;
 
 
@@ -60,7 +60,7 @@ typedef struct s_point
 //ANCHOR - Map Reader
 int			ft_createmap(t_map **map, char *x, int y);
 char		*ft_readfile(char **av);
-t_map		*ft_readmap(char **av);
+t_map		*ft_readmap(char **av, int *height);
 void		ft_deletemap(t_map **map);
 int			ft_checkmap(t_map *map);
 
@@ -71,9 +71,9 @@ void		ft_mapreverse(t_map **map);
 void		ft_colorflood(int **array, int size, int color);
 
 //ANCHOR - Window Generator
-t_window	*ft_createwindow(t_map *map, char *title);
+t_window	*ft_createwindow(char *title, int width, int height, int scale);
 void		ft_destroywindow(t_window **window, t_map *map);
-void		ft_runwindow(t_window *window, t_map *map);
+void		ft_windowloop(t_window *window, t_map *map, int height, int scale);
 
 //ANCHOR - AUX
 void		ft_exception(char *str);
@@ -85,5 +85,5 @@ void		ft_mousehooks(t_window *window);
 void		ft_keyhooks(t_window *window);
 
 //ANCHOR - Key Events
-void		ft_drawmap(t_window *window, t_map *map);
+void		ft_drawmap(t_window *window, t_map *map, t_point *point);
 #endif /*FDF HEADER*/

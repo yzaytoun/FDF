@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:12:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/03 20:34:14 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/07 14:11:19 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_createmap(t_map **map, char *x, int y)
 	buff = ft_split(x, ' ');
 	if (ft_readarr(buff, &new) == FALSE)
 		return (FALSE);
-	ft_colorflood(&new->color, new->size, 0xFFFFFF);
+	ft_colorflood(&new->color, new->width, 0xFFFFFF);
 	new->y = y;
 	new->next = (*map);
 	(*map) = new;
@@ -61,28 +61,26 @@ char	*ft_readfile(char **av)
 }
 
 //ANCHOR - Read Map
-t_map	*ft_readmap(char **av)
+t_map	*ft_readmap(char **av, int *height)
 {
 	t_map	*map;
 	char	**buff;
-	int		index;
 
 	map = NULL;
-	index = 0;
 	if (ft_strnstr(av[1], ".fdf", ft_strlen(av[1])) == NULL)
 		return (NULL);
 	buff = ft_split(ft_readfile(av), '\n');
 	if (buff == NULL)
 		return (NULL);
-	while (buff[index] != NULL)
+	while (buff[*height] != NULL)
 	{
-		if (ft_createmap(&map, buff[index], index) != TRUE)
+		if (ft_createmap(&map, buff[*height], *height) != TRUE)
 		{
 			ft_freestr_arr(buff);
 			ft_deletemap(&map);
 			ft_exception("Read map");
 		}
-		index++;
+		*height += 1;
 	}
 	ft_freestr_arr(buff);
 	ft_mapreverse(&map);
@@ -116,7 +114,7 @@ int	ft_checkmap(t_map *map)
 	node = map;
 	if (node->next != NULL)
 	{
-		if (node->size != node->next->size)
+		if (node->width != node->next->width)
 			return (FALSE);
 		node = node->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/04 18:21:25 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/07 14:12:52 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	ft_printmap(t_map *map)
 	int		index;
 
 	index = 0;
-	if (map == NULL || map->size == 0)
+	if (map == NULL || map->width == 0)
 		return ;
 	node = map;
 	while (node != NULL)
 	{
 		index = 0;
 		printf("x = ");
-		while (index < node->size)
+		while (index < node->width)
 		{
 			printf("%d ", node->x[index]);
 			printf("color%d", node->color[index]);
@@ -65,7 +65,7 @@ int	ft_readarr(char **str, t_map **map)
 		return (FALSE);
 	(*map)->x = ft_createarray(ft_strlen_arr(str));
 	(*map)->color = ft_createarray(ft_strlen_arr(str));
-	if ((*map)->color < 0 || (*map)->x < 0)
+	if (!(*map)->color || !(*map)->x)
 		ft_exception("Failed to create int array");
 	while (str[index])
 	{
@@ -80,7 +80,7 @@ int	ft_readarr(char **str, t_map **map)
 			ft_exception("Invalid Map");
 		++index;
 	}
-	(*map)->size = index;
+	(*map)->width = index;
 	return (TRUE);
 }
 
