@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/08 20:23:31 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/09 20:20:52 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,9 @@ void		ft_keyhooks(t_window *window);
 
 //ANCHOR - Key Events
 void		ft_drawmap(t_window *window, t_map *map, t_point *point);
+
+//ANCHOR - Draw Aux
+void		ft_markpoint(t_point *point, int x0, int y0);
+void		ft_pixelput(t_window *window, int dist_x, int dist_y, int color);
+
 #endif /*FDF HEADER*/
