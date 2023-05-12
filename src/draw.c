@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:19:45 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/09 20:38:53 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/12 20:43:51 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,68 +14,82 @@
 
 //SECTION - Draw
 //ANCHOR - Draw Z
-static void	ft_iso(int *x, int *y, int z)
+/*static void	ft_iso(int *x, int *y, int z)
 {
-	int	x;
+	int	x0;
 
-	x = *x;
-	*x = (x - *y) * cos(0.523599);
-	*y = -z + (x + *y) * sin(0.523599);
-}
-
-//ANCHOR - Draw Net
-static void	ft_draw_xy(t_window *window, t_point *point, int *color, int *x)
-{
-	int	index;
-	int	pixel;
-
-	index = 0;
-	pixel = 0;
-	while (index < point->width)
-	{
-		pixel = 0;
-		if (index < point->width)
-			point->x = (index * point->step) + point->step;
+	x0 = *x;
+	*x = (x0 - *y) * cos(0.523);
+	*y = -z + (x0 + *y) * sin(0.523);
 		if (point->y < point->height)
 			point->y = (point->y * point->step) + point->step;
-		while (pixel < point->linelength)
+		ft_iso(&point->x, &point->y, x[counter]);
+}*/
+
+//ANCHOR - Draw Net
+static void	ft_draw_xy(t_window *window, t_point *point)
+{
+	int	pixel;
+	int	dx;
+	int	dy;
+
+	dx = abs(point->x1 - point->x0);
+	dy = abs(point->y1 - point->y0);
+	printf("point0->(%d,%d) \t point1-> (%d,%d)\n",
+			point->x0, 
+			point->y0, point->x1, point->y1);
+	pixel = 2 * dy - dx;
+	while (point->y0 < point->y1)
+	{
+		if (point->y0 < (point->height * point->scale))
+			ft_pixelput(window, point->x0, point->y0, point->color0);
+		if (pixel >= 0)
 		{
-			ft_iso(&point->x, &point->y, x[index]);
-			ft_pixelput(window, point->x, pixel, color[index]);
-			ft_pixelput(window, pixel, point->y, color[index]);
-			pixel++;
+			pixel += 2 * (dy - dx);
+			point->y0 += 1;
 		}
-		++index;
+		else
+		{
+			pixel += 2 * dy;
+			point->x0 += 1;
+		}
 	}
 }
 
-static void	ft_drawborders(t_window *window, t_point *point, int color)
+//ANCHOR - Draw borders
+/*static void	ft_drawborders(t_window *window, int color, int len)
 {
 	int	pixel;
 
 	pixel = 0;
-	while (pixel < point->linelength)
+	while (pixel < len)
 	{
-		ft_pixelput(window, point->x, pixel, color);
-		ft_pixelput(window, pixel, point->y, color);
+		ft_pixelput(window, 0, pixel, color);
+		ft_pixelput(window, pixel, 0, color);
 		pixel++;
 	}
-}
+}*/
 
 //ANCHOR - Main func
 void	ft_drawmap(t_window *window, t_map *map, t_point *point)
 {
 	t_map	*node;
+	int		count;
 
 	window->addr = mlx_get_data_addr(window->img,
 			&window->bpp, &window->size_line, &window->endian);
 	node = map;
-	ft_markpoint(point, 0, 0);
-	ft_drawborders(window, point, node->color[0]);
+	//ft_drawborders(window, node->color[0], point->linelength);
+	count = 0;
 	while (node != NULL)
 	{
-		ft_markpoint(point, 0, node->y);
-		ft_draw_xy(window, point, node->color, node->x);
+		count = 0;
+		while (count < point->width - 1)
+		{
+			ft_markpoint(point, node, count);
+			ft_draw_xy(window, point);
+			++count;
+		}
 		node = node->next;
 	}
 	mlx_put_image_to_window(window->mlx, window->win,

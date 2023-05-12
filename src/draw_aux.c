@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:18:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/09 20:21:08 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/12 20:53:13 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 //SECTION - Draw Aux
 //ANCHOR - Mark point
-void	ft_markpoint(t_point *point, int x0, int y0)
+void	ft_markpoint(t_point *point, t_map *map, int count)
 {
-	point->x = x0;
-	point->y = y0;
-	point->linelength = (point->width * point->scale) * 0.90;
-	point->step = point->linelength / point->height;
+	point->x0 = count;
+	point->x1 = (count + 1) * point->step;
+	point->y0 = map->x[count];
+	point->y1 = (map->x[count + 1]) * point->step;
+	point->color0 = map->color[count];
+	point->color1 = map->color[count + 1];
 }
 
 //ANCHOR - Pixel Put

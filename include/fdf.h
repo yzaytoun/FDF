@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/09 20:20:52 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/11 20:38:31 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 /***********************Marcos************************/
 /*Keyboard keys*/
 # define KEY_ESCAPE	0x35
+
+/*Macros*/
+# define MAX_WIDTH 300
+# define MAX_HEIGHT 300
 
 /*Struct*/
 typedef struct s_map
@@ -46,8 +50,12 @@ typedef struct s_window
 
 typedef struct s_point
 {
-	int		x;
-	int		y;
+	int		x0;
+	int		y0;
+	int		x1;
+	int		y1;
+	int		color0;
+	int		color1;
 	int		step;
 	int		scale;
 	int		width;
@@ -71,9 +79,9 @@ void		ft_mapreverse(t_map **map);
 void		ft_colorflood(int **array, int size, int color);
 
 //ANCHOR - Window Generator
-t_window	*ft_createwindow(char *title, int width, int height, int scale);
+t_window	*ft_createwindow(char *title, int width, int height);
 void		ft_destroywindow(t_window **window, t_map *map);
-void		ft_windowloop(t_window *window, t_map *map, int height, int scale);
+void		ft_windowloop(t_window *window, t_map *map, int height);
 
 //ANCHOR - AUX
 void		ft_exception(char *str);
@@ -88,7 +96,7 @@ void		ft_keyhooks(t_window *window);
 void		ft_drawmap(t_window *window, t_map *map, t_point *point);
 
 //ANCHOR - Draw Aux
-void		ft_markpoint(t_point *point, int x0, int y0);
+void		ft_markpoint(t_point *point, t_map *map, int count);
 void		ft_pixelput(t_window *window, int dist_x, int dist_y, int color);
 
 #endif /*FDF HEADER*/
