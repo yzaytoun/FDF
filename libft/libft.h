@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 17:24:56 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/03 20:28:28 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:59:43 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,5 @@ int		ft_charpos(const char *str, char c);
 void	ft_lstrev(t_list **lst);
 int		ft_atoibase(const char *str, int base);
 int		*ft_createarray(int size);
+int		ft_arraymin(int *arr, int size);
 #endif	/*LIBFT HEADER*/

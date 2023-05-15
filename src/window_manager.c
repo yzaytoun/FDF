@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/11 20:34:36 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/15 15:43:53 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,19 @@ static void	ft_pointinit(t_point *point, t_map *map, int height, int scale)
 	point->height = height;
 	point->scale = scale;
 	point->width = map->width;
-	point->linelength = (point->width * point->scale) * 0.90;
-	point->step = point->linelength / point->height;
+	point->drawlength = (point->width * point->scale) * 0.90;
+	point->step = point->drawlength / point->width;
 }
 
 //ANCHOR - Get Scale
 static int	ft_getscale(int width, int height)
 {
-	if (width < MAX_WIDTH && height < MAX_HEIGHT)
-		return (width * 3);
+	if (width < 50 && height < 50)
+		return (10 * (width * 0.3));
+	else if (width < MAX_WIDTH && height < MAX_HEIGHT)
+		return (10);
 	else
-		return (3);
+		return (5);
 }
 
 //ANCHOR - Create Window

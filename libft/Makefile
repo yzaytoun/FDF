@@ -9,7 +9,7 @@ SRC = ft_isalpha.c  ft_memcmp.c ft_putendl_fd.c ft_strdup.c ft_strlen.c \
 		ft_strlcpy.c ft_strrchr.c ft_strtrim.c ft_atoi.c\
 		get_next_line.c get_next_line_utils.c ft_freestr_arr.c\
 		ft_copystrarr.c ft_isdigitstr.c ft_strlen_arr.c ft_findchr.c\
-		ft_charpos.c ft_atoibase.c ft_createarray.c
+		ft_charpos.c ft_atoibase.c ft_createarray.c ft_arraymin.c
 
 BONUS = ft_lstadd_front_bonus.c ft_lstmap_bonus.c ft_lstclear_bonus.c\
 		ft_lstnew_bonus.c ft_lstdelone_bonus.c ft_lstsize_bonus.c\

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/11 20:38:31 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/15 19:55:18 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define KEY_ESCAPE	0x35
 
 /*Macros*/
-# define MAX_WIDTH 300
-# define MAX_HEIGHT 300
+# define MAX_WIDTH 200
+# define MAX_HEIGHT 200
 
 /*Struct*/
 typedef struct s_map
@@ -34,6 +34,7 @@ typedef struct s_map
 	int				width;
 	int				y;
 	int				*color;
+	int				min;
 	struct s_map	*next;
 }					t_map;
 
@@ -54,13 +55,15 @@ typedef struct s_point
 	int		y0;
 	int		x1;
 	int		y1;
+	int		z;
 	int		color0;
 	int		color1;
 	int		step;
 	int		scale;
 	int		width;
 	int		height;
-	int		linelength;
+	int		drawlength;
+	int		extend;
 }			t_point;
 
 
@@ -85,6 +88,7 @@ void		ft_windowloop(t_window *window, t_map *map, int height);
 
 //ANCHOR - AUX
 void		ft_exception(char *str);
+int			ft_mapmin(t_map *map);
 
 //ANCHOR - Mouse Events
 void		ft_mousehooks(t_window *window);

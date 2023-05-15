@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:19:45 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/12 20:43:51 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/15 20:43:02 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 //SECTION - Draw
 //ANCHOR - Draw Z
-/*static void	ft_iso(int *x, int *y, int z)
+static void	ft_iso(int *x, int *y, int z)
 {
-	int	x0;
+	int	x_prev;
+	int	y_prev;
 
-	x0 = *x;
-	*x = (x0 - *y) * cos(0.523);
-	*y = -z + (x0 + *y) * sin(0.523);
-		if (point->y < point->height)
-			point->y = (point->y * point->step) + point->step;
-		ft_iso(&point->x, &point->y, x[counter]);
-}*/
+	x_prev = *x;
+	y_prev = *y;
+	*x = (x_prev-z)/sqrt(2);
+	*y = (x_prev+2*y_prev+z)/sqrt(6);
+	//*y = -z + (x_prev + y_prev) * sin(0.523599);
+}
 
 //ANCHOR - Draw Net
 static void	ft_draw_xy(t_window *window, t_point *point)
@@ -38,21 +38,19 @@ static void	ft_draw_xy(t_window *window, t_point *point)
 	printf("point0->(%d,%d) \t point1-> (%d,%d)\n",
 			point->x0, 
 			point->y0, point->x1, point->y1);
-	pixel = 2 * dy - dx;
-	while (point->y0 < point->y1)
+	pixel = (2 * dy) - dx;
+	ft_iso(&point->x0, &point->y0, point->z);
+	while (point->x0 <= point->x1)
 	{
-		if (point->y0 < (point->height * point->scale))
-			ft_pixelput(window, point->x0, point->y0, point->color0);
+		ft_pixelput(window, point->x0, point->y0, point->color0);
+		point->x0 += 1;
 		if (pixel >= 0)
 		{
 			pixel += 2 * (dy - dx);
 			point->y0 += 1;
 		}
 		else
-		{
 			pixel += 2 * dy;
-			point->x0 += 1;
-		}
 	}
 }
 
