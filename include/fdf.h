@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/15 19:55:18 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:57:21 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,19 @@ typedef struct s_window
 
 typedef struct s_point
 {
-	int		x0;
-	int		y0;
-	int		x1;
-	int		y1;
-	int		z;
-	int		color0;
-	int		color1;
-	int		step;
-	int		scale;
-	int		width;
-	int		height;
-	int		drawlength;
-	int		extend;
+	float		x0;
+	float		y0;
+	float		x1;
+	float		y1;
+	float		z;
+	int			color0;
+	int			color1;
+	int			step;
+	int			scale;
+	int			width;
+	int			height;
+	int			drawlength;
+	int			extend;
 }			t_point;
 
 
@@ -89,6 +89,7 @@ void		ft_windowloop(t_window *window, t_map *map, int height);
 //ANCHOR - AUX
 void		ft_exception(char *str);
 int			ft_mapmin(t_map *map);
+double		ft_toradian(double degree);
 
 //ANCHOR - Mouse Events
 void		ft_mousehooks(t_window *window);

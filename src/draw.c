@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:19:45 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/15 20:43:02 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:58:46 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ static void	ft_iso(int *x, int *y, int z)
 
 	x_prev = *x;
 	y_prev = *y;
-	*x = (x_prev-z)/sqrt(2);
-	*y = (x_prev+2*y_prev+z)/sqrt(6);
-	//*y = -z + (x_prev + y_prev) * sin(0.523599);
+	*x = x_prev * cos(ft_toradian(30)) + y_prev * sin(ft_toradian(30));
+	*y = -x_prev * sin(ft_toradian(60)) + y_prev * cos(ft_toradian(60));
 }
 
 //ANCHOR - Draw Net
@@ -33,11 +32,8 @@ static void	ft_draw_xy(t_window *window, t_point *point)
 	int	dx;
 	int	dy;
 
-	dx = abs(point->x1 - point->x0);
-	dy = abs(point->y1 - point->y0);
-	printf("point0->(%d,%d) \t point1-> (%d,%d)\n",
-			point->x0, 
-			point->y0, point->x1, point->y1);
+	dx = fabsf(point->x1 - point->x0);
+	dy = fabsf(point->y1 - point->y0);
 	pixel = (2 * dy) - dx;
 	ft_iso(&point->x0, &point->y0, point->z);
 	while (point->x0 <= point->x1)

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:18:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/15 20:18:15 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:53:17 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,7 @@
 void	ft_markpoint(t_point *point, t_map *map, int count)
 {
 	if (count == 0)
-	{
 		point->extend = point->step;
-		point->x0 = 0;
-		point->y0 = 0;
-	}
-	else
-	{
-		point->extend += point->step;
-		point->x0 = point->x1;
-		point->y0 = point->y1;
-	}
 	point->y1 = map->y;
 	point->x1 = point->extend;
 	point->z = map->x[count];

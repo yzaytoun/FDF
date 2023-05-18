@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:59:40 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/15 18:06:06 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:56:48 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,11 @@ int	ft_mapmin(t_map *map)
 	}
 	return (min);
 }
+
+//ANCHOR - to radian
+double	ft_toradian(double degree)
+{
+	return ((degree * M_PI) / 180);
+}
+
 //!SECTION
