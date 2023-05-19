@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:19:45 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/18 20:58:46 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/19 20:46:07 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 //SECTION - Draw
 //ANCHOR - Draw Z
-static void	ft_iso(int *x, int *y, int z)
+static void	ft_iso(t_point *point)
 {
-	int	x_prev;
-	int	y_prev;
-
-	x_prev = *x;
-	y_prev = *y;
-	*x = x_prev * cos(ft_toradian(30)) + y_prev * sin(ft_toradian(30));
-	*y = -x_prev * sin(ft_toradian(60)) + y_prev * cos(ft_toradian(60));
+	/*point->x1 -= point->step;
+	point->y1 -= point->step;
+	*/point->x0 = point->x0 * cos(ft_toradian(30))
+		+ point->y0 * sin(ft_toradian(30)) + point->scale;
+	point->y0 = - point->x0 * sin(ft_toradian(30))
+		+ point->y0 * cos(ft_toradian(30));
 }
 
 //ANCHOR - Draw Net
@@ -35,10 +34,16 @@ static void	ft_draw_xy(t_window *window, t_point *point)
 	dx = fabsf(point->x1 - point->x0);
 	dy = fabsf(point->y1 - point->y0);
 	pixel = (2 * dy) - dx;
-	ft_iso(&point->x0, &point->y0, point->z);
+	ft_iso(point);
 	while (point->x0 <= point->x1)
 	{
-		ft_pixelput(window, point->x0, point->y0, point->color0);
+		if (point->x0 < (point->width * point->scale)
+			&& point->y0 < (point->height * point->scale)
+			&& point->x0 > 0)
+		{
+			ft_pixelput(window, point->x0, point->y0, point->color0);
+			ft_pixelput(window, point->y0, point->x0, point->color0);
+		}
 		point->x0 += 1;
 		if (pixel >= 0)
 		{
@@ -87,6 +92,6 @@ void	ft_drawmap(t_window *window, t_map *map, t_point *point)
 		node = node->next;
 	}
 	mlx_put_image_to_window(window->mlx, window->win,
-		window->img, point->step / 2, point->step / 2);
+		window->img, point->step / 2 + 50, point->step / 2 + 50);
 }
 //!SECTION

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:12:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/18 20:55:09 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:00:26 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ int	ft_checkmap(t_map *map)
 	t_map	*node;
 	int		num;
 
-	num = 0;
 	node = map;
+	num = node->width;
 	while (node != NULL)
 	{
 		if (num != node->width)
