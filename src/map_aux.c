@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/07 14:12:52 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/20 19:15:34 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_printmap(t_map *map)
 		while (index < node->width)
 		{
 			printf("%d ", node->x[index]);
-			printf("color%d", node->color[index]);
+			//printf("color%d", node->color[index]);
 			index++;
 		}
 		printf("\t\t index = %d\n", node->y);
@@ -120,4 +120,25 @@ void	ft_colorflood(int **array, int size, int color)
 	}
 }
 
+//ANCHOR - Normalize negative
+void	ft_normalizemap(t_map *map, t_point *point)
+{
+	t_map	*node;
+	int		count;
+
+	if (!map || !point)
+		return ;
+	node = map;
+	count = 0;
+	while (node != NULL)
+	{
+		count = 0;
+		while (count < node->width)
+		{
+			node->x[count] += abs(point->min);
+			++count;
+		}
+		node = node->next;
+	}
+}
 //!SECTION

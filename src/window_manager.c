@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/19 20:45:26 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/20 19:16:26 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,38 @@
 
 //SECTION - Window Manager
 //ANCHOR - Point init
-static void	ft_pointinit(t_point *point, t_map *map, int height, int scale)
+static void	ft_pointinit(t_point *point, t_map *map, int height, double scale)
 {
-	point->height = height;
 	point->scale = scale;
-	point->width = map->width;
-	point->drawlength = (point->width * point->scale) * 0.90;
-	point->step = point->drawlength / point->width;
+	point->imagelength = map->width * scale;
+	point->imageheight = height * scale;
+	point->distance_x = (point->imagelength / map->width) * scale;
+	point->distance_y = (point->imageheight / height) * scale;
+	if (point->imageheight > point->imagelength)
+		point->margin = (point->imageheight / 10);
+	else
+		point->margin = (point->imageheight / 10);
+	point->min = ft_mapmin(map);
 }
 
 //ANCHOR - Get Scale
-static int	ft_getscale(int width, int height)
+static double	ft_getscale(int width, int height)
 {
-	if (width > 10 && height > 10)
-		return (10 * (width * 0.3));
-	else if (width < 11 && height < 11)
-		return (10);
-	else
+	if (width < 30 && height < 30)
+		return (50);
+	else if (width < MAX_HEIGHT && height < MAX_WIDTH)
+		return (8);
+	else if (width > 1000 || height > 1000)
 		return (1);
+	else
+		return (2);
 }
 
 //ANCHOR - Create Window
 t_window	*ft_createwindow(char *title, int width, int height)
 {
 	t_window	*window;
-	int			scale;
+	double		scale;
 
 	window = ft_calloc(sizeof(t_window), 1);
 	if (!window)
@@ -85,6 +92,8 @@ void	ft_windowloop(t_window *window, t_map *map, int height)
 	if (!point)
 		return ;
 	ft_pointinit(point, map, height, scale);
+	if (point->min < 0)
+		ft_normalizemap(map, point);
 	ft_drawmap(window, map, point);
 	free(point);
 	ft_mousehooks(window);

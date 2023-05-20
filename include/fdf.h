@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/18 20:57:21 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/20 19:09:02 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@
 # define KEY_ESCAPE	0x35
 
 /*Macros*/
-# define MAX_WIDTH 200
-# define MAX_HEIGHT 200
+# define MAX_WIDTH 100
+# define MAX_HEIGHT 100
 
 /*Struct*/
 typedef struct s_map
 {
 	int				*x;
-	int				width;
 	int				y;
+	int				width;
 	int				*color;
 	int				min;
 	struct s_map	*next;
@@ -58,12 +58,13 @@ typedef struct s_point
 	float		z;
 	int			color0;
 	int			color1;
-	int			step;
-	int			scale;
-	int			width;
-	int			height;
-	int			drawlength;
-	int			extend;
+	int			distance_x;
+	int			distance_y;
+	int			imagelength;
+	int			imageheight;
+	double		scale;
+	int			margin;
+	int			min;
 }			t_point;
 
 
@@ -75,11 +76,13 @@ t_map		*ft_readmap(char **av, int *height);
 void		ft_deletemap(t_map **map);
 int			ft_checkmap(t_map *map);
 
+//FIXME - To be deleted
+void		ft_printmap(t_map *map);
 //ANCHOR - Map Aux
 int			ft_readarr(char **str, t_map **map);
-void		ft_printmap(t_map *map);
 void		ft_mapreverse(t_map **map);
 void		ft_colorflood(int **array, int size, int color);
+void		ft_normalizemap(t_map *map, t_point *point);
 
 //ANCHOR - Window Generator
 t_window	*ft_createwindow(char *title, int width, int height);
@@ -90,6 +93,7 @@ void		ft_windowloop(t_window *window, t_map *map, int height);
 void		ft_exception(char *str);
 int			ft_mapmin(t_map *map);
 double		ft_toradian(double degree);
+void		ft_writetowindow(t_window *window, t_point *point);
 
 //ANCHOR - Mouse Events
 void		ft_mousehooks(t_window *window);
