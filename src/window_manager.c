@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/20 19:16:26 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/22 20:28:40 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 static void	ft_pointinit(t_point *point, t_map *map, int height, double scale)
 {
 	point->scale = scale;
-	point->imagelength = map->width * scale;
-	point->imageheight = height * scale;
-	point->distance_x = (point->imagelength / map->width) * scale;
-	point->distance_y = (point->imageheight / height) * scale;
+	point->imagelength = (map->width * scale);
+	point->imageheight = (height * scale);
+	point->distance_x = (point->imagelength / map->width);
+	point->distance_y = (point->imageheight / height);
 	if (point->imageheight > point->imagelength)
 		point->margin = (point->imageheight / 10);
 	else
@@ -31,14 +31,26 @@ static void	ft_pointinit(t_point *point, t_map *map, int height, double scale)
 //ANCHOR - Get Scale
 static double	ft_getscale(int width, int height)
 {
-	if (width < 30 && height < 30)
-		return (50);
-	else if (width < MAX_HEIGHT && height < MAX_WIDTH)
-		return (8);
-	else if (width > 1000 || height > 1000)
-		return (1);
+	double	scale;
+
+	if (!width || !height)
+		return (0);
+	scale = 0;
+	if (width > height)
+		scale = width;
 	else
-		return (2);
+		scale = height;
+	if (scale <= 25)
+		scale = 50;
+	else if (scale <= 50)
+		scale = 10;
+	else if (scale <= 100)
+		scale = 5;
+	else if (scale <= MAX_WIDTH)
+		scale = 2;
+	else
+		scale = 1;
+	return (scale);
 }
 
 //ANCHOR - Create Window
@@ -56,10 +68,10 @@ t_window	*ft_createwindow(char *title, int width, int height)
 		return (NULL);
 	if (ft_strrchr(title, '/') == NULL)
 		window->win
-			= mlx_new_window(window->mlx, width * scale, height * scale, title);
+			= mlx_new_window(window->mlx, scale * width, scale * height, title);
 	else
 		window->win
-			= mlx_new_window(window->mlx, width * scale, height * scale,
+			= mlx_new_window(window->mlx, scale * width, scale * height,
 				ft_strrchr(title, '/') + 1);
 	if (window->win == NULL)
 		ft_exception("New Window");
@@ -85,7 +97,7 @@ void	ft_windowloop(t_window *window, t_map *map, int height)
 
 	scale = ft_getscale(map->width, height);
 	window->img
-		= mlx_new_image(window->mlx, map->width * scale, height * scale);
+		= mlx_new_image(window->mlx, scale * map->width, scale * height);
 	if (!window->img)
 		return ;
 	point = ft_calloc(1, sizeof(t_point));

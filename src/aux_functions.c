@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:59:40 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/20 19:22:04 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/22 18:54:15 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ double	ft_toradian(double degree)
 }
 
 //ANCHOR - Write to window
-void	ft_writetowindow(t_window *window, t_point *point)
+void	ft_printheader(t_window *window, t_point *point)
 {
-	mlx_string_put(window->mlx, window->win, 5, 5, 0xFFFF00,
-		ft_strjoin("Width", ft_itoa(point->imagelength / point->scale)));
-	mlx_string_put(window->mlx, window->win, 5, 15, 0xFFFF00,
-		ft_strjoin("Height", ft_itoa(point->imageheight / point->scale)));
-	mlx_string_put(window->mlx, window->win, 5, 30, 0xFFFF00,
-		ft_strjoin("Scale", ft_itoa((int)point->scale)));
+	mlx_string_put(window->mlx, window->win, 1, 1, 0xFFFF00,
+		ft_strjoin("Width: ", ft_itoa(point->imagelength / point->scale)));
+	mlx_string_put(window->mlx, window->win, 1, 15, 0xFFFF00,
+		ft_strjoin("Height: ", ft_itoa(point->imageheight / point->scale)));
+	mlx_string_put(window->mlx, window->win, 1, 30, 0xFFFF00,
+		ft_strjoin("Scale: ", ft_itoa((int)point->scale)));
 }
 //!SECTION
