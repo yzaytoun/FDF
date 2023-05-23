@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:18:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/20 18:41:00 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/23 20:41:51 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,22 @@
 //ANCHOR - Mark point
 void	ft_markpoint(t_point *point, t_map *map, int count)
 {
-	point->x0 = point->x1;
-	point->y0 = point->y1;
+	int	start;
+
+	start = point->margin + 5;
+	if (count == 0)
+	{
+		point->x0 = start;
+		point->y0 = start;
+	}
+	else
+	{
+		point->x0 = point->x1;
+		point->y0 = point->y1;
+	}
 	point->y1 = (map->y + point->distance_y);
 	point->x1 = (count + point->distance_x);
-	point->z = map->x[count] + 1;
+	point->z = map->x[count];
 	point->color0 = map->color[count];
 	point->color1 = map->color[count + 1];
 }

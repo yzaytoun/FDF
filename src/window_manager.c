@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/22 20:28:40 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:08:34 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	ft_pointinit(t_point *point, t_map *map, int height, double scale)
 	if (point->imageheight > point->imagelength)
 		point->margin = (point->imageheight / 10);
 	else
-		point->margin = (point->imageheight / 10);
+		point->margin = (point->imagelength / 10);
 	point->min = ft_mapmin(map);
 }
 
