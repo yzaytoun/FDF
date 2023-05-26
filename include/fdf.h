@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/23 19:19:42 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:55:37 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ typedef struct s_point
 	double		scale;
 	int			margin;
 	int			min;
+	float		angle;
+	float		point;
 }			t_point;
 
 
