@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/24 19:55:37 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/27 20:12:11 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,18 @@ typedef struct s_window
 	int		endian;
 }				t_window;
 
+typedef struct s_vector
+{
+	int			x;
+	int			y;
+	int			z;
+	int			color;
+}				t_vector;
+
 typedef struct s_point
 {
-	float		x0;
-	float		y0;
-	float		x1;
-	float		y1;
-	float		z;
-	int			color0;
-	int			color1;
+	t_vector	v0;
+	t_vector	v1;
 	int			distance_x;
 	int			distance_y;
 	int			imagelength;
@@ -83,7 +86,7 @@ void		ft_printmap(t_map *map);
 int			ft_readarr(char **str, t_map **map);
 void		ft_mapreverse(t_map **map);
 void		ft_colorflood(int **array, int size, int color);
-void		ft_normalizemap(t_map *map, t_point *point);
+void		ft_normalizemap(t_map *map, int min);
 
 //ANCHOR - Window Generator
 t_window	*ft_createwindow(char *title, int width, int height);
@@ -94,7 +97,8 @@ void		ft_windowloop(t_window *window, t_map *map, int height);
 void		ft_exception(char *str);
 int			ft_mapmin(t_map *map);
 double		ft_toradian(double degree);
-void		ft_printheader(t_window *window, t_point *point);
+t_map		*ft_new_mapnode(int *x, int y, int *color, int width);
+t_map		*ft_copymap(t_map *map);
 
 //ANCHOR - Mouse Events
 void		ft_mousehooks(t_window *window);
@@ -106,7 +110,9 @@ void		ft_keyhooks(t_window *window);
 void		ft_drawmap(t_window *window, t_map *map, t_point *point);
 
 //ANCHOR - Draw Aux
+void		ft_printheader(t_window *window, t_point *point);
 void		ft_markpoint(t_point *point, t_map *map, int count);
 void		ft_pixelput(t_window *window, int dist_x, int dist_y, int color);
+void		ft_isoprojection(int *x, int *y, int angle);
 
 #endif /*FDF HEADER*/

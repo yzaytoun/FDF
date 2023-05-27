@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/26 19:54:36 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/27 19:26:20 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	ft_windowloop(t_window *window, t_map *map, int height)
 		return ;
 	ft_pointinit(point, map, height, scale);
 	if (point->min < 0)
-		ft_normalizemap(map, point);
+		ft_normalizemap(map, abs(point->min));
 	ft_drawmap(window, map, point);
 	free(point);
 	ft_mousehooks(window);

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:59:40 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/22 18:54:15 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/27 20:00:16 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,36 @@ double	ft_toradian(double degree)
 	return ((degree * M_PI) / 180);
 }
 
-//ANCHOR - Write to window
-void	ft_printheader(t_window *window, t_point *point)
+//ANCHOR New map node
+t_map	*ft_new_mapnode(int *x, int y, int *color, int width)
 {
-	mlx_string_put(window->mlx, window->win, 1, 1, 0xFFFF00,
-		ft_strjoin("Width: ", ft_itoa(point->imagelength / point->scale)));
-	mlx_string_put(window->mlx, window->win, 1, 15, 0xFFFF00,
-		ft_strjoin("Height: ", ft_itoa(point->imageheight / point->scale)));
-	mlx_string_put(window->mlx, window->win, 1, 30, 0xFFFF00,
-		ft_strjoin("Scale: ", ft_itoa((int)point->scale)));
+	t_map	*node;
+
+	node = ft_calloc(1, sizeof(t_map));
+	if (!node)
+		return (NULL);
+	node->x = ft_copyarr(x, width);
+	node->y = y;
+	node->color = ft_copyarr(color, width);
+	node->width = width;
+	node->min = ft_arraymin(node->x, width);
+	node->next = NULL;
+	return (node);
 }
+
+//ANCHOR - Copy map
+t_map	*ft_copymap(t_map *map)
+{
+	t_map	*copy;
+
+	if (!map)
+		return (NULL);
+	else
+	{
+		copy = ft_new_mapnode(map->x, map->y, map->color, map->width);
+		copy->next = ft_copymap(map->next);
+	}
+	return (copy);
+}
+
 //!SECTION

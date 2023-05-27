@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:18:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/26 20:32:12 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/27 16:31:17 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,29 @@ void	ft_pixelput(t_window *window, int dist_x, int dist_y, int color)
 	if (dst != NULL)
 		*(unsigned int *)dst = mlx_get_color_value(window->mlx, color);
 }
+
+//ANCHOR - Write to window
+void	ft_printheader(t_window *window, t_point *point)
+{
+	mlx_string_put(window->mlx, window->win, 1, 1, 0xFFFF00,
+		ft_strjoin("Width: ", ft_itoa(point->imagelength / point->scale)));
+	mlx_string_put(window->mlx, window->win, 1, 15, 0xFFFF00,
+		ft_strjoin("Height: ", ft_itoa(point->imageheight / point->scale)));
+	mlx_string_put(window->mlx, window->win, 1, 30, 0xFFFF00,
+		ft_strjoin("Scale: ", ft_itoa((int)point->scale)));
+}
+
+//ANCHOR - ISO Projection
+void	ft_isoprojection(int *x, int *y, int angle)
+{
+	int	x0;
+	int	y0;
+
+	x0 = *x;
+	y0 = *y;
+	*x = x0 * cos(ft_toradian(angle)) - y0 * sin(ft_toradian(angle));
+	*y = x0 * sin(ft_toradian(angle)) + y0 * cos(ft_toradian(angle));
+}
+
+
 //!SECTION
