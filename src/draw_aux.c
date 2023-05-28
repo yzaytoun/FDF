@@ -13,24 +13,16 @@
 #include "../include/fdf.h"
 
 //SECTION - Draw Aux
-//ANCHOR - Mark point
-void	ft_markpoint(t_point *point, t_map *map, int count)
+void	ft_markpoint(t_point *point, t_matrix *matrix, int count_x, int count_y)
 {
-	if (count == 0)
-	{
-		point->x0 = 0;
-		point->y0 = 0;
-	}
-	else
-	{
-		point->x0 = point->x1;
-		point->y0 = point->y1;
-	}
-	point->y1 = (map->y * (point->distance_y / 2));
-	point->x1 = (count * (point->distance_x / 2));
-	point->z = map->x[count];
-	point->color0 = map->color[count];
-	point->color1 = map->color[count + 1];
+	point->v0.x = matrix->vector[count_y][count_x].x;
+	point->v0.y = matrix->vector[count_y][count_x].y;
+	point->v0.z = matrix->vector[count_y][count_x].z;
+	point->v0.color = matrix->vector[count_y][count_x].color;
+	point->v1.x = matrix->vector[count_y][count_x + 1].x;
+	point->v1.y = matrix->vector[count_y][count_x + 1].y;
+	point->v1.z = matrix->vector[count_y][count_x + 1].z;
+	point->v1.color = matrix->vector[count_y][count_x + 1].color;
 }
 
 //ANCHOR - Pixel Put
@@ -69,5 +61,31 @@ void	ft_isoprojection(int *x, int *y, int angle)
 	*y = x0 * sin(ft_toradian(angle)) + y0 * cos(ft_toradian(angle));
 }
 
+//ANCHOR - Draw Net
+void	ft_draw_xy(t_window *window, t_point *point)
+{
+	register int	pixel;
+	int				dx;
+	int				dy;
 
+	dx = abs(point->v1.x - point->v0.x);
+	dy = abs(point->v1.y - point->v0.y);
+	pixel = (2 * dy) - dx;
+	while (point->v0.x <= point->v1.x)
+	{
+		if (point->v0.x < point->imagelength && point->v0.y < point->imageheight)
+		{
+			ft_pixelput(window, point->v0.x, point->v0.y, point->v0.color);
+			ft_pixelput(window, point->v0.y, point->v0.x, point->v0.color);
+		}
+		point->v0.x += 1;
+		if (pixel >= 0)
+		{
+			pixel += 2 * (dy - dx);
+			point->v0.y += 1;
+		}
+		else
+			pixel += 2 * dy;
+	}
+}
 //!SECTION

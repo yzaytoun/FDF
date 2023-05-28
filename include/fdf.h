@@ -67,9 +67,14 @@ typedef struct s_point
 	double		scale;
 	int			margin;
 	int			min;
-	float		angle;
-	float		point;
 }			t_point;
+
+typedef struct	s_matrix
+{
+	t_vector	**vector;
+	int			length;
+	int			height;
+}				t_matrix;
 
 
 /*Basic Functions*/
@@ -111,8 +116,9 @@ void		ft_drawmap(t_window *window, t_map *map, t_point *point);
 
 //ANCHOR - Draw Aux
 void		ft_printheader(t_window *window, t_point *point);
-void		ft_markpoint(t_point *point, t_map *map, int count);
+void		ft_markpoint(t_point *point, t_matrix *matrix, int count_x, int count_y);
 void		ft_pixelput(t_window *window, int dist_x, int dist_y, int color);
 void		ft_isoprojection(int *x, int *y, int angle);
+void		ft_draw_xy(t_window *window, t_point *point);
 
 #endif /*FDF HEADER*/

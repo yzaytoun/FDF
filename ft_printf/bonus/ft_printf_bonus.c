@@ -15,10 +15,8 @@
 static void	ft_check_point(const char *s, t_pos *pos)
 {
 	int	i;
-	int	num;
 
 	i = pos->counter;
-	num = 0;
 	while (s[i] != '\0' && pos->breaker != 1)
 	{
 		if (s[i] == '.')
