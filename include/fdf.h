@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/27 20:12:11 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:40:23 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,8 @@ void		ft_markpoint(t_point *point, t_matrix *matrix, int count_x, int count_y);
 void		ft_pixelput(t_window *window, int dist_x, int dist_y, int color);
 void		ft_isoprojection(int *x, int *y, int angle);
 void		ft_draw_xy(t_window *window, t_point *point);
+
+//ANCHOR - Matrix
+t_matrix	*ft_creatematrix(t_map *map, t_point *point);
 
 #endif /*FDF HEADER*/

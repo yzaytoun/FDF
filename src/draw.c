@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:19:45 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/27 19:43:53 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:40:01 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,12 @@ static void	ft_projectmap(t_window *window, t_point *point, t_matrix *matrix)
 //ANCHOR - Main func
 void	ft_drawmap(t_window *window, t_map *map, t_point *point)
 {
+	t_matrix	*matrix;
+
 	window->addr = mlx_get_data_addr(window->img,
 			&window->bpp, &window->size_line, &window->endian);
-	ft_projectmap(window, point);
+	matrix = ft_creatematrix(map, point);
+	ft_projectmap(window, point, matrix);
 	ft_printheader(window, point);
 	mlx_put_image_to_window(window->mlx, window->win,
 		window->img, point->margin + 5, point->margin + 5);
