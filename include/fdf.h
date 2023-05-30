@@ -6,7 +6,7 @@
 /*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/29 19:40:23 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/05/30 19:12:12 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int			ft_checkmap(t_map *map);
 
 //FIXME - To be deleted
 void		ft_printmap(t_map *map);
+void		ft_printmatrix(t_matrix *matrix);
 //ANCHOR - Map Aux
 int			ft_readarr(char **str, t_map **map);
 void		ft_mapreverse(t_map **map);
@@ -123,5 +124,7 @@ void		ft_draw_xy(t_window *window, t_point *point);
 
 //ANCHOR - Matrix
 t_matrix	*ft_creatematrix(t_map *map, t_point *point);
-
+void		ft_destroyvector(t_vector ***vector, int size);
+t_vector	**ft_createvector(int length, int height);
+void		ft_fillmatrix(t_map *map, t_matrix *matrix);
 #endif /*FDF HEADER*/
