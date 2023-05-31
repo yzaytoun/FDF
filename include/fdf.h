@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/30 19:12:12 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/05/31 20:03:20 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../libft/libft.h"
 # include "../ft_printf/include/ft_printf_bonus.h"
 # include <math.h>
-# include "../minilibx_macos/mlx.h"
+# include <mlx.h>
 
 /***********************Marcos************************/
 /*Keyboard keys*/
@@ -69,7 +69,7 @@ typedef struct s_point
 	int			min;
 }			t_point;
 
-typedef struct	s_matrix
+typedef struct s_matrix
 {
 	t_vector	**vector;
 	int			length;
@@ -117,7 +117,8 @@ void		ft_drawmap(t_window *window, t_map *map, t_point *point);
 
 //ANCHOR - Draw Aux
 void		ft_printheader(t_window *window, t_point *point);
-void		ft_markpoint(t_point *point, t_matrix *matrix, int count_x, int count_y);
+void		ft_markpoint(t_point *point, t_matrix *matrix, int count_x,
+				int count_y);
 void		ft_pixelput(t_window *window, int dist_x, int dist_y, int color);
 void		ft_isoprojection(int *x, int *y, int angle);
 void		ft_draw_xy(t_window *window, t_point *point);
@@ -126,5 +127,5 @@ void		ft_draw_xy(t_window *window, t_point *point);
 t_matrix	*ft_creatematrix(t_map *map, t_point *point);
 void		ft_destroyvector(t_vector ***vector, int size);
 t_vector	**ft_createvector(int length, int height);
-void		ft_fillmatrix(t_map *map, t_matrix *matrix);
+void		ft_fillmatrix(t_map *map, t_matrix **matrix);
 #endif /*FDF HEADER*/

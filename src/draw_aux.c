@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:18:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/27 16:31:17 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:36:57 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,33 @@ void	ft_draw_xy(t_window *window, t_point *point)
 
 	dx = abs(point->v1.x - point->v0.x);
 	dy = abs(point->v1.y - point->v0.y);
+	pixel = (2 * dy) - dx;
+	while (point->v0.x <= point->v1.x)
+	{
+		if (point->v0.x < point->imagelength && point->v0.y < point->imageheight)
+		{
+			ft_pixelput(window, point->v0.x, point->v0.y, point->v0.color);
+			ft_pixelput(window, point->v0.y, point->v0.x, point->v0.color);
+		}
+		point->v0.x += 1;
+		if (pixel >= 0)
+		{
+			pixel += 2 * (dy - dx);
+			point->v0.y += 1;
+		}
+		else
+			pixel += 2 * dy;
+	}
+}
+
+void	ft_draw_matrix(t_window *window, t_point *matrix)
+{
+	register int	pixel;
+	int				dx;
+	int				dy;
+
+	dx = abs(matrix->vector[count_y][count_x + 1].x - matrix->vector[count_y][count_x].x);
+	dy = abs(matrix->vector[count_y][count_x + 1].y - matrix->vector[count_y][count_x].y);
 	pixel = (2 * dy) - dx;
 	while (point->v0.x <= point->v1.x)
 	{

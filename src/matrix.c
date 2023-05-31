@@ -1,6 +1,16 @@
-//HEADER
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrix.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/31 19:14:28 by yzaytoun          #+#    #+#             */
+/*   Updated: 2023/05/31 20:00:46 by yzaytoun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# include "../include/fdf.h"
+#include "../include/fdf.h"
 
 //SECTION Matrix Functions
 //FIXME - To be deleted
@@ -53,12 +63,12 @@ t_vector	**ft_createvector(int length, int height)
 	int			count;
 
 	count = 0;
-	vector = ft_calloc(sizeof(t_vector), height);
+	vector = ft_calloc(height, sizeof(t_vector));
 	if (!vector)
 		return (NULL);
 	while (count < height)
 	{
-		vector[count] = ft_calloc(sizeof(int), length);
+		vector[count] = ft_calloc(length, sizeof(t_vector));
 		if (!vector[count])
 		{
 			ft_destroyvector(&vector, height);
@@ -69,13 +79,13 @@ t_vector	**ft_createvector(int length, int height)
 	return (vector);
 }
 
-void	ft_fillmatrix(t_map *map, t_matrix *matrix)
+void	ft_fillmatrix(t_map *map, t_matrix **matrix)
 {
-	t_map		*node;
-	int			count_x;
-	int			count_y;
+	t_map	*node;
+	int		count_x;
+	int		count_y;
 
-	if (!map || !matrix || !matrix->vector)
+	if (!map || !(*matrix) || !(*matrix)->vector)
 		return ;
 	count_x = 0;
 	node = map;
@@ -86,14 +96,13 @@ void	ft_fillmatrix(t_map *map, t_matrix *matrix)
 		count_y = node->y;
 		while (count_x < node->width)
 		{
-			matrix->vector[count_y][count_x].x = count_x;
-			matrix->vector[count_y][count_x].y = count_y;
-			matrix->vector[count_y][count_x].z = node->x[count_x];
+			(*matrix)->vector[count_y][count_x].x = count_x;
+			(*matrix)->vector[count_y][count_x].y = count_y;
+			(*matrix)->vector[count_y][count_x].z = node->x[count_x];
 			++count_x;
 		}
 		node = node->next;
 	}
-
 }
 
 //ANCHOR Create Matrix

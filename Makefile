@@ -50,11 +50,7 @@ CFLAGS = -Wall -Wextra -Werror -I $(INC) -g3
 RM = rm -fr
 SANITIAZE = -fsanitize=address -g3
 # --------------------- MLX  ------------------------------------
-MLX = minilibx_macos
-LIBX = minilibx_macos/libmlx.a
 FLAGX = -lmlx -framework OpenGL -framework AppKit
-BETA = mlx_image.swiftdoc mlx_init.swiftmodule mlx_window.swiftmodule
-BETADIC = minilibx_mms_20191025_beta
 # ------------------ Libft and printf ------------------------------
 PRINTF = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
@@ -72,9 +68,9 @@ $(OBJDIR)/%.o:%.c
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(PRINTF) $(LIBX) $(FDF_OBJ) $(BETA)
+$(NAME): $(LIBFT) $(PRINTF) $(FDF_OBJ)
 	@echo "$(YELLOW)Compiling" $@
-	@$(CC) $(FDF_OBJ) $(LIBFT) $(PRINTF) -L$(MLX) $(LIBX) $(FLAGX) main.c -o $@ $(SANITIAZE)
+	@$(CC) $(FDF_OBJ) $(LIBFT) $(PRINTF) $(FLAGX) main.c -o $@ $(SANITIAZE)
 	@chmod +x fdf
 	@echo "$(PURPLE)************DONE****************\n"
 
@@ -85,12 +81,6 @@ $(PRINTF) $(LIBFT) &:
 	@$(MAKE) -C ft_printf
 	@echo "$(GREEN)Finished!!!"
 
-$(LIBX):
-	@$(MAKE) -C $(MLX)
-
-$(BETA):
-	@$(MAKE) -C $(BETADIC)
-
 fclean: clean
 	@$(RM) $(NAME) fdf
 
@@ -98,9 +88,6 @@ clean:
 	@echo "$(RED)Cleaning libft and ft_printf"
 	@(cd libft; make fclean)
 	@(cd ft_printf; make fclean)
-	@echo "$(PURPLE)Cleaning Minilibx"
-	@(cd $(MLX); make clean)
-	@(cd $(BETADIC); make clean)
 	@echo "$(YELLOW)Cleaning Object files"
 	@$(RM) $(FDF_OBJ) $(OBJDIR)
 	@echo "Cleaning fdf"

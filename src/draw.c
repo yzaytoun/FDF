@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:19:45 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/30 19:44:53 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/05/31 20:33:08 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,17 @@ static void	ft_projectmap(t_window *window, t_point *point, t_matrix *matrix)
 {
 	ft_drawaxis(window, point);
 	ft_printmatrix(matrix);
-	/*while (count_y < matrix->height)
+	while (count_y < matrix->height)
 	{
 		count_x = 0;
 		while (count_x < matrix->length - 1)
 		{
 			ft_markpoint(point, matrix);
-			ft_draw_xy(window, point);	
+			ft_draw_xy(window, );	
 			++count_x;
 		}
 		++count_y;
-	}*/
+	}
 }
 
 
@@ -63,7 +63,7 @@ void	ft_drawmap(t_window *window, t_map *map, t_point *point)
 	window->addr = mlx_get_data_addr(window->img,
 			&window->bpp, &window->size_line, &window->endian);
 	matrix = ft_creatematrix(map, point);
-	ft_fillmatrix(map, matrix);
+	ft_fillmatrix(map, &matrix);
 	ft_projectmap(window, point, matrix);
 	ft_printheader(window, point);
 	mlx_put_image_to_window(window->mlx, window->win,
