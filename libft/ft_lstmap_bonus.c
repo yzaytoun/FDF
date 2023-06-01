@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42madrid>       +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 18:22:02 by yzaytoun          #+#    #+#             */
-/*   Updated: 2022/04/18 20:50:58 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:49:44 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
@@ -16,7 +17,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*node;
 	t_list	*new;
 
-	if (!lst || !f)
+	if (!lst || !f || !del)
 		return (0);
 	new = ft_lstnew(f(lst->content));
 	if (!new)

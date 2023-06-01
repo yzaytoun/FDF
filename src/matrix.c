@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:14:28 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/31 20:00:46 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/01 19:26:55 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,24 @@
 //FIXME - To be deleted
 void	ft_printmatrix(t_matrix *matrix)
 {
-	int	count_x;
-	int	count_y;
-
 	if (!matrix || !matrix->vector)
 		return ;
-	count_x = 0;
-	count_y = 0;
-	while (count_y < matrix->height)
+	matrix->count_x = 0;
+	matrix->count_y = 0;
+	while (matrix->count_y < matrix->height)
 	{
-		count_x = 0;
-		while (count_x < matrix->length)
+		matrix->count_x = 0;
+		while (matrix->count_x < matrix->length)
 		{
-			printf("(%d, %d, %d)\t", 
-				matrix->vector[count_y][count_x].x,
-				matrix->vector[count_y][count_x].y,
-				matrix->vector[count_y][count_x].z);
-			++count_x;
+			printf("(%d, %d, %d, %x)\t", 
+				matrix->vector[matrix->count_y][matrix->count_x].x,
+				matrix->vector[matrix->count_y][matrix->count_x].y,
+				matrix->vector[matrix->count_y][matrix->count_x].z,
+				matrix->vector[matrix->count_y][matrix->count_x].color);
+			++matrix->count_x;
 		}
 		printf("\n");
-		++count_y;
+		++matrix->count_y;
 	}
 
 }
@@ -82,24 +80,27 @@ t_vector	**ft_createvector(int length, int height)
 void	ft_fillmatrix(t_map *map, t_matrix **matrix)
 {
 	t_map	*node;
-	int		count_x;
-	int		count_y;
 
 	if (!map || !(*matrix) || !(*matrix)->vector)
 		return ;
-	count_x = 0;
+	(*matrix)->count_x = 0;
 	node = map;
-	count_y = node->y;
+	(*matrix)->count_y = node->y;
 	while (node != NULL)
 	{
-		count_x = 0;
-		count_y = node->y;
-		while (count_x < node->width)
+		(*matrix)->count_x = 0;
+		(*matrix)->count_y = node->y;
+		while ((*matrix)->count_x < node->width)
 		{
-			(*matrix)->vector[count_y][count_x].x = count_x;
-			(*matrix)->vector[count_y][count_x].y = count_y;
-			(*matrix)->vector[count_y][count_x].z = node->x[count_x];
-			++count_x;
+			(*matrix)->vector[(*matrix)->count_y][(*matrix)->count_x].x
+				= (*matrix)->count_x;
+			(*matrix)->vector[(*matrix)->count_y][(*matrix)->count_x].y
+				= (*matrix)->count_y;
+			(*matrix)->vector[(*matrix)->count_y][(*matrix)->count_x].z
+				= node->x[(*matrix)->count_x];
+			(*matrix)->vector[(*matrix)->count_y][(*matrix)->count_x].color
+				= node->color[(*matrix)->count_x];
+			(*matrix)->count_x += 1;
 		}
 		node = node->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/31 20:03:20 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/01 19:24:30 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ typedef struct s_matrix
 	t_vector	**vector;
 	int			length;
 	int			height;
+	int			min;
+	int			count_x;
+	int			count_y;
 }				t_matrix;
 
 
@@ -117,10 +120,8 @@ void		ft_drawmap(t_window *window, t_map *map, t_point *point);
 
 //ANCHOR - Draw Aux
 void		ft_printheader(t_window *window, t_point *point);
-void		ft_markpoint(t_point *point, t_matrix *matrix, int count_x,
-				int count_y);
+void		ft_markpoint(t_point *point, t_matrix *matrix);
 void		ft_pixelput(t_window *window, int dist_x, int dist_y, int color);
-void		ft_isoprojection(int *x, int *y, int angle);
 void		ft_draw_xy(t_window *window, t_point *point);
 
 //ANCHOR - Matrix
@@ -128,4 +129,12 @@ t_matrix	*ft_creatematrix(t_map *map, t_point *point);
 void		ft_destroyvector(t_vector ***vector, int size);
 t_vector	**ft_createvector(int length, int height);
 void		ft_fillmatrix(t_map *map, t_matrix **matrix);
+
+//ANCHOR - AUX Matrix
+void		ft_matrixmin(t_matrix *matrix);
+
+//ANCHOR - Transform
+void		ft_transform(t_matrix *matrix, void (*func)(t_vector *));
+void		ft_isoprojection(t_vector *vector);
+void		ft_topositive(t_matrix *matrix);
 #endif /*FDF HEADER*/

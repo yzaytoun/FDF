@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:19:45 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/31 20:33:08 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/01 19:38:55 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,30 @@ static void	ft_drawaxis(t_window *window, t_point *point)
 
 static void	ft_projectmap(t_window *window, t_point *point, t_matrix *matrix)
 {
+	if (!window || !point || !matrix)
+		return ;
 	ft_drawaxis(window, point);
+	printf("Before\n\n");
 	ft_printmatrix(matrix);
-	while (count_y < matrix->height)
+	ft_transform(matrix, ft_isoprojection);
+	printf("After\n\n");
+	ft_printmatrix(matrix);
+	printf("After\n\n");
+	ft_matrixmin(matrix);
+	ft_topositive(matrix);
+	ft_printmatrix(matrix);
+	matrix->count_x = 0;
+	matrix->count_y = 0;
+	while (matrix->count_y < matrix->height)
 	{
-		count_x = 0;
-		while (count_x < matrix->length - 1)
+		matrix->count_x = 0;
+		while (matrix->count_x < matrix->length - 1)
 		{
 			ft_markpoint(point, matrix);
-			ft_draw_xy(window, );	
-			++count_x;
+			ft_draw_xy(window, point);
+			++matrix->count_x;
 		}
-		++count_y;
+		++matrix->count_y;
 	}
 }
 
