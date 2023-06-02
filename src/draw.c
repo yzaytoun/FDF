@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:19:45 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/01 19:38:55 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/02 20:29:33 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 //SECTION Draw Map
 //ANCHOR - Draw borders
-static void	ft_drawaxis(t_window *window, t_point *point)
+static void	ft_drawaxis(t_window *window, t_fdf *fdf)
 {
 	register int	pixel;
 	int				maxlen;
 	int				maxwidth;
 
 	pixel = 0;
-	maxwidth = point->imagelength - point->margin - (point->imagelength * 0.1);
-	maxlen = point->imageheight - point->margin - (point->imageheight * 0.1);
+	maxwidth = fdf->imagelength - fdf->margin - (fdf->imagelength * 0.1);
+	maxlen = fdf->imageheight - fdf->margin - (fdf->imageheight * 0.1);
 	while (pixel < maxwidth)
 	{
 		ft_pixelput(window, pixel, 0, 0x00FF00);
@@ -36,19 +36,17 @@ static void	ft_drawaxis(t_window *window, t_point *point)
 	}
 }
 
-static void	ft_projectmap(t_window *window, t_point *point, t_matrix *matrix)
+static void	ft_projectmap(t_window *window, t_fdf *fdf, t_matrix *matrix)
 {
-	if (!window || !point || !matrix)
+	if (!window || !fdf || !matrix)
 		return ;
-	ft_drawaxis(window, point);
-	printf("Before\n\n");
-	ft_printmatrix(matrix);
-	ft_transform(matrix, ft_isoprojection);
-	printf("After\n\n");
-	ft_printmatrix(matrix);
-	printf("After\n\n");
+	ft_drawaxis(window, fdf);
+	ft_transform(matrix, ft_isoprojection, fdf);
 	ft_matrixmin(matrix);
-	ft_topositive(matrix);
+	fdf->min = matrix->min;
+	if (fdf->min < 0)
+		ft_transform(matrix, ft_topositive, fdf);
+	ft_transform(matrix, ft_translate, fdf);
 	ft_printmatrix(matrix);
 	matrix->count_x = 0;
 	matrix->count_y = 0;
@@ -57,29 +55,27 @@ static void	ft_projectmap(t_window *window, t_point *point, t_matrix *matrix)
 		matrix->count_x = 0;
 		while (matrix->count_x < matrix->length - 1)
 		{
-			ft_markpoint(point, matrix);
-			ft_draw_xy(window, point);
+			ft_markpoint(fdf, matrix);
+			ft_draw_xy(window, fdf);
 			++matrix->count_x;
 		}
 		++matrix->count_y;
 	}
 }
 
-
-
 //ANCHOR - Main func
-void	ft_drawmap(t_window *window, t_map *map, t_point *point)
+void	ft_drawmap(t_window *window, t_map *map, t_fdf *fdf)
 {
 	t_matrix	*matrix;
 
 	window->addr = mlx_get_data_addr(window->img,
 			&window->bpp, &window->size_line, &window->endian);
-	matrix = ft_creatematrix(map, point);
+	matrix = ft_creatematrix(map, fdf);
 	ft_fillmatrix(map, &matrix);
-	ft_projectmap(window, point, matrix);
-	ft_printheader(window, point);
+	ft_projectmap(window, fdf, matrix);
+	ft_printheader(window, fdf);
 	mlx_put_image_to_window(window->mlx, window->win,
-		window->img, point->margin + 5, point->margin + 5);
+		window->img, fdf->margin + 5, fdf->margin + 5);
 	ft_destroyvector(&matrix->vector, matrix->height);
 	free(matrix);
 }

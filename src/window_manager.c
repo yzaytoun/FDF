@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/27 19:26:20 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/02 20:20:41 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 //SECTION - Window Manager
 //ANCHOR - Point init
-static void	ft_pointinit(t_point *point, t_map *map, int height, double scale)
+static void	ft_pointinit(t_fdf *fdf, t_map *map, int height, double scale)
 {
-	point->scale = scale;
-	point->imagelength = (map->width * scale);
-	point->imageheight = (height * scale);
-	point->distance_x = (point->imagelength / map->width);
-	point->distance_y = (point->imageheight / height);
-	if (point->imageheight > point->imagelength)
-		point->margin = (point->imageheight / 10);
+	fdf->scale = scale;
+	fdf->imagelength = (map->width * scale);
+	fdf->imageheight = (height * scale);
+	fdf->distance_x = (fdf->imagelength / map->width);
+	fdf->distance_y = (fdf->imageheight / height);
+	if (fdf->imageheight > fdf->imagelength)
+		fdf->margin = (fdf->imageheight / 10);
 	else
-		point->margin = (point->imagelength / 10);
-	point->min = ft_mapmin(map);
+		fdf->margin = (fdf->imagelength / 10);
+	fdf->min = ft_mapmin(map);
 }
 
 //ANCHOR - Get Scale
@@ -92,7 +92,7 @@ void	ft_destroywindow(t_window **window, t_map *map)
 //ANCHOR - Run Window
 void	ft_windowloop(t_window *window, t_map *map, int height)
 {
-	t_point	*point;
+	t_fdf	*fdf;
 	int		scale;
 
 	scale = ft_getscale(map->width, height);
@@ -100,14 +100,14 @@ void	ft_windowloop(t_window *window, t_map *map, int height)
 		= mlx_new_image(window->mlx, scale * map->width, scale * height);
 	if (!window->img)
 		return ;
-	point = ft_calloc(1, sizeof(t_point));
-	if (!point)
+	fdf = ft_calloc(1, sizeof(t_fdf));
+	if (!fdf)
 		return ;
-	ft_pointinit(point, map, height, scale);
-	if (point->min < 0)
-		ft_normalizemap(map, abs(point->min));
-	ft_drawmap(window, map, point);
-	free(point);
+	ft_pointinit(fdf, map, height, scale);
+	if (fdf->min < 0)
+		ft_normalizemap(map, abs(fdf->min));
+	ft_drawmap(window, map, fdf);
+	free(fdf);
 	ft_mousehooks(window);
 	ft_keyhooks(window);
 	mlx_loop(window->mlx);

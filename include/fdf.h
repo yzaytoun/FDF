@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/01 19:24:30 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/02 20:31:58 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ typedef struct s_window
 
 typedef struct s_vector
 {
-	int			x;
-	int			y;
-	int			z;
-	int			color;
+	float			x;
+	float			y;
+	float			z;
+	int				color;
 }				t_vector;
 
-typedef struct s_point
+typedef struct s_fdf
 {
 	t_vector	v0;
 	t_vector	v1;
@@ -67,7 +67,7 @@ typedef struct s_point
 	double		scale;
 	int			margin;
 	int			min;
-}			t_point;
+}			t_fdf;
 
 typedef struct s_matrix
 {
@@ -105,9 +105,7 @@ void		ft_windowloop(t_window *window, t_map *map, int height);
 //ANCHOR - AUX
 void		ft_exception(char *str);
 int			ft_mapmin(t_map *map);
-double		ft_toradian(double degree);
-t_map		*ft_new_mapnode(int *x, int y, int *color, int width);
-t_map		*ft_copymap(t_map *map);
+float		ft_toradian(float degree);
 
 //ANCHOR - Mouse Events
 void		ft_mousehooks(t_window *window);
@@ -116,16 +114,17 @@ void		ft_mousehooks(t_window *window);
 void		ft_keyhooks(t_window *window);
 
 //ANCHOR - Key Events
-void		ft_drawmap(t_window *window, t_map *map, t_point *point);
+void		ft_drawmap(t_window *window, t_map *map, t_fdf *point);
 
 //ANCHOR - Draw Aux
-void		ft_printheader(t_window *window, t_point *point);
-void		ft_markpoint(t_point *point, t_matrix *matrix);
-void		ft_pixelput(t_window *window, int dist_x, int dist_y, int color);
-void		ft_draw_xy(t_window *window, t_point *point);
+void		ft_printheader(t_window *window, t_fdf *point);
+void		ft_markpoint(t_fdf *point, t_matrix *matrix);
+void		ft_pixelput(t_window *window, float dist_x, float dist_y,
+				int color);
+void		ft_draw_xy(t_window *window, t_fdf *point);
 
 //ANCHOR - Matrix
-t_matrix	*ft_creatematrix(t_map *map, t_point *point);
+t_matrix	*ft_creatematrix(t_map *map, t_fdf *point);
 void		ft_destroyvector(t_vector ***vector, int size);
 t_vector	**ft_createvector(int length, int height);
 void		ft_fillmatrix(t_map *map, t_matrix **matrix);
@@ -134,7 +133,9 @@ void		ft_fillmatrix(t_map *map, t_matrix **matrix);
 void		ft_matrixmin(t_matrix *matrix);
 
 //ANCHOR - Transform
-void		ft_transform(t_matrix *matrix, void (*func)(t_vector *));
-void		ft_isoprojection(t_vector *vector);
-void		ft_topositive(t_matrix *matrix);
+void		ft_transform(t_matrix *matrix, void (*func)(t_vector *, t_fdf *),
+				t_fdf *point);
+void		ft_isoprojection(t_vector *vector, t_fdf *point);
+void		ft_topositive(t_vector *vector, t_fdf *point);
+void		ft_translate(t_vector *vector, t_fdf *point);
 #endif /*FDF HEADER*/

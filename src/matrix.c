@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:14:28 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/01 19:26:55 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/02 20:16:49 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_printmatrix(t_matrix *matrix)
 		matrix->count_x = 0;
 		while (matrix->count_x < matrix->length)
 		{
-			printf("(%d, %d, %d, %x)\t", 
+			printf("(%f, %f, %f, %x)\t", 
 				matrix->vector[matrix->count_y][matrix->count_x].x,
 				matrix->vector[matrix->count_y][matrix->count_x].y,
 				matrix->vector[matrix->count_y][matrix->count_x].z,
@@ -107,7 +107,7 @@ void	ft_fillmatrix(t_map *map, t_matrix **matrix)
 }
 
 //ANCHOR Create Matrix
-t_matrix	*ft_creatematrix(t_map *map, t_point *point)
+t_matrix	*ft_creatematrix(t_map *map, t_fdf *point)
 {
 	t_matrix	*matrix;
 
