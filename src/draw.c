@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:19:45 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/02 20:29:33 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:24:38 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,11 @@ static void	ft_projectmap(t_window *window, t_fdf *fdf, t_matrix *matrix)
 		return ;
 	ft_drawaxis(window, fdf);
 	ft_transform(matrix, ft_isoprojection, fdf);
-	ft_matrixmin(matrix);
-	fdf->min = matrix->min;
-	if (fdf->min < 0)
+	ft_matrixmin(matrix, fdf);
+	if (fdf->min_x < 0 || fdf->min_y < 0)
 		ft_transform(matrix, ft_topositive, fdf);
-	ft_transform(matrix, ft_translate, fdf);
 	ft_printmatrix(matrix);
+	ft_transform(matrix, ft_translate, fdf);
 	matrix->count_x = 0;
 	matrix->count_y = 0;
 	while (matrix->count_y < matrix->height)
@@ -74,6 +73,7 @@ void	ft_drawmap(t_window *window, t_map *map, t_fdf *fdf)
 	ft_fillmatrix(map, &matrix);
 	ft_projectmap(window, fdf, matrix);
 	ft_printheader(window, fdf);
+	ft_printfdf(fdf);
 	mlx_put_image_to_window(window->mlx, window->win,
 		window->img, fdf->margin + 5, fdf->margin + 5);
 	ft_destroyvector(&matrix->vector, matrix->height);

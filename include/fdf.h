@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/02 20:31:58 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:57:30 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,46 @@ typedef struct s_window
 
 typedef struct s_vector
 {
-	float			x;
-	float			y;
-	float			z;
-	int				color;
+	float	x;
+	float	y;
+	float	z;
+	int		color;
 }				t_vector;
+
+typedef struct s_line
+{
+	int		x;
+	int		y;
+	int		z;
+	int		color;
+}				t_line;
+
+typedef struct s_ham
+{
+	int		dx;
+	int		dy;
+	int		err;
+	int		e2;
+	int		sy;
+	int		sx;
+	int		x2;
+	int		ed;
+}			t_ham;
+
 
 typedef struct s_fdf
 {
-	t_vector	v0;
-	t_vector	v1;
-	int			distance_x;
-	int			distance_y;
-	int			imagelength;
-	int			imageheight;
-	double		scale;
-	int			margin;
-	int			min;
+	t_line	v0;
+	t_line	v1;
+	t_ham	ham;
+	int		distance_x;
+	int		distance_y;
+	int		imagelength;
+	int		imageheight;
+	double	scale;
+	int		margin;
+	float	min_x;
+	float	min_y;
 }			t_fdf;
 
 typedef struct s_matrix
@@ -74,7 +97,6 @@ typedef struct s_matrix
 	t_vector	**vector;
 	int			length;
 	int			height;
-	int			min;
 	int			count_x;
 	int			count_y;
 }				t_matrix;
@@ -91,6 +113,7 @@ int			ft_checkmap(t_map *map);
 //FIXME - To be deleted
 void		ft_printmap(t_map *map);
 void		ft_printmatrix(t_matrix *matrix);
+void		ft_printfdf(t_fdf *fdf);
 //ANCHOR - Map Aux
 int			ft_readarr(char **str, t_map **map);
 void		ft_mapreverse(t_map **map);
@@ -106,6 +129,7 @@ void		ft_windowloop(t_window *window, t_map *map, int height);
 void		ft_exception(char *str);
 int			ft_mapmin(t_map *map);
 float		ft_toradian(float degree);
+int			ft_toint(float num);
 
 //ANCHOR - Mouse Events
 void		ft_mousehooks(t_window *window);
@@ -119,8 +143,7 @@ void		ft_drawmap(t_window *window, t_map *map, t_fdf *point);
 //ANCHOR - Draw Aux
 void		ft_printheader(t_window *window, t_fdf *point);
 void		ft_markpoint(t_fdf *point, t_matrix *matrix);
-void		ft_pixelput(t_window *window, float dist_x, float dist_y,
-				int color);
+void		ft_pixelput(t_window *window, int dist_x, int dist_y, int color);
 void		ft_draw_xy(t_window *window, t_fdf *point);
 
 //ANCHOR - Matrix
@@ -130,7 +153,7 @@ t_vector	**ft_createvector(int length, int height);
 void		ft_fillmatrix(t_map *map, t_matrix **matrix);
 
 //ANCHOR - AUX Matrix
-void		ft_matrixmin(t_matrix *matrix);
+void		ft_matrixmin(t_matrix *matrix, t_fdf *fdf);
 
 //ANCHOR - Transform
 void		ft_transform(t_matrix *matrix, void (*func)(t_vector *, t_fdf *),

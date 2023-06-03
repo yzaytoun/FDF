@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:27:52 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/02 20:30:56 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:11:01 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 //SECTION - Transform
 void	ft_translate(t_vector *vector, t_fdf *fdf)
 {
-	vector->x *= fdf->distance_x / 2;
-	vector->y *= fdf->distance_y / 2;
-	vector->z *= fdf->distance_y / 4;
+	vector->x *= fdf->distance_x;
+	vector->y *= fdf->distance_y;
+	vector->z *= fdf->distance_y;
 }
 
 //ANCHOR - To positive
 void	ft_topositive(t_vector *vector, t_fdf *fdf)
 {
-	vector->x += abs(fdf->min);
+	if (fdf->min_x < 0)
+		vector->x += fabs(fdf->min_x);
+	if (fdf->min_y < 0)
+		vector->y += fabs(fdf->min_y);
 }
 
 //ANCHOR - ISO Projection
@@ -36,11 +39,12 @@ void	ft_isoprojection(t_vector *vector, t_fdf *fdf)
 	(void)fdf;
 	if (!vector)
 		return ;
-	angle = 60;
+	angle = M_PI_2 / 2;
 	x0 = vector->x;
 	y0 = vector->y;
-	vector->x = x0 * cosf(ft_toradian(angle));
-	vector->y = y0 * sinf(ft_toradian(angle));
+	vector->x = x0 * cosf(angle) - y0 * sinf(angle);
+	vector->y = x0 * sinf(angle) + y0 * cosf(angle);
+	//printf("P0(%f, %f) ->> V0(%f,%f)\n", x0, y0, vector->x, vector->y);
 }
 
 //ANCHOR - Main func

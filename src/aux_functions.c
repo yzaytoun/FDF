@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:59:40 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/02 20:31:39 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:32:39 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,10 @@ float	ft_toradian(float degree)
 	return ((degree * M_PI) / 180);
 }
 
+//ANCHOR - To integer
+int	ft_toint(float num)
+{
+	return ((int)roundf(num));
+}
 
 //!SECTION

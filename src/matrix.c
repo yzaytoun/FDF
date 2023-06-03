@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:14:28 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/02 20:16:49 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:24:17 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	ft_printmatrix(t_matrix *matrix)
 		matrix->count_x = 0;
 		while (matrix->count_x < matrix->length)
 		{
-			printf("(%f, %f, %f, %x)\t", 
+			printf("(%.0f, %.0f, %.0f)\t", 
 				matrix->vector[matrix->count_y][matrix->count_x].x,
 				matrix->vector[matrix->count_y][matrix->count_x].y,
-				matrix->vector[matrix->count_y][matrix->count_x].z,
-				matrix->vector[matrix->count_y][matrix->count_x].color);
+				matrix->vector[matrix->count_y][matrix->count_x].z
+				/*,smatrix->vector[matrix->count_y][matrix->count_x].color*/);
 			++matrix->count_x;
 		}
 		printf("\n");
@@ -83,9 +83,7 @@ void	ft_fillmatrix(t_map *map, t_matrix **matrix)
 
 	if (!map || !(*matrix) || !(*matrix)->vector)
 		return ;
-	(*matrix)->count_x = 0;
 	node = map;
-	(*matrix)->count_y = node->y;
 	while (node != NULL)
 	{
 		(*matrix)->count_x = 0;
@@ -118,7 +116,7 @@ t_matrix	*ft_creatematrix(t_map *map, t_fdf *point)
 		return (NULL);
 	matrix->length = point->imagelength / point->scale;
 	matrix->height = point->imageheight / point->scale;
-	matrix->vector = ft_createvector(matrix->length, matrix->length);
+	matrix->vector = ft_createvector(matrix->length, matrix->height);
 	return (matrix);
 }
 

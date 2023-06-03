@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/02 20:20:41 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/03 12:12:21 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static void	ft_pointinit(t_fdf *fdf, t_map *map, int height, double scale)
 	fdf->scale = scale;
 	fdf->imagelength = (map->width * scale);
 	fdf->imageheight = (height * scale);
-	fdf->distance_x = (fdf->imagelength / map->width);
-	fdf->distance_y = (fdf->imageheight / height);
+	fdf->distance_x = (fdf->imagelength / map->width) / 2;
+	fdf->distance_y = (fdf->imageheight / height) / 2;
 	if (fdf->imageheight > fdf->imagelength)
 		fdf->margin = (fdf->imageheight / 10);
 	else
 		fdf->margin = (fdf->imagelength / 10);
-	fdf->min = ft_mapmin(map);
+	fdf->min_x = ft_mapmin(map);
 }
 
 //ANCHOR - Get Scale
@@ -104,8 +104,8 @@ void	ft_windowloop(t_window *window, t_map *map, int height)
 	if (!fdf)
 		return ;
 	ft_pointinit(fdf, map, height, scale);
-	if (fdf->min < 0)
-		ft_normalizemap(map, abs(fdf->min));
+	if (fdf->min_x < 0)
+		ft_normalizemap(map, fabs(fdf->min_x));
 	ft_drawmap(window, map, fdf);
 	free(fdf);
 	ft_mousehooks(window);
