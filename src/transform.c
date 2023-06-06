@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:27:52 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/03 16:11:01 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:57:14 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,19 @@ void	ft_topositive(t_vector *vector, t_fdf *fdf)
 }
 
 //ANCHOR - ISO Projection
-void	ft_isoprojection(t_vector *vector, t_fdf *fdf)
+void	ft_angleprojection(t_vector *vector, t_fdf *fdf)
 {
 	float	x0;
 	float	y0;
-	float	angle;
 
-	(void)fdf;
 	if (!vector)
 		return ;
-	angle = M_PI_2 / 2;
 	x0 = vector->x;
 	y0 = vector->y;
-	vector->x = x0 * cosf(angle) - y0 * sinf(angle);
-	vector->y = x0 * sinf(angle) + y0 * cosf(angle);
-	//printf("P0(%f, %f) ->> V0(%f,%f)\n", x0, y0, vector->x, vector->y);
+	vector->x = x0 * cosf(ft_toradian(fdf->angle))
+		- y0 * sinf(ft_toradian(fdf->angle));
+	vector->y = x0 * sinf(ft_toradian(fdf->angle))
+		+ y0 * cosf(ft_toradian(fdf->angle));
 }
 
 //ANCHOR - Main func

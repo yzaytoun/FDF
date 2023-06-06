@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/03 17:57:30 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:57:38 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_fdf
 	int		margin;
 	float	min_x;
 	float	min_y;
+	int		angle;
 }			t_fdf;
 
 typedef struct s_matrix
@@ -158,7 +159,7 @@ void		ft_matrixmin(t_matrix *matrix, t_fdf *fdf);
 //ANCHOR - Transform
 void		ft_transform(t_matrix *matrix, void (*func)(t_vector *, t_fdf *),
 				t_fdf *point);
-void		ft_isoprojection(t_vector *vector, t_fdf *point);
+void		ft_angleprojection(t_vector *vector, t_fdf *point);
 void		ft_topositive(t_vector *vector, t_fdf *point);
 void		ft_translate(t_vector *vector, t_fdf *point);
 #endif /*FDF HEADER*/

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:18:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/03 18:17:37 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/06 21:03:18 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,8 @@ void	ft_printheader(t_window *window, t_fdf *fdf)
 		ft_strjoin("Scale: ", ft_itoa((int)fdf->scale)));
 }
 
-//ANCHOR - Draw Net
-void	ft_draw_xy(t_window *window, t_fdf *fdf)
+static void	ft_draw_aux(t_fdf *fdf)
 {
-	fdf->ham.dx = abs(fdf->v1.x - fdf->v0.x);
-	fdf->ham.dy = abs(fdf->v1.y - fdf->v0.y);
 	if (fdf->v0.x < fdf->v1.x)
 		fdf->ham.sx = 1;
 	else
@@ -81,35 +78,30 @@ void	ft_draw_xy(t_window *window, t_fdf *fdf)
 		fdf->ham.sy = 1;
 	else
 		fdf->ham.sy = -1;
-	fdf->ham.err = fdf->ham.dx - fdf->ham.dy;
-	fdf->ham.ed = fdf->ham.dx + fdf->ham.dy;
-	if (fdf->ham.ed == 0)
-		fdf->ham.ed = 1;
-	else
-		fdf->ham.ed = sqrt((float)pow(fdf->ham.dx, 2) + (float)pow(fdf->ham.dy, 2));
-	while (1)
+	fdf->ham.err = fdf->ham.dx + fdf->ham.dy;
+}
+
+//ANCHOR - Draw Net
+void	ft_draw_xy(t_window *window, t_fdf *fdf)
+{
+	fdf->ham.dx = abs(fdf->v1.x - fdf->v0.x);
+	fdf->ham.dy = -abs(fdf->v1.y - fdf->v0.y);
+	ft_draw_aux(fdf);
+	while (TRUE)
 	{
 		if (fdf->v0.x < fdf->imagelength
 			&& fdf->v0.y < fdf->imageheight)
-		{
 			ft_pixelput(window, fdf->v0.x, fdf->v0.y, fdf->v0.color);
-			ft_pixelput(window, fdf->v0.y, fdf->v0.x, fdf->v0.color);
-		}
-		fdf->ham.e2 = fdf->ham.err;
-		fdf->ham.x2 = fdf->v0.x;
 		if (fdf->v0.x == fdf->v1.x && fdf->v0.y == fdf->v1.y)
-			break ;
-		if (fdf->ham.e2*2 >= -fdf->ham.dx)
+			break ; 
+		fdf->ham.e2 = fdf->ham.err * 2;
+		if (fdf->ham.e2 >= fdf->ham.dy)
 		{
-			if (fdf->ham.e2+fdf->ham.dy < fdf->ham.ed)
-				ft_pixelput(window, fdf->v0.x, fdf->v0.y + fdf->ham.sy, fdf->v0.color);
-			fdf->ham.err -= fdf->ham.dy;
+			fdf->ham.err += fdf->ham.dy;
 			fdf->v0.x += fdf->ham.sx;
 		}
-		if (fdf->ham.e2*2 <= fdf->ham.dy)
+		if (fdf->ham.e2 <= fdf->ham.dx)
 		{
-			if (fdf->ham.dx - fdf->ham.e2 < fdf->ham.ed)
-				ft_pixelput(window, fdf->ham.x2 + fdf->ham.sx, fdf->v0.y, fdf->v0.color);
 			fdf->ham.err += fdf->ham.dx;
 			fdf->v0.y += fdf->ham.sy;
 		}
