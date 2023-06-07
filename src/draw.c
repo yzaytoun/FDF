@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:19:45 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/06 21:08:00 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/07 21:06:59 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	ft_drawaxis(t_window *window, t_fdf *fdf)
 	}
 }
 
-void	ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix)
+static void	ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix)
 {
 	matrix->count_x = 0;
 	matrix->count_y = 0;
@@ -46,14 +46,15 @@ void	ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix)
 		while (matrix->count_x < matrix->length - 1)
 		{
 			ft_markpoint(fdf, matrix);
-			ft_draw_xy(window, fdf);
+			ft_bresenham(window, fdf);
 			++matrix->count_x;
 		}
 		++matrix->count_y;
 	}
 }
 
-void	ft_getmatrix(t_window *window, t_fdf *fdf, t_matrix *matrix, t_map *map)
+static void	ft_project_to_image(t_window *window, t_fdf *fdf, t_matrix *matrix,
+	t_map *map)
 {
 	if (!window || !fdf || !matrix)
 		return ;
@@ -63,17 +64,19 @@ void	ft_getmatrix(t_window *window, t_fdf *fdf, t_matrix *matrix, t_map *map)
 	ft_matrixmin(matrix, fdf);
 	if (fdf->min_x < 0 || fdf->min_y < 0)
 		ft_transform(matrix, ft_topositive, fdf);
+	ft_printmatrix(matrix);
+	ft_plot(window, fdf, matrix);
 }
 
-static void	ft_projectmap(t_window *window, t_fdf *fdf, t_matrix *matrix, t_map *map)
+void
+	ft_projectmap(t_window *window, t_fdf *fdf, t_matrix *matrix, t_map *map)
 {
+	ft_transform(matrix, ft_angleinit, fdf);
 	ft_drawaxis(window, fdf);
-	fdf->angle = 30;
-	ft_getmatrix(window, fdf, matrix, map);
-	ft_plot(window, fdf, matrix);
-	fdf->angle = 120;
-	ft_getmatrix(window, fdf, matrix, map);
-	ft_plot(window, fdf, matrix);
+	fdf->angle = fdf->rotate.x;
+	ft_project_to_image(window, fdf, matrix, map);
+	fdf->angle = fdf->rotate.y;
+	ft_project_to_image(window, fdf, matrix, map);
 }
 
 //ANCHOR - Main func

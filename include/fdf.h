@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/06 20:57:38 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/07 20:11:40 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,18 +79,19 @@ typedef struct s_ham
 
 typedef struct s_fdf
 {
-	t_line	v0;
-	t_line	v1;
-	t_ham	ham;
-	int		distance_x;
-	int		distance_y;
-	int		imagelength;
-	int		imageheight;
-	double	scale;
-	int		margin;
-	float	min_x;
-	float	min_y;
-	int		angle;
+	t_line		v0;
+	t_line		v1;
+	t_ham		ham;
+	t_vector	rotate;
+	int			distance_x;
+	int			distance_y;
+	int			imagelength;
+	int			imageheight;
+	double		scale;
+	int			margin;
+	float		min_x;
+	float		min_y;
+	int			angle;
 }			t_fdf;
 
 typedef struct s_matrix
@@ -124,7 +125,7 @@ void		ft_normalizemap(t_map *map, int min);
 //ANCHOR - Window Generator
 t_window	*ft_createwindow(char *title, int width, int height);
 void		ft_destroywindow(t_window **window, t_map *map);
-void		ft_windowloop(t_window *window, t_map *map, int height);
+void		ft_run(t_window *window, t_map *map, int height);
 
 //ANCHOR - AUX
 void		ft_exception(char *str);
@@ -138,14 +139,16 @@ void		ft_mousehooks(t_window *window);
 //ANCHOR - Key Events
 void		ft_keyhooks(t_window *window);
 
-//ANCHOR - Key Events
+//ANCHOR - Draw
 void		ft_drawmap(t_window *window, t_map *map, t_fdf *point);
+void		ft_projectmap(t_window *window, t_fdf *fdf, t_matrix *matrix,
+				t_map *map);
 
 //ANCHOR - Draw Aux
 void		ft_printheader(t_window *window, t_fdf *point);
 void		ft_markpoint(t_fdf *point, t_matrix *matrix);
 void		ft_pixelput(t_window *window, int dist_x, int dist_y, int color);
-void		ft_draw_xy(t_window *window, t_fdf *point);
+void		ft_bresenham(t_window *window, t_fdf *point);
 
 //ANCHOR - Matrix
 t_matrix	*ft_creatematrix(t_map *map, t_fdf *point);
@@ -162,4 +165,5 @@ void		ft_transform(t_matrix *matrix, void (*func)(t_vector *, t_fdf *),
 void		ft_angleprojection(t_vector *vector, t_fdf *point);
 void		ft_topositive(t_vector *vector, t_fdf *point);
 void		ft_translate(t_vector *vector, t_fdf *point);
+void		ft_angleinit(t_vector *vector, t_fdf *point);
 #endif /*FDF HEADER*/

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:18:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/06 21:03:18 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/07 19:46:29 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_printheader(t_window *window, t_fdf *fdf)
 		ft_strjoin("Scale: ", ft_itoa((int)fdf->scale)));
 }
 
-static void	ft_draw_aux(t_fdf *fdf)
+static void	ft_bresenaux(t_fdf *fdf)
 {
 	if (fdf->v0.x < fdf->v1.x)
 		fdf->ham.sx = 1;
@@ -82,11 +82,11 @@ static void	ft_draw_aux(t_fdf *fdf)
 }
 
 //ANCHOR - Draw Net
-void	ft_draw_xy(t_window *window, t_fdf *fdf)
+void	ft_bresenham(t_window *window, t_fdf *fdf)
 {
 	fdf->ham.dx = abs(fdf->v1.x - fdf->v0.x);
 	fdf->ham.dy = -abs(fdf->v1.y - fdf->v0.y);
-	ft_draw_aux(fdf);
+	ft_bresenaux(fdf);
 	while (TRUE)
 	{
 		if (fdf->v0.x < fdf->imagelength

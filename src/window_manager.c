@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/06 20:47:52 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/07 20:16:50 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,13 @@ void	ft_destroywindow(t_window **window, t_map *map)
 }
 
 //ANCHOR - Run Window
-void	ft_windowloop(t_window *window, t_map *map, int height)
+void	ft_run(t_window *window, t_map *map, int height)
 {
 	t_fdf	*fdf;
 	int		scale;
 
+	if (!map || !window)
+		return ;
 	scale = ft_getscale(map->width, height);
 	window->img
 		= mlx_new_image(window->mlx, scale * map->width, scale * height);
@@ -107,9 +109,9 @@ void	ft_windowloop(t_window *window, t_map *map, int height)
 	if (fdf->min_x < 0)
 		ft_normalizemap(map, fabs(fdf->min_x));
 	ft_drawmap(window, map, fdf);
-	free(fdf);
 	ft_mousehooks(window);
 	ft_keyhooks(window);
 	mlx_loop(window->mlx);
+	free(fdf);
 }
 //!SECTION
