@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:14:28 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/03 17:24:17 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/08 20:56:50 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_destroyvector(t_vector ***vector, int size)
 }
 
 //ANCHOR Create Vector
-t_vector	**ft_createvector(int length, int height)
+static t_vector	**ft_createvector(int length, int height)
 {
 	t_vector	**vector;
 	int			count;
@@ -105,17 +105,17 @@ void	ft_fillmatrix(t_map *map, t_matrix **matrix)
 }
 
 //ANCHOR Create Matrix
-t_matrix	*ft_creatematrix(t_map *map, t_fdf *point)
+t_matrix	*ft_creatematrix(t_map *map, t_fdf *fdf)
 {
 	t_matrix	*matrix;
 
-	if (!map)
+	if (!map || !fdf)
 		return (NULL);
 	matrix = ft_calloc(1, sizeof(t_matrix));
 	if (!matrix)
 		return (NULL);
-	matrix->length = point->imagelength / point->scale;
-	matrix->height = point->imageheight / point->scale;
+	matrix->length = fdf->imagelength / fdf->scale;
+	matrix->height = fdf->imageheight / fdf->scale;
 	matrix->vector = ft_createvector(matrix->length, matrix->height);
 	return (matrix);
 }

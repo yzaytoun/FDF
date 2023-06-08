@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/07 20:16:50 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/08 20:48:38 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 //SECTION - Window Manager
 //ANCHOR - Point init
-static void	ft_pointinit(t_fdf *fdf, t_map *map, int height, double scale)
+static void	ft_initfdf(t_fdf *fdf, t_map *map, int height)
 {
-	fdf->scale = scale;
-	fdf->imagelength = (map->width * scale);
-	fdf->imageheight = (height * scale);
+	fdf->imagelength = (map->width * fdf->scale);
+	fdf->imageheight = (height * fdf->scale);
 	fdf->distance_x = (fdf->imagelength / map->width) / 2;
 	fdf->distance_y = (fdf->imageheight / height) / 2;
 	if (fdf->imageheight > fdf->imagelength)
@@ -51,6 +50,25 @@ static double	ft_getscale(int width, int height)
 	else
 		scale = 1;
 	return (scale);
+}
+
+//ANCHOR - initiate struct
+t_fdf	*ft_initstructs(t_window *window, t_map *map, int height)
+{
+	t_fdf	*fdf;
+
+	fdf = ft_calloc(1, sizeof(t_fdf));
+	if (!fdf)
+		return (NULL);
+	fdf->scale = ft_getscale(map->width, height);
+	window->img = mlx_new_image(window->mlx, fdf->scale * map->width,
+			fdf->scale * height);
+	if (!window->img)
+		return (NULL);
+	window->addr = mlx_get_data_addr(window->img,
+			&window->bpp, &window->size_line, &window->endian);
+	ft_initfdf(fdf, map, height);
+	return (fdf);
 }
 
 //ANCHOR - Create Window
@@ -89,29 +107,5 @@ void	ft_destroywindow(t_window **window, t_map *map)
 	free(*window);
 }
 
-//ANCHOR - Run Window
-void	ft_run(t_window *window, t_map *map, int height)
-{
-	t_fdf	*fdf;
-	int		scale;
 
-	if (!map || !window)
-		return ;
-	scale = ft_getscale(map->width, height);
-	window->img
-		= mlx_new_image(window->mlx, scale * map->width, scale * height);
-	if (!window->img)
-		return ;
-	fdf = ft_calloc(1, sizeof(t_fdf));
-	if (!fdf)
-		return ;
-	ft_pointinit(fdf, map, height, scale);
-	if (fdf->min_x < 0)
-		ft_normalizemap(map, fabs(fdf->min_x));
-	ft_drawmap(window, map, fdf);
-	ft_mousehooks(window);
-	ft_keyhooks(window);
-	mlx_loop(window->mlx);
-	free(fdf);
-}
 //!SECTION

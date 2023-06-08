@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:19:45 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/07 21:06:59 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/08 21:05:24 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ static void	ft_project_to_image(t_window *window, t_fdf *fdf, t_matrix *matrix,
 	if (!window || !fdf || !matrix)
 		return ;
 	ft_fillmatrix(map, &matrix);
-	ft_transform(matrix, ft_translate, fdf);
-	ft_transform(matrix, ft_angleprojection, fdf);
+	ft_apply(matrix, ft_translate, fdf);
+	ft_apply(matrix, ft_rotate, fdf);
 	ft_matrixmin(matrix, fdf);
 	if (fdf->min_x < 0 || fdf->min_y < 0)
-		ft_transform(matrix, ft_topositive, fdf);
+		ft_apply(matrix, ft_normalize, fdf);
 	ft_printmatrix(matrix);
 	ft_plot(window, fdf, matrix);
 }
@@ -71,28 +71,20 @@ static void	ft_project_to_image(t_window *window, t_fdf *fdf, t_matrix *matrix,
 void
 	ft_projectmap(t_window *window, t_fdf *fdf, t_matrix *matrix, t_map *map)
 {
-	ft_transform(matrix, ft_angleinit, fdf);
+	ft_apply(matrix, ft_angleinit, fdf);
 	ft_drawaxis(window, fdf);
-	fdf->angle = fdf->rotate.x;
 	ft_project_to_image(window, fdf, matrix, map);
-	fdf->angle = fdf->rotate.y;
+	fdf->angle = 1;
 	ft_project_to_image(window, fdf, matrix, map);
 }
 
 //ANCHOR - Main func
-void	ft_drawmap(t_window *window, t_map *map, t_fdf *fdf)
+void	ft_drawmap(t_window *window, t_map *map, t_fdf *fdf, t_matrix *matrix)
 {
-	t_matrix	*matrix;
-
-	window->addr = mlx_get_data_addr(window->img,
-			&window->bpp, &window->size_line, &window->endian);
-	matrix = ft_creatematrix(map, fdf);
 	ft_projectmap(window, fdf, matrix, map);
 	ft_printheader(window, fdf);
 	ft_printfdf(fdf);
 	mlx_put_image_to_window(window->mlx, window->win,
 		window->img, fdf->margin + 5, fdf->margin + 5);
-	ft_destroyvector(&matrix->vector, matrix->height);
-	free(matrix);
 }
 //!SECTION
