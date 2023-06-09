@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:41:16 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/08 21:07:35 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:10:21 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,17 @@ void	ft_rotate(t_vector *vector, t_fdf *fdf)
 	x0 = vector->x;
 	y0 = vector->y;
 	z0 = vector->z;
-	if (fdf->angle == 1)
-		ft_rotate_x(vector, fdf, y0, z0);
-	else
-		ft_rotate_y(vector, fdf, x0, z0);
-	//ft_rotate_z(vector, fdf, x0, y0);
+	ft_rotate_x(vector, fdf, y0, z0);
+	ft_rotate_z(vector, fdf, x0, y0);
+	//ft_rotate_y(vector, fdf, x0, z0);
 }
 
 //ANCHOR - Angle init
 void	ft_angleinit(t_vector *vector, t_fdf *fdf)
 {
 	(void)vector;
-	fdf->rotate.x = 30;
-	fdf->rotate.y = 60;
-	fdf->rotate.z = 90;
+	fdf->rotate.x = 120;
+	fdf->rotate.y = 120 * 2;
+	fdf->rotate.z = 120 * 3;
 }
 //!SECTION

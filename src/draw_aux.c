@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:18:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/07 19:46:29 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/09 20:46:27 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,11 @@ void	ft_markpoint(t_fdf *fdf, t_matrix *matrix)
 {
 	fdf->v0.x = ft_toint(matrix->vector[matrix->count_y][matrix->count_x].x);
 	fdf->v0.y = ft_toint(matrix->vector[matrix->count_y][matrix->count_x].y);
-	fdf->v0.z = ft_toint(matrix->vector[matrix->count_y][matrix->count_x].z);
 	fdf->v0.color = matrix->vector[matrix->count_y][matrix->count_x].color;
 	fdf->v1.x
 		= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].x);
 	fdf->v1.y
 		= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].y);
-	fdf->v1.z
-		= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].z);
 	fdf->v1.color
 		= matrix->vector[matrix->count_y][matrix->count_x + 1].color;
 }

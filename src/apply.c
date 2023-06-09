@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:30:00 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/08 20:54:54 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/09 20:49:39 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@ void	ft_translate(t_vector *vector, t_fdf *fdf)
 	vector->x *= fdf->distance_x;
 	vector->y *= fdf->distance_y;
 	vector->z += (fdf->scale / 2);
+}
+
+//ANCHOR - To 2D
+void	ft_to2D(t_vector *vector, t_fdf *fdf)
+{
+	(void)fdf;
+	if (vector->z != 0)
+	{
+		vector->x /= -vector->z;
+		vector->y /= -vector->z;
+	}
 }
 
 //ANCHOR - To positive

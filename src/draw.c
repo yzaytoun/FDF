@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:19:45 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/08 21:05:24 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/09 20:47:37 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ static void	ft_project_to_image(t_window *window, t_fdf *fdf, t_matrix *matrix,
 		return ;
 	ft_fillmatrix(map, &matrix);
 	ft_apply(matrix, ft_translate, fdf);
-	ft_apply(matrix, ft_rotate, fdf);
+	//ft_apply(matrix, ft_rotate, fdf);
+	ft_apply(matrix, ft_to2D, fdf);
 	ft_matrixmin(matrix, fdf);
 	if (fdf->min_x < 0 || fdf->min_y < 0)
 		ft_apply(matrix, ft_normalize, fdf);
@@ -73,8 +74,6 @@ void
 {
 	ft_apply(matrix, ft_angleinit, fdf);
 	ft_drawaxis(window, fdf);
-	ft_project_to_image(window, fdf, matrix, map);
-	fdf->angle = 1;
 	ft_project_to_image(window, fdf, matrix, map);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/08 20:51:06 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/09 20:44:53 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct s_line
 {
 	int		x;
 	int		y;
-	int		z;
 	int		color;
 }				t_line;
 
@@ -149,27 +148,28 @@ void		ft_projectmap(t_window *window, t_fdf *fdf, t_matrix *matrix,
 				t_map *map);
 
 //ANCHOR - Draw Aux
-void		ft_printheader(t_window *window, t_fdf *point);
-void		ft_markpoint(t_fdf *point, t_matrix *matrix);
+void		ft_printheader(t_window *window, t_fdf *fdf);
+void		ft_markpoint(t_fdf *fdf, t_matrix *matrix);
 void		ft_pixelput(t_window *window, int dist_x, int dist_y, int color);
-void		ft_bresenham(t_window *window, t_fdf *point);
+void		ft_bresenham(t_window *window, t_fdf *fdf);
 
 //ANCHOR - Matrix
-t_matrix	*ft_creatematrix(t_map *map, t_fdf *point);
+t_matrix	*ft_creatematrix(t_map *map, t_fdf *fdf);
 void		ft_destroyvector(t_vector ***vector, int size);
 void		ft_fillmatrix(t_map *map, t_matrix **matrix);
 
 //ANCHOR - AUX Matrix
 void		ft_matrixmin(t_matrix *matrix, t_fdf *fdf);
 
-//ANCHOR - Transform
+//ANCHOR - Apply
 void		ft_apply(t_matrix *matrix, void (*func)(t_vector *, t_fdf *),
-				t_fdf *point);
-void		ft_normalize(t_vector *vector, t_fdf *point);
-void		ft_translate(t_vector *vector, t_fdf *point);
+				t_fdf *fdf);
+void		ft_normalize(t_vector *vector, t_fdf *fdf);
+void		ft_translate(t_vector *vector, t_fdf *fdf);
+void		ft_to2D(t_vector *vector, t_fdf *fdf);
 
 //ANCHOR - Rotate
-void		ft_rotate(t_vector *vector, t_fdf *point);
-void		ft_angleinit(t_vector *vector, t_fdf *point);
+void		ft_rotate(t_vector *vector, t_fdf *fdf);
+void		ft_angleinit(t_vector *vector, t_fdf *fdf);
 
 #endif /*FDF HEADER*/
