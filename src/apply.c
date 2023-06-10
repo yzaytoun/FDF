@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:30:00 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/09 20:49:39 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/10 18:24:05 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_translate(t_vector *vector, t_fdf *fdf)
 	vector->z += (fdf->scale / 2);
 }
 
-//ANCHOR - To 2D
-void	ft_to2D(t_vector *vector, t_fdf *fdf)
+//FIXME - To 2D
+void	ft_to2d(t_vector *vector, t_fdf *fdf)
 {
 	(void)fdf;
 	if (vector->z != 0)
@@ -40,13 +40,38 @@ void	ft_normalize(t_vector *vector, t_fdf *fdf)
 		vector->y += fabs(fdf->min_y);
 }
 
+//ANCHOR - Rotate
+void	ft_matrotate(t_vector *vector, t_fdf *fdf)
+{
+	t_matrix	*matirx;
+	t_matrix	*mat_1;
+	t_matrix	*mat_2;
+
+	mat_1 = ft_rotation_matrix(vector, fdf);
+	if (!mat_1)
+		return (NULL);
+	mat_2 = ft_tomatrix(vector);
+	matrix = ft_matrmult(mat_1, mat_2);
+	vector->x = matrix->vector[0][0].x + matrix->vector[0][0].y
+		+ matrix->vector[0][0].z;
+	vector->y = matrix->vector[1][0].x + matrix->vector[1][0].y
+		+ matrix->vector[1][0].z;
+	vector->z = matrix->vector[2][0].x + matrix->vector[2][0].y
+		+ matrix->vector[2][0].z;
+	ft_destroyvector(&mat_1->vector, mat_1->height);
+	free(mat_1);
+	ft_destroyvector(&mat_2->vector, mat_2->height);
+	free(mat_2);
+	ft_destroyvector(&matirx->vector, matirx->height);
+	free(matirx);
+}
+
 //ANCHOR - Main func
 void	ft_apply(t_matrix *matrix, void (*func)(t_vector *, t_fdf *)
 	, t_fdf *fdf)
 {
 	if (!matrix || !(*func))
 		return ;
-	matrix->count_x = 0;
 	matrix->count_y = 0;
 	while (matrix->count_y < matrix->height)
 	{

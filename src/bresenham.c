@@ -1,44 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_aux.c                                         :+:      :+:    :+:   */
+/*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 20:18:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/09 20:46:27 by yzaytoun         ###   ########.fr       */
+/*   Created: 2023/06/10 14:32:47 by yzaytoun          #+#    #+#             */
+/*   Updated: 2023/06/10 16:43:17 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 //SECTION - Draw Aux
-//FIXME - To be deleted
-void	ft_printfdf(t_fdf *fdf)
-{
-	ft_printf("\nParameters:\n");
-	ft_printf("\
-	*Margin = %i\n\
-	*Distance_x = %i\n\
-	*Distance_y = %i\n\
-	*Imagelength = %i\n\
-	*Imageheight = %i\n",
-		fdf->margin, fdf->distance_x, fdf->distance_y, fdf->imagelength,
-		fdf->imageheight);
-}
-
 //ANCHOR - Mark point
 void	ft_markpoint(t_fdf *fdf, t_matrix *matrix)
 {
 	fdf->v0.x = ft_toint(matrix->vector[matrix->count_y][matrix->count_x].x);
 	fdf->v0.y = ft_toint(matrix->vector[matrix->count_y][matrix->count_x].y);
-	fdf->v0.color = matrix->vector[matrix->count_y][matrix->count_x].color;
 	fdf->v1.x
 		= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].x);
 	fdf->v1.y
 		= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].y);
-	fdf->v1.color
-		= matrix->vector[matrix->count_y][matrix->count_x + 1].color;
 }
 
 //ANCHOR - Pixel Put
@@ -54,16 +37,6 @@ void	ft_pixelput(t_window *window, int dist_x, int dist_y, int color)
 		*(unsigned int *)dst = mlx_get_color_value(window->mlx, color);
 }
 
-//ANCHOR - Write to window
-void	ft_printheader(t_window *window, t_fdf *fdf)
-{
-	mlx_string_put(window->mlx, window->win, 1, 1, 0xFFFF00,
-		ft_strjoin("Width: ", ft_itoa(fdf->imagelength / fdf->scale)));
-	mlx_string_put(window->mlx, window->win, 1, 15, 0xFFFF00,
-		ft_strjoin("Height: ", ft_itoa(fdf->imageheight / fdf->scale)));
-	mlx_string_put(window->mlx, window->win, 1, 30, 0xFFFF00,
-		ft_strjoin("Scale: ", ft_itoa((int)fdf->scale)));
-}
 
 static void	ft_bresenaux(t_fdf *fdf)
 {
@@ -90,7 +63,7 @@ void	ft_bresenham(t_window *window, t_fdf *fdf)
 			&& fdf->v0.y < fdf->imageheight)
 			ft_pixelput(window, fdf->v0.x, fdf->v0.y, fdf->v0.color);
 		if (fdf->v0.x == fdf->v1.x && fdf->v0.y == fdf->v1.y)
-			break ; 
+			break ;
 		fdf->ham.e2 = fdf->ham.err * 2;
 		if (fdf->ham.e2 >= fdf->ham.dy)
 		{

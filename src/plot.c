@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   plot.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 20:19:45 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/09 20:47:37 by yzaytoun         ###   ########.fr       */
+/*   Created: 2023/06/10 14:45:29 by yzaytoun          #+#    #+#             */
+/*   Updated: 2023/06/10 14:47:34 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //SECTION Draw Map
 //ANCHOR - Draw borders
-static void	ft_drawaxis(t_window *window, t_fdf *fdf)
+static void	ft_plotaxis(t_window *window, t_fdf *fdf)
 {
 	register int	pixel;
 	int				maxlen;
@@ -53,34 +53,10 @@ static void	ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix)
 	}
 }
 
-static void	ft_project_to_image(t_window *window, t_fdf *fdf, t_matrix *matrix,
-	t_map *map)
-{
-	if (!window || !fdf || !matrix)
-		return ;
-	ft_fillmatrix(map, &matrix);
-	ft_apply(matrix, ft_translate, fdf);
-	//ft_apply(matrix, ft_rotate, fdf);
-	ft_apply(matrix, ft_to2D, fdf);
-	ft_matrixmin(matrix, fdf);
-	if (fdf->min_x < 0 || fdf->min_y < 0)
-		ft_apply(matrix, ft_normalize, fdf);
-	ft_printmatrix(matrix);
-	ft_plot(window, fdf, matrix);
-}
-
-void
-	ft_projectmap(t_window *window, t_fdf *fdf, t_matrix *matrix, t_map *map)
-{
-	ft_apply(matrix, ft_angleinit, fdf);
-	ft_drawaxis(window, fdf);
-	ft_project_to_image(window, fdf, matrix, map);
-}
-
 //ANCHOR - Main func
-void	ft_drawmap(t_window *window, t_map *map, t_fdf *fdf, t_matrix *matrix)
+void	ft_plotmap(t_window *window, t_map *map, t_fdf *fdf, t_matrix *matrix)
 {
-	ft_projectmap(window, fdf, matrix, map);
+	ft_project(window, fdf, matrix, map);
 	ft_printheader(window, fdf);
 	ft_printfdf(fdf);
 	mlx_put_image_to_window(window->mlx, window->win,

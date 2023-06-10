@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:59:40 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/03 17:32:39 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/10 16:47:18 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,11 @@ int	ft_mapmin(t_map *map)
 }
 
 //ANCHOR - to radian
-float	ft_toradian(float degree)
+void	ft_toradian(t_vector *angle)
 {
-	return ((degree * M_PI) / 180);
+	angle->x = (angle->x * M_PI) / 180;
+	angle->y = (angle->y * M_PI) / 180;
+	angle->z = (angle->z * M_PI) / 180;
 }
 
 //ANCHOR - To integer
