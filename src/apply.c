@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apply.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:30:00 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/10 18:24:05 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/11 10:47:40 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,18 @@ void	ft_normalize(t_vector *vector, t_fdf *fdf)
 //ANCHOR - Rotate
 void	ft_matrotate(t_vector *vector, t_fdf *fdf)
 {
-	t_matrix	*matirx;
+	t_matrix	*matrix;
 	t_matrix	*mat_1;
 	t_matrix	*mat_2;
 
-	mat_1 = ft_rotation_matrix(vector, fdf);
+	mat_1 = ft_get_rotmat(vector, fdf);
 	if (!mat_1)
-		return (NULL);
-	mat_2 = ft_tomatrix(vector);
-	matrix = ft_matrmult(mat_1, mat_2);
+		return ;
+	ft_printmatrix(mat_1);
+	mat_2 = ft_vectomat(vector);
+	ft_printmatrix(mat_2);
+	matrix = ft_matmult(mat_1, mat_2);
+	ft_printmatrix(matrix);
 	vector->x = matrix->vector[0][0].x + matrix->vector[0][0].y
 		+ matrix->vector[0][0].z;
 	vector->y = matrix->vector[1][0].x + matrix->vector[1][0].y
@@ -62,8 +65,8 @@ void	ft_matrotate(t_vector *vector, t_fdf *fdf)
 	free(mat_1);
 	ft_destroyvector(&mat_2->vector, mat_2->height);
 	free(mat_2);
-	ft_destroyvector(&matirx->vector, matirx->height);
-	free(matirx);
+	ft_destroyvector(&matrix->vector, matrix->height);
+	free(matrix);
 }
 
 //ANCHOR - Main func

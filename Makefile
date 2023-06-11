@@ -51,13 +51,17 @@ RM = rm -fr
 SANITIAZE = -fsanitize=address -g3
 # --------------------- MLX  ------------------------------------
 FLAGX = -lmlx -framework OpenGL -framework AppKit
+MLX = minilibx_macos
+LIBX = minilibx_macos/libmlx.a
+BETA = minilibx_mms_20191025_beta
+BETAX = minilibx_mms_20191025_beta/libmlx.dylib
 # ------------------ Libft and printf ------------------------------
 PRINTF = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
 # ------------------------ FDF ------------------------------
 SRC = map_reader.c map_aux.c window_manager.c aux_functions.c key_events.c\
 	mouse_events.c plot.c bresenham.c matrix.c apply.c matrix_aux.c run.c\
-	rotate.c print.c project.c matrix_operation.c
+	rotate.c print.c project.c matrix_operations.c
 
 OBJDIR = obj
 
@@ -69,9 +73,9 @@ $(OBJDIR)/%.o:%.c
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(PRINTF) $(FDF_OBJ)
+$(NAME): $(LIBFT) $(PRINTF) $(FDF_OBJ) $(LIBX)
 	@echo "$(YELLOW)Compiling" $@
-	@$(CC) $(FDF_OBJ) $(LIBFT) $(PRINTF) $(FLAGX) main.c -o $@ $(SANITIAZE)
+	@$(CC) $(FDF_OBJ) $(LIBFT) $(PRINTF) -L$(MLX) $(FLAGX) main.c -o $@ $(SANITIAZE)
 	@chmod +x fdf
 	@echo "$(PURPLE)************DONE****************\n"
 
@@ -82,7 +86,15 @@ $(PRINTF) $(LIBFT) &:
 	@$(MAKE) -C ft_printf
 	@echo "$(GREEN)Finished!!!"
 
+$(LIBX): $(BETAX)
+	@$(MAKE) -C $(MLX)
+
+$(BETAX):
+	@$(MAKE) -C $(BETA)
+
 fclean: clean
+	@cd $(MLX); make clean;
+	@cd $(BETA); make clean;
 	@$(RM) $(NAME) fdf
 
 clean:

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:14:28 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/10 18:22:44 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/11 10:05:16 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ void	ft_matrix_map(t_map *map, t_matrix **matrix)
 				= (*matrix)->count_y;
 			(*matrix)->vector[(*matrix)->count_y][(*matrix)->count_x].z
 				= node->x[(*matrix)->count_x];
-			(*matrix)->vector[(*matrix)->count_y][(*matrix)->count_x].color
-				= node->color[(*matrix)->count_x];
 			(*matrix)->count_x += 1;
 		}
 		node = node->next;

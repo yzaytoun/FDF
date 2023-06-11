@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:25:23 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/10 18:13:41 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/11 10:30:34 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 //SECTION - Matrix X Vector Operations
-t_matrix	ft_matmult(t_matrix *mat_1, t_matrix *mat_2)
+//ANCHOR - Matrix Multiplication
+t_matrix	*ft_matmult(t_matrix *mat_1, t_matrix *mat_2)
 {
 	t_matrix	*matrix;
 
@@ -26,15 +27,15 @@ t_matrix	ft_matmult(t_matrix *mat_1, t_matrix *mat_2)
 		matrix->count_x = 0;
 		while (matrix->count_x < matrix->length)
 		{
-			matrix->vector[count_y][count_x].x
-				= mat_1->vector[count_y][count_x].x
-				* mat_2->vector[count_y][count_x].x;
-			matrix->vector[count_y][count_x].y
-				= mat_1->vector[count_y][count_x].y
-				* mat_2->vector[count_y][count_x].y;
-			matrix->vector[count_y][count_x].z
-				= mat_1->vector[count_y][count_x].z
-				* mat_2->vector[count_y][count_x].z;
+			matrix->vector[matrix->count_y][matrix->count_x].x
+				= mat_1->vector[matrix->count_y][matrix->count_x].x
+				* mat_2->vector[matrix->count_y][matrix->count_x].x;
+			matrix->vector[matrix->count_y][matrix->count_x].y
+				= mat_1->vector[matrix->count_y][matrix->count_x].y
+				* mat_2->vector[matrix->count_y][matrix->count_x].y;
+			matrix->vector[matrix->count_y][matrix->count_x].z
+				= mat_1->vector[matrix->count_y][matrix->count_x].z
+				* mat_2->vector[matrix->count_y][matrix->count_x].z;
 			matrix->count_x++;
 		}
 		matrix->count_y++;
@@ -42,4 +43,19 @@ t_matrix	ft_matmult(t_matrix *mat_1, t_matrix *mat_2)
 	return (matrix);
 }
 
+//ANCHOR - Vector to matrix
+t_matrix	*ft_vectomat(t_vector *vector)
+{
+	t_matrix	*matrix;
+
+	if (!vector)
+		return (NULL);
+	matrix = ft_creatematrix(3,1);
+	if (!matrix)
+		return (NULL);
+	matrix->vector[0][0].x = vector->x;
+	matrix->vector[1][0].y = vector->y;
+	matrix->vector[2][0].z = vector->z;
+	return (matrix);
+}
 //!SECTION

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plot.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:45:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/10 14:47:34 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/11 10:01:04 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //SECTION Draw Map
 //ANCHOR - Draw borders
-static void	ft_plotaxis(t_window *window, t_fdf *fdf)
+void	ft_plotaxis(t_window *window, t_fdf *fdf)
 {
 	register int	pixel;
 	int				maxlen;
@@ -36,7 +36,7 @@ static void	ft_plotaxis(t_window *window, t_fdf *fdf)
 	}
 }
 
-static void	ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix)
+void	ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix)
 {
 	matrix->count_x = 0;
 	matrix->count_y = 0;

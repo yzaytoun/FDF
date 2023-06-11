@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:44:24 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/10 18:24:46 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/11 10:48:10 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //SECTION - Project
 //ANCHOR - Project matrix
-static void	ft_project_to_image(t_window *window, t_fdf *fdf, t_matrix *matrix,
+/*static void	ft_project_to_image(t_window *window, t_fdf *fdf, t_matrix *matrix,
 	t_map *map)
 {
 	if (!window || !fdf || !matrix)
@@ -29,10 +29,11 @@ static void	ft_project_to_image(t_window *window, t_fdf *fdf, t_matrix *matrix,
 	ft_printmatrix(matrix);
 	ft_plot(window, fdf, matrix);
 }
-
+*/
 void
 	ft_project(t_window *window, t_fdf *fdf, t_matrix *matrix, t_map *map)
 {
+	(void)map;
 	ft_apply(matrix, ft_angleinit, fdf);
 	ft_apply(matrix, ft_matrotate, fdf);
 	ft_plotaxis(window, fdf);

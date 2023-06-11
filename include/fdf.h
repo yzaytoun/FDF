@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/10 18:04:49 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/11 10:35:25 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "../libft/libft.h"
 # include "../ft_printf/include/ft_printf_bonus.h"
 # include <math.h>
-# include <mlx.h>
+//# include <mlx.h>
+# include "../minilibx_macos/mlx.h"
 
 /***********************Marcos************************/
 /*Keyboard keys*/
@@ -141,8 +142,6 @@ void		ft_mousehooks(t_window *window);
 void		ft_keyhooks(t_window *window);
 
 //ANCHOR - Draw
-void		ft_plotmap(t_window *window, t_map *map, t_fdf *fdf,
-				t_matrix *matrix);
 void		ft_project(t_window *window, t_fdf *fdf, t_matrix *matrix,
 				t_map *map);
 
@@ -170,6 +169,15 @@ void		ft_matrotate(t_vector *vector, t_fdf *fdf);
 
 //ANCHOR - Rotate
 void		ft_angleinit(t_vector *vector, t_fdf *fdf);
-t_matrix	*ft_rotate_matrix(t_vector *vector, t_fdf *fdf);
+t_matrix	*ft_get_rotmat(t_vector *vector, t_fdf *fdf);
 
+//ANCHOR - Plot
+void		ft_plotaxis(t_window *window, t_fdf *fdf);
+void		ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix);
+void		ft_plotmap(t_window *window, t_map *map, t_fdf *fdf,
+				t_matrix *matrix);
+
+//ANCHOR - Matrix Operation
+t_matrix	*ft_matmult(t_matrix *mat_1, t_matrix *mat_2);
+t_matrix	*ft_vectomat(t_vector *vector);
 #endif /*FDF HEADER*/
