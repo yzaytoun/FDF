@@ -6,7 +6,7 @@
 /*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:25:23 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/11 10:30:34 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/11 13:54:56 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_matrix	*ft_vectomat(t_vector *vector)
 
 	if (!vector)
 		return (NULL);
-	matrix = ft_creatematrix(3,1);
+	matrix = ft_creatematrix(1,3);
 	if (!matrix)
 		return (NULL);
 	matrix->vector[0][0].x = vector->x;

@@ -6,7 +6,7 @@
 /*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/11 10:35:25 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/11 15:04:34 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void		ft_to2d(t_vector *vector, t_fdf *fdf);
 void		ft_matrotate(t_vector *vector, t_fdf *fdf);
 
 //ANCHOR - Rotate
-void		ft_angleinit(t_vector *vector, t_fdf *fdf);
+void		ft_angleinit(t_fdf *fdf);
 t_matrix	*ft_get_rotmat(t_vector *vector, t_fdf *fdf);
 
 //ANCHOR - Plot

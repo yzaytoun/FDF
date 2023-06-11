@@ -6,7 +6,7 @@
 /*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:30:00 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/11 10:47:40 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/11 15:26:24 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_translate(t_vector *vector, t_fdf *fdf)
 {
 	vector->x *= fdf->distance_x;
 	vector->y *= fdf->distance_y;
-	vector->z += (fdf->scale / 2);
+	vector->z += 0.7;
 }
 
 //FIXME - To 2D
@@ -26,8 +26,8 @@ void	ft_to2d(t_vector *vector, t_fdf *fdf)
 	(void)fdf;
 	if (vector->z != 0)
 	{
-		vector->x /= -vector->z;
-		vector->y /= -vector->z;
+		vector->x /= vector->z;
+		vector->y /= vector->z;
 	}
 }
 
@@ -50,11 +50,8 @@ void	ft_matrotate(t_vector *vector, t_fdf *fdf)
 	mat_1 = ft_get_rotmat(vector, fdf);
 	if (!mat_1)
 		return ;
-	ft_printmatrix(mat_1);
 	mat_2 = ft_vectomat(vector);
-	ft_printmatrix(mat_2);
 	matrix = ft_matmult(mat_1, mat_2);
-	ft_printmatrix(matrix);
 	vector->x = matrix->vector[0][0].x + matrix->vector[0][0].y
 		+ matrix->vector[0][0].z;
 	vector->y = matrix->vector[1][0].x + matrix->vector[1][0].y

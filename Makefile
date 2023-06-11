@@ -96,6 +96,7 @@ fclean: clean
 	@cd $(MLX); make clean;
 	@cd $(BETA); make clean;
 	@$(RM) $(NAME) fdf
+	@echo "$(BLUE)\n*****************DONE Cleaning********************\n\n"
 
 clean:
 	@echo "$(RED)Cleaning libft and ft_printf"
@@ -104,7 +105,7 @@ clean:
 	@echo "$(YELLOW)Cleaning Object files"
 	@$(RM) $(FDF_OBJ) $(OBJDIR)
 	@echo "Cleaning fdf"
-	@echo "$(BLUE)\n*****************DONE Cleaning********************\n\n"
+	
 
 re: fclean all #bonus
 

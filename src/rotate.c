@@ -6,7 +6,7 @@
 /*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:41:16 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/11 10:37:41 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/11 15:04:05 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 //SECTION - Rotate
 //ANCHOR - Angle init
-void	ft_angleinit(t_vector *vector, t_fdf *fdf)
+void	ft_angleinit(t_fdf *fdf)
 {
-	(void)vector;
 	fdf->angle.x = 120;
 	fdf->angle.y = 120 * 2;
 	fdf->angle.z = 120 * 3;
@@ -57,7 +56,7 @@ t_matrix	*ft_get_rotmat(t_vector *vector, t_fdf *fdf)
 
 	if (!vector || !fdf)
 		return (NULL);
-	matrix = ft_creatematrix(3, 1);
+	matrix = ft_creatematrix(1, 3);
 	if (!matrix)
 		return (NULL);
 	ft_toradian(&fdf->angle);
