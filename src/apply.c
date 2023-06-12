@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apply.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:30:00 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/11 15:26:24 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/12 20:53:42 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,30 @@ void	ft_translate(t_vector *vector, t_fdf *fdf)
 {
 	vector->x *= fdf->distance_x;
 	vector->y *= fdf->distance_y;
-	vector->z += 0.7;
+	vector->z += 1;
 }
 
 //FIXME - To 2D
 void	ft_to2d(t_vector *vector, t_fdf *fdf)
 {
-	(void)fdf;
 	if (vector->z != 0)
 	{
-		vector->x /= vector->z;
-		vector->y /= vector->z;
+		if (fdf->flags.orientation == LOWERLEFT)
+			vector->x *= -1;
+		else if (fdf->flags.orientation == UPPERRIGHT)
+			vector->y *= -1;
+		else if  (fdf->flags.orientation == LOWERRIGHT)
+		{
+			vector->x *= 1;
+			vector->y *= 1;
+		}
+		else
+		{
+			vector->x *= -1;
+			vector->y *= -1;
+		}
+		vector->x /= vector->z * fdf->flags.focal;
+		vector->y /= vector->z * fdf->flags.focal;
 	}
 }
 
@@ -44,24 +57,18 @@ void	ft_normalize(t_vector *vector, t_fdf *fdf)
 void	ft_matrotate(t_vector *vector, t_fdf *fdf)
 {
 	t_matrix	*matrix;
-	t_matrix	*mat_1;
-	t_matrix	*mat_2;
+	t_matrix	*vecmat;
 
-	mat_1 = ft_get_rotmat(vector, fdf);
-	if (!mat_1)
-		return ;
-	mat_2 = ft_vectomat(vector);
-	matrix = ft_matmult(mat_1, mat_2);
+	vecmat = ft_vectomat(vector);
+	matrix = ft_matmult(fdf->rotatemat, vecmat);
 	vector->x = matrix->vector[0][0].x + matrix->vector[0][0].y
 		+ matrix->vector[0][0].z;
 	vector->y = matrix->vector[1][0].x + matrix->vector[1][0].y
 		+ matrix->vector[1][0].z;
 	vector->z = matrix->vector[2][0].x + matrix->vector[2][0].y
 		+ matrix->vector[2][0].z;
-	ft_destroyvector(&mat_1->vector, mat_1->height);
-	free(mat_1);
-	ft_destroyvector(&mat_2->vector, mat_2->height);
-	free(mat_2);
+	ft_destroyvector(&vecmat->vector, vecmat->height);
+	free(vecmat);
 	ft_destroyvector(&matrix->vector, matrix->height);
 	free(matrix);
 }

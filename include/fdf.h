@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/11 15:04:34 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/12 20:56:06 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 
 /*Macros*/
 # define MAX_WIDTH 500
+# define LOWERLEFT 1
+# define LOWERRIGHT 2
+# define UPPERLEFT 3
+# define UPPERRIGHT 4
 
 /*Struct*/
 typedef struct s_map
@@ -76,21 +80,12 @@ typedef struct s_ham
 }			t_ham;
 
 
-typedef struct s_fdf
+typedef struct s_fdfflags
 {
-	t_line		v0;
-	t_line		v1;
-	t_ham		ham;
-	t_vector	angle;
-	int			distance_x;
-	int			distance_y;
-	int			imagelength;
-	int			imageheight;
-	double		scale;
-	int			margin;
-	float		min_x;
-	float		min_y;
-}			t_fdf;
+	int		orientation;
+	float	focal;
+}			t_fdfflags;
+
 
 typedef struct s_matrix
 {
@@ -100,6 +95,24 @@ typedef struct s_matrix
 	int			count_x;
 	int			count_y;
 }				t_matrix;
+
+typedef struct s_fdf
+{
+	t_line			v0;
+	t_line			v1;
+	t_ham			ham;
+	t_vector		angle;
+	int				distance_x;
+	int				distance_y;
+	int				imagelength;
+	int				imageheight;
+	double			scale;
+	int				margin;
+	float			min_x;
+	float			min_y;
+	t_fdfflags		flags;
+	t_matrix		*rotatemat;
+}					t_fdf;
 
 
 /*Basic Functions*/
@@ -168,11 +181,10 @@ void		ft_to2d(t_vector *vector, t_fdf *fdf);
 void		ft_matrotate(t_vector *vector, t_fdf *fdf);
 
 //ANCHOR - Rotate
-void		ft_angleinit(t_fdf *fdf);
-t_matrix	*ft_get_rotmat(t_vector *vector, t_fdf *fdf);
+void		ft_fdfinit(t_fdf *fdf);
+t_matrix	*ft_get_rotmat(t_fdf *fdf);
 
 //ANCHOR - Plot
-void		ft_plotaxis(t_window *window, t_fdf *fdf);
 void		ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix);
 void		ft_plotmap(t_window *window, t_map *map, t_fdf *fdf,
 				t_matrix *matrix);

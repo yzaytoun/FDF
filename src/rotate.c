@@ -3,24 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:41:16 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/11 15:04:05 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/12 20:56:16 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 //SECTION - Rotate
-//ANCHOR - Angle init
-void	ft_angleinit(t_fdf *fdf)
-{
-	fdf->angle.x = 120;
-	fdf->angle.y = 120 * 2;
-	fdf->angle.z = 120 * 3;
-}
-
 //ANCHOR - Rotate X
 static void	ft_rotate_x(t_vector *vector, t_fdf *fdf)
 {
@@ -50,11 +42,11 @@ static void	ft_rotate_z(t_vector *vector, t_fdf *fdf)
 }
 
 //ANCHOR - Rotation Matrix
-t_matrix	*ft_get_rotmat(t_vector *vector, t_fdf *fdf)
+t_matrix	*ft_get_rotmat(t_fdf *fdf)
 {
 	t_matrix	*matrix;
 
-	if (!vector || !fdf)
+	if (!fdf)
 		return (NULL);
 	matrix = ft_creatematrix(1, 3);
 	if (!matrix)

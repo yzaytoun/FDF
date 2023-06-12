@@ -3,39 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   plot.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:45:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/11 10:01:04 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/12 19:06:04 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 //SECTION Draw Map
-//ANCHOR - Draw borders
-void	ft_plotaxis(t_window *window, t_fdf *fdf)
-{
-	register int	pixel;
-	int				maxlen;
-	int				maxwidth;
-
-	pixel = 0;
-	maxwidth = fdf->imagelength - fdf->margin - (fdf->imagelength * 0.1);
-	maxlen = fdf->imageheight - fdf->margin - (fdf->imageheight * 0.1);
-	while (pixel < maxwidth)
-	{
-		ft_pixelput(window, pixel, 0, 0x00FF00);
-		pixel++;
-	}
-	pixel = 0;
-	while (pixel < maxlen)
-	{
-		ft_pixelput(window, 0, pixel, 0xFFFF00);
-		pixel++;
-	}
-}
-
 void	ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix)
 {
 	matrix->count_x = 0;

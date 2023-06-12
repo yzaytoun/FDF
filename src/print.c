@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:29:23 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/11 10:47:08 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/12 20:43:39 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 //SECTION - Print
-#define GET_VARIABLE_NAME(Variable) (#Variable)
 //FIXME - To be deleted
 void	ft_printmatrix(t_matrix *matrix)
 {
@@ -21,13 +20,12 @@ void	ft_printmatrix(t_matrix *matrix)
 		return ;
 	matrix->count_x = 0;
 	matrix->count_y = 0;
-	printf("Matrix Name : %s\n", GET_VARIABLE_NAME(matrix));
 	while (matrix->count_y < matrix->height)
 	{
 		matrix->count_x = 0;
 		while (matrix->count_x < matrix->length)
 		{
-			printf("(%.0f, %.0f, %.0f)\t",
+			printf("(%.2f, %.2f, %.2f)\t",
 				matrix->vector[matrix->count_y][matrix->count_x].x,
 				matrix->vector[matrix->count_y][matrix->count_x].y,
 				matrix->vector[matrix->count_y][matrix->count_x].z);
