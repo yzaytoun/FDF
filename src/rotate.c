@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:41:16 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/12 20:56:16 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/13 21:19:50 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_matrix	*ft_get_rotmat(t_fdf *fdf)
 
 	if (!fdf)
 		return (NULL);
-	matrix = ft_creatematrix(1, 3);
+	matrix = ft_creatematrix(3, 1);
 	if (!matrix)
 		return (NULL);
 	ft_toradian(&fdf->angle);

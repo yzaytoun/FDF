@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:44:24 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/12 20:56:52 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/13 21:19:30 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 //ANCHOR - Angle init
 void	ft_fdfinit(t_fdf *fdf)
 {
+	fdf->flags.translation = 5;
 	fdf->flags.orientation = LOWERLEFT;
 	fdf->flags.focal = 1.5;
 	fdf->angle.x = 120;
@@ -30,11 +31,12 @@ static void	ft_project_to_image(t_window *window, t_fdf *fdf, t_matrix *matrix,
 	if (!window || !fdf || !matrix)
 		return ;
 	ft_matrix_map(map, &matrix);
-	ft_apply(matrix, ft_translate, fdf);
+	ft_apply(matrix, ft_increment, fdf);
 	fdf->rotatemat = ft_get_rotmat(fdf);
 	if (!fdf->rotatemat)
 		return ;
 	ft_apply(matrix, ft_matrotate, fdf);
+	//ft_apply(matrix, ft_dimcamera, fdf);
 	ft_apply(matrix, ft_to2d, fdf);
 	ft_matrixmin(matrix, fdf);
 	if (fdf->min_x < 0 || fdf->min_y < 0)

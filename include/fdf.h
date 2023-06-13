@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/12 20:56:06 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/13 20:51:35 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define LOWERRIGHT 2
 # define UPPERLEFT 3
 # define UPPERRIGHT 4
+# define SUB 1
+# define ADD 2
 
 /*Struct*/
 typedef struct s_map
@@ -84,6 +86,8 @@ typedef struct s_fdfflags
 {
 	int		orientation;
 	float	focal;
+	float	translation;
+	int		operation;
 }			t_fdfflags;
 
 
@@ -176,7 +180,7 @@ void		ft_matrixmin(t_matrix *matrix, t_fdf *fdf);
 void		ft_apply(t_matrix *matrix, void (*func)(t_vector *, t_fdf *),
 				t_fdf *fdf);
 void		ft_normalize(t_vector *vector, t_fdf *fdf);
-void		ft_translate(t_vector *vector, t_fdf *fdf);
+void		ft_increment(t_vector *vector, t_fdf *fdf);
 void		ft_to2d(t_vector *vector, t_fdf *fdf);
 void		ft_matrotate(t_vector *vector, t_fdf *fdf);
 
@@ -191,5 +195,5 @@ void		ft_plotmap(t_window *window, t_map *map, t_fdf *fdf,
 
 //ANCHOR - Matrix Operation
 t_matrix	*ft_matmult(t_matrix *mat_1, t_matrix *mat_2);
-t_matrix	*ft_vectomat(t_vector *vector);
+t_matrix	*ft_vecmult(t_vector *vector, t_matrix *matrix);
 #endif /*FDF HEADER*/
