@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:30:00 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/13 21:20:52 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/16 21:08:09 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,15 @@ void	ft_increment(t_vector *vector, t_fdf *fdf)
 	vector->z += 1;
 }
 
-//FIXME - To 2D
+//ANCHOR - To 2D
 void	ft_to2d(t_vector *vector, t_fdf *fdf)
 {
-	if (vector->z != 0)
+	if (vector->z > 0)
 	{
 		if (fdf->flags.orientation == LOWERLEFT)
-			vector->x *= -1;
-		else if (fdf->flags.orientation == UPPERRIGHT)
 			vector->y *= -1;
-		else if  (fdf->flags.orientation == LOWERRIGHT)
-		{
-			vector->x *= 1;
-			vector->y *= 1;
-		}
+		else if (fdf->flags.orientation == UPPERRIGHT)
+			vector->x *= -1;
 		else
 		{
 			vector->x *= -1;
@@ -42,15 +37,24 @@ void	ft_to2d(t_vector *vector, t_fdf *fdf)
 		vector->x /= vector->z * fdf->flags.focal;
 		vector->y /= vector->z * fdf->flags.focal;
 	}
+	else if (vector->z < 0)
+	{
+		vector->x /= vector->z * fdf->flags.focal;
+		vector->y /= vector->z * fdf->flags.focal;
+	}
 }
 
 //ANCHOR - To positive
 void	ft_normalize(t_vector *vector, t_fdf *fdf)
 {
-	if (fdf->min_x < 0)
-		vector->x += fabs(fdf->min_x);
-	if (fdf->min_y < 0)
-		vector->y += fabs(fdf->min_y);
+	(void)fdf;
+	float	invelen;
+
+	invelen = 1 / sqrtf(powf(vector->x, 2) + powf(vector->y, 2)
+			+ powf(vector->z, 2));
+	vector->x *= invelen;
+	vector->y *= invelen;
+	vector->z *= invelen;
 }
 
 //ANCHOR - Rotate
@@ -59,12 +63,9 @@ void	ft_matrotate(t_vector *vector, t_fdf *fdf)
 	t_matrix	*matrix;
 
 	matrix = ft_vecmult(vector, fdf->rotatemat);
-	vector->x = matrix->vector[0][0].x + matrix->vector[0][0].y
-		+ matrix->vector[0][0].z;
-	vector->y = matrix->vector[0][1].x + matrix->vector[0][1].y
-		+ matrix->vector[0][1].z;
-	vector->z = matrix->vector[0][2].x + matrix->vector[0][2].y
-		+ matrix->vector[0][2].z;
+	vector->x = matrix->vector[0][0].x;
+	vector->y = matrix->vector[0][0].y;
+	vector->z = matrix->vector[0][0].z;
 	ft_destroyvector(&matrix->vector, matrix->height);
 	free(matrix);
 }

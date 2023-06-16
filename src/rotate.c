@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:41:16 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/13 21:19:50 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/16 19:44:36 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ t_matrix	*ft_get_rotmat(t_fdf *fdf)
 		return (NULL);
 	ft_toradian(&fdf->angle);
 	ft_rotate_x(&matrix->vector[0][0], fdf);
-	ft_rotate_y(&matrix->vector[1][0], fdf);
-	ft_rotate_z(&matrix->vector[2][0], fdf);
+	ft_rotate_y(&matrix->vector[0][1], fdf);
+	ft_rotate_z(&matrix->vector[0][2], fdf);
 	return (matrix);
 }
 
