@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:32:47 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/11 15:11:19 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/17 16:24:10 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-//SECTION - Draw Aux
+//SECTION - Bresenham
 //ANCHOR - Mark point
 void	ft_markpoint(t_fdf *fdf, t_matrix *matrix)
 {
@@ -25,7 +25,7 @@ void	ft_markpoint(t_fdf *fdf, t_matrix *matrix)
 }
 
 //ANCHOR - Pixel Put
-void	ft_pixelput(t_window *window, int dist_x, int dist_y, int color)
+static void	ft_pixelput(t_window *window, int dist_x, int dist_y, int color)
 {
 	char	*dst;
 
@@ -61,7 +61,10 @@ void	ft_bresenham(t_window *window, t_fdf *fdf)
 	{
 		if (fdf->v0.x < fdf->imagelength
 			&& fdf->v0.y < fdf->imageheight)
+		{
 			ft_pixelput(window, fdf->v0.x, fdf->v0.y, 0xFFFF00);
+			ft_pixelput(window, fdf->v0.y, fdf->v0.x, 0xF00000);
+		}
 		if (fdf->v0.x == fdf->v1.x && fdf->v0.y == fdf->v1.y)
 			break ;
 		fdf->ham.e2 = fdf->ham.err * 2;

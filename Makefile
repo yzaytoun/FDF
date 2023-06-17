@@ -59,8 +59,8 @@ BETAX = minilibx_mms_20191025_beta/libmlx.dylib
 PRINTF = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
 # ------------------------ FDF ------------------------------
-SRC = map_reader.c map_aux.c window_manager.c aux_functions.c key_events.c\
-	mouse_events.c plot.c bresenham.c matrix.c apply.c matrix_aux.c run.c\
+SRC = map_reader.c map_aux.c window_manager.c aux_functions.c key_hooks.c\
+	mouse_hooks.c plot.c bresenham.c matrix.c apply.c matrix_aux.c run.c\
 	rotate.c print.c project.c matrix_operations.c camera.c
 
 OBJDIR = obj

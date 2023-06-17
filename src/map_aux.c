@@ -6,39 +6,13 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/27 19:28:09 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/17 15:14:40 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 //SECTION - Map AUX
-//FIXME - To be deleted -> Printer
-void	ft_printmap(t_map *map)
-{
-	t_map	*node;
-	int		index;
-
-	index = 0;
-	if (map == NULL || map->width == 0)
-		return ;
-	node = map;
-	while (node != NULL)
-	{
-		index = 0;
-		printf("x = ");
-		while (index < node->width)
-		{
-			printf("%d ", node->x[index]);
-			//printf("color%d", node->color[index]);
-			index++;
-		}
-		printf("\t\t index = %d\n", node->y);
-		printf("\n");
-		node = node->next;
-	}
-}
-
 //ANCHOR - Get color
 static int	ft_getcolor(char *str, t_map *map, int index)
 {
@@ -120,25 +94,4 @@ void	ft_colorflood(int **array, int size, int color)
 	}
 }
 
-//ANCHOR - Normalize negative
-void	ft_normalizemap(t_map *map, int min)
-{
-	t_map	*node;
-	int		count;
-
-	if (!map || !min)
-		return ;
-	node = map;
-	count = 0;
-	while (node != NULL)
-	{
-		count = 0;
-		while (count < node->width)
-		{
-			node->x[count] += min;
-			++count;
-		}
-		node = node->next;
-	}
-}
 //!SECTION

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:30:00 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/16 21:08:09 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/17 21:07:43 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,33 +23,17 @@ void	ft_increment(t_vector *vector, t_fdf *fdf)
 //ANCHOR - To 2D
 void	ft_to2d(t_vector *vector, t_fdf *fdf)
 {
-	if (vector->z > 0)
-	{
-		if (fdf->flags.orientation == LOWERLEFT)
-			vector->y *= -1;
-		else if (fdf->flags.orientation == UPPERRIGHT)
-			vector->x *= -1;
-		else
-		{
-			vector->x *= -1;
-			vector->y *= -1;
-		}
-		vector->x /= vector->z * fdf->flags.focal;
-		vector->y /= vector->z * fdf->flags.focal;
-	}
-	else if (vector->z < 0)
-	{
-		vector->x /= vector->z * fdf->flags.focal;
-		vector->y /= vector->z * fdf->flags.focal;
-	}
+	vector->x = ((2 * vector->x / fdf->imagelength) - 1) * 250;
+	vector->y = ((2 * vector->y / fdf->imageheight) - 1) * 250;
+	vector->z = vector->z - 1;
 }
 
-//ANCHOR - To positive
+//ANCHOR - Normalize
 void	ft_normalize(t_vector *vector, t_fdf *fdf)
 {
-	(void)fdf;
 	float	invelen;
 
+	(void)fdf;
 	invelen = 1 / sqrtf(powf(vector->x, 2) + powf(vector->y, 2)
 			+ powf(vector->z, 2));
 	vector->x *= invelen;
@@ -57,17 +41,13 @@ void	ft_normalize(t_vector *vector, t_fdf *fdf)
 	vector->z *= invelen;
 }
 
-//ANCHOR - Rotate
-void	ft_matrotate(t_vector *vector, t_fdf *fdf)
+//ANCHOR - Positive
+void	ft_topositive(t_vector *vector, t_fdf *fdf)
 {
-	t_matrix	*matrix;
-
-	matrix = ft_vecmult(vector, fdf->rotatemat);
-	vector->x = matrix->vector[0][0].x;
-	vector->y = matrix->vector[0][0].y;
-	vector->z = matrix->vector[0][0].z;
-	ft_destroyvector(&matrix->vector, matrix->height);
-	free(matrix);
+	if (vector->x < 0)
+		vector->x +=  fabsf(fdf->min_x);
+	if (vector->y < 0)
+		vector->y += fabsf(fdf->min_y);
 }
 
 //ANCHOR - Main func

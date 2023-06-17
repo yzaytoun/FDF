@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/08 20:48:38 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/17 15:36:29 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	ft_initfdf(t_fdf *fdf, t_map *map, int height)
 		fdf->margin = (fdf->imageheight / 10);
 	else
 		fdf->margin = (fdf->imagelength / 10);
-	fdf->min_x = ft_mapmin(map);
 }
 
 //ANCHOR - Get Scale
