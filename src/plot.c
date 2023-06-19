@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plot.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:45:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/19 19:34:05 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/19 21:56:41 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	ft_fdfinit(t_fdf *fdf)
 //ANCHOR - Plot axis
 static void	ft_plotaxis(t_window *window, t_fdf *fdf)
 {
-	float	magnitude;
+	//float	magnitude;
 
 	(void)window;
-	fdf->v0.x = (fdf->imagelength / 2);
-	fdf->v0.y = (fdf->imageheight / 2);
-	fdf->v1.x = 0;
-	fdf->v1.y = 0;
-	magnitude = sqrt(powf(fdf->v1.y, 2));
+	fdf->v0.x = fdf->imagelength / 2 - fdf->margin;
+	fdf->v0.y = fdf->imageheight / 2 - fdf->margin;
+	fdf->v1.x = fdf->imagelength / 2 - fdf->margin;
+	fdf->v1.y = (fdf->imageheight / 2 - fdf->margin + fdf->imageheight / 4) - fdf->v0.x + cos(ft_toradian(120));
+	//magnitude = sqrt(powf(fdf->v1.y, 2));
 	//fdf->v1.y += fdf->v1.y * cos(ft_toradian(120));
 	printf("v1 = %i\n", fdf->v1.y);
 	ft_bresenham(window, fdf);
@@ -68,6 +68,6 @@ void	ft_plotmap(t_window *window, t_map *map, t_fdf *fdf, t_matrix *matrix)
 	ft_printheader(window, fdf);
 	ft_printfdf(fdf);
 	mlx_put_image_to_window(window->mlx, window->win,
-		window->img, fdf->imagelength / 2, fdf->imageheight / 2);
+		window->img, fdf->margin, fdf->margin);
 }
 //!SECTION
