@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:59:40 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/17 16:23:18 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:23:30 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ void	ft_exception(char *str)
 }
 
 //ANCHOR - to radian
-void	ft_toradian(t_vector *angle)
+float	ft_toradian(int angle)
 {
-	angle->x = (angle->x * M_PI) / 180;
-	angle->y = (angle->y * M_PI) / 180;
-	angle->z = (angle->z * M_PI) / 180;
+	return ((angle * M_PI) / 180);
 }
 
 //ANCHOR - To integer
@@ -33,5 +31,6 @@ int	ft_toint(float num)
 {
 	return ((int)roundf(num));
 }
+
 
 //!SECTION

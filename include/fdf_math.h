@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:07:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/17 16:52:52 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:24:22 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ typedef struct s_fdf
 /*FUNCTIONS*/
 //ANCHOR - AUX
 void		ft_exception(char *str);
-void		ft_toradian(t_vector *angle);
+float		ft_toradian(int angle);
 int			ft_toint(float num);
 
 //ANCHOR - Project

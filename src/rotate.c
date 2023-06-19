@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:41:16 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/17 18:20:14 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:24:48 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_rotate_x(t_vector *vector, t_fdf *fdf)
 //ANCHOR - Rotate Y
 void	ft_rotate_y(t_vector *vector, t_fdf *fdf)
 {
-	vector->x =  -cosf(fdf->angle.y) * sinf(fdf->angle.z);
+	vector->x = -cosf(fdf->angle.y) * sinf(fdf->angle.z);
 	vector->y = (-sinf(fdf->angle.x) * sinf(fdf->angle.y) * sinf(fdf->angle.z))
 		+ (cosf(fdf->angle.z) * cosf(fdf->angle.x));
 	vector->z = (cosf(fdf->angle.x) * sinf(fdf->angle.y) * sinf(fdf->angle.z))
@@ -51,7 +51,6 @@ t_matrix	*ft_get_rotmat(t_fdf *fdf)
 	matrix = ft_creatematrix(3, 1);
 	if (!matrix)
 		return (NULL);
-	ft_toradian(&fdf->angle);
 	ft_rotate_x(&(matrix->vector)[0][0], fdf);
 	ft_rotate_y(&(matrix->vector)[0][1], fdf);
 	ft_rotate_z(&(matrix->vector)[0][2], fdf);
