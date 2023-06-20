@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:41:16 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/19 18:24:48 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/20 21:59:37 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,21 @@ void	ft_rotate_y(t_vector *vector, t_fdf *fdf)
 }
 
 //ANCHOR - Rotate Z
-void	ft_rotate_z(t_vector *vector, t_fdf *fdf)
+/*void	ft_rotate_z(t_vector *vector, t_fdf *fdf)
 {
 	vector->x = sinf(fdf->angle.y);
 	vector->y = -sinf(fdf->angle.x) * cosf(fdf->angle.y);
+	vector->z = cosf(fdf->angle.x) * cosf(fdf->angle.y);
+}*/
+
+//ANCHOR - Rotate Z
+void	ft_rotate_z(t_vector *vector, t_fdf *fdf)
+{
+	float	mag;
+
+	mag = sqrt(powf(vector->x, 2) + powf(vector->y, 2) + powf(vector->z, 2));
+	vector->x = mag * cosf(fdf->angle.z);
+	vector->y = mag * sinf(fdf->angle.z);
 	vector->z = cosf(fdf->angle.x) * cosf(fdf->angle.y);
 }
 

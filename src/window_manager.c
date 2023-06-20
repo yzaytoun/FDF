@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_manager.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/17 15:36:29 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/20 21:48:33 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	ft_initfdf(t_fdf *fdf, t_map *map, int height)
 {
 	fdf->imagelength = (map->width * fdf->scale);
 	fdf->imageheight = (height * fdf->scale);
-	fdf->distance_x = (fdf->imagelength / map->width) / 2;
-	fdf->distance_y = (fdf->imageheight / height) / 2;
+	fdf->distance_x = (fdf->imagelength / map->width) / 4;
+	fdf->distance_y = (fdf->imageheight / height) / 4;
 	if (fdf->imageheight > fdf->imagelength)
 		fdf->margin = (fdf->imageheight / 10);
 	else

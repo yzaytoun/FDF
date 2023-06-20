@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apply.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:30:00 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/17 21:07:43 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/20 21:46:46 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,21 @@ void	ft_increment(t_vector *vector, t_fdf *fdf)
 	vector->z += 1;
 }
 
-//ANCHOR - To 2D
-void	ft_to2d(t_vector *vector, t_fdf *fdf)
+//ANCHOR - Translate
+void	ft_translate(t_vector *vector, t_fdf *fdf)
 {
-	vector->x = ((2 * vector->x / fdf->imagelength) - 1) * 250;
-	vector->y = ((2 * vector->y / fdf->imageheight) - 1) * 250;
-	vector->z = vector->z - 1;
+	if (fdf->flags.operation == ADD)
+	{
+		vector->x += fdf->flags.translation_x;
+		vector->y += fdf->flags.translation_y;
+		//vector->z += fdf->flags.translation;
+	}
+	else if (fdf->flags.operation == SUB)
+	{
+		vector->x -= fdf->flags.translation_x;
+		vector->y -= fdf->flags.translation_y;
+		//vector->z -= fdf->flags.translation;
+	}
 }
 
 //ANCHOR - Normalize
