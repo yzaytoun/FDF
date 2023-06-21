@@ -6,7 +6,7 @@
 /*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:07:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/20 21:45:38 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/21 21:07:12 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,8 +140,7 @@ void		ft_rotate_x(t_vector *vector, t_fdf *fdf);
 
 //ANCHOR - Plot
 void		ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix);
-void		ft_plotmap(t_window *window, t_map *map, t_fdf *fdf,
-				t_matrix *matrix);
+int		ft_plotmap(void *param);
 
 //ANCHOR - Matrix Operation
 t_matrix	*ft_matmult(t_matrix *mat_1, t_matrix *mat_2);

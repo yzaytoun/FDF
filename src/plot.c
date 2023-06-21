@@ -6,7 +6,7 @@
 /*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:45:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/20 21:59:42 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/21 21:18:47 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_fdfinit(t_fdf *fdf)
 	fdf->flags.translation_y = fdf->imageheight / 2 - fdf->margin;
 	fdf->angle.x = ft_toradian(0);
 	fdf->angle.y = ft_toradian(0);
-	fdf->angle.z = ft_toradian(60);
+	fdf->angle.z = ft_toradian(30);
 }
 
 //ANCHOR - Plot axis
@@ -37,7 +37,6 @@ static void	ft_plotaxis(t_window *window, t_fdf *fdf)
 //ANCHOR - plot
 void	ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix)
 {
-	matrix->count_x = 0;
 	matrix->count_y = 0;
 	while (matrix->count_y < matrix->height)
 	{
@@ -53,14 +52,17 @@ void	ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix)
 }
 
 //ANCHOR - Main func
-void	ft_plotmap(t_window *window, t_map *map, t_fdf *fdf, t_matrix *matrix)
+int	ft_plotmap(void *param)
 {
-	ft_fdfinit(fdf);
-	ft_plotaxis(window, fdf);
-	ft_project(window, fdf, matrix, map);
-	ft_printheader(window, fdf);
-	ft_printfdf(fdf);
-	mlx_put_image_to_window(window->mlx, window->win,
-		window->img, fdf->margin, fdf->margin);
+	t_params	*params;
+
+	params = (t_params *)param;
+	ft_plotaxis(params->win, params->fdf);
+	ft_project(params->win, params->fdf, params->matrix, params->map);
+	ft_printheader(params->win, params->fdf);
+	//ft_printfdf(params->fdf);
+	mlx_put_image_to_window(params->win->mlx, params->win->win,
+		params->win->img, params->fdf->margin, params->fdf->margin);
+	return(EXIT_SUCCESS);
 }
 //!SECTION

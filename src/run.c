@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:07:25 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/17 16:22:11 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/21 21:20:51 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,24 @@
 //ANCHOR - Run Window
 void	ft_run(t_window *window, t_map *map, int height)
 {
-	t_fdf		*fdf;
-	t_matrix	*matrix;
+	t_params	*params;
 
 	if (!map || !window)
 		return ;
-	fdf = ft_initstructs(window, map, height);
-	matrix = ft_creatematrix(fdf->imagelength / fdf->scale,
-			fdf->imageheight / fdf->scale);
-	if (!matrix)
+	params = ft_calloc(sizeof(t_params), 1);
+	if (!params)
 		return ;
-	ft_plotmap(window, map, fdf, matrix);
+	params->fdf = ft_initstructs(window, map, height);
+	params->matrix = ft_creatematrix(params->fdf->imagelength / params->fdf->scale,
+			params->fdf->imageheight / params->fdf->scale);
+	if (!params->matrix)
+		return ;
+	params->win = window;
+	params->map = map;
+	ft_fdfinit(params->fdf);
 	ft_mousehooks(window);
-	ft_keyhooks(window);
+	ft_keyhooks(params);
+	mlx_loop_hook(window->mlx, ft_plotmap, params);
 	mlx_loop(window->mlx);
-	free(fdf);
 }
 //!SECTION

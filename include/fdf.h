@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/17 15:59:52 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/21 21:21:11 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@
 # define SUB 1
 # define ADD 2
 
+/*MAIN Struct*/
+typedef struct s_params
+{
+	t_fdf		*fdf;
+	t_matrix	*matrix;
+	t_window	*win;
+	t_map		*map;
+}			t_params;
 
 /*Basic Functions*/
 //ANCHOR - Map Reader
@@ -64,6 +72,6 @@ void		ft_run(t_window *window, t_map *map, int height);
 void		ft_mousehooks(t_window *window);
 
 //ANCHOR - Key Events
-void		ft_keyhooks(t_window *window);
+void		ft_keyhooks(t_params *params);
 
 #endif /*FDF HEADER*/
