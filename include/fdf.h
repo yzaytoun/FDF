@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/21 21:21:11 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/22 20:16:01 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_params
 {
 	t_fdf		*fdf;
 	t_matrix	*matrix;
-	t_window	*win;
+	t_window	*window;
 	t_map		*map;
 }			t_params;
 
@@ -66,6 +66,7 @@ void		ft_destroywindow(t_window **window, t_map *map);
 t_fdf		*ft_initstructs(t_window *window, t_map *map, int height);
 
 //ANCHOR - Run Program
+void		ft_createimage(t_window *window, t_fdf *fdf);
 void		ft_run(t_window *window, t_map *map, int height);
 
 //ANCHOR - Mouse Events

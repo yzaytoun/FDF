@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_manager.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/20 21:48:33 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/22 20:21:43 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ static void	ft_initfdf(t_fdf *fdf, t_map *map, int height)
 		fdf->margin = (fdf->imageheight / 10);
 	else
 		fdf->margin = (fdf->imagelength / 10);
+	fdf->flags.focal = 1;
+	fdf->flags.translation_x = fdf->imagelength / 2 - fdf->margin;
+	fdf->flags.translation_y = fdf->imageheight / 2 - fdf->margin;
 }
 
 //ANCHOR - Get Scale
@@ -60,13 +63,8 @@ t_fdf	*ft_initstructs(t_window *window, t_map *map, int height)
 	if (!fdf)
 		return (NULL);
 	fdf->scale = ft_getscale(map->width, height);
-	window->img = mlx_new_image(window->mlx, fdf->scale * map->width,
-			fdf->scale * height);
-	if (!window->img)
-		return (NULL);
-	window->addr = mlx_get_data_addr(window->img,
-			&window->bpp, &window->size_line, &window->endian);
 	ft_initfdf(fdf, map, height);
+	ft_createimage(window, fdf);
 	return (fdf);
 }
 

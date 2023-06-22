@@ -3,16 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   project.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:44:24 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/21 20:54:37 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/22 20:17:40 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 //SECTION - Project
+//ANCHOR - Reset image
+static void	ft_resetimage(t_window *window, t_fdf *fdf)
+{
+	mlx_destroy_image(window->mlx, window->img);
+	ft_createimage(window, fdf);
+}
 
 //ANCHOR - Project matrix
 static void	ft_project_to_image(t_window *window, t_fdf *fdf, t_matrix *matrix,
@@ -34,7 +40,7 @@ static void	ft_project_to_image(t_window *window, t_fdf *fdf, t_matrix *matrix,
 void
 	ft_project(t_window *window, t_fdf *fdf, t_matrix *matrix, t_map *map)
 {
-	ft_fdfinit(fdf);
+	ft_resetimage(window, fdf);
 	ft_project_to_image(window, fdf, matrix, map);
 }
 

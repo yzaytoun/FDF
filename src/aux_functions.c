@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:59:40 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/19 18:23:30 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/22 19:48:29 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ int	ft_toint(float num)
 {
 	return ((int)roundf(num));
 }
-
 
 //!SECTION

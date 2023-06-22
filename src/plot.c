@@ -3,27 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   plot.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:45:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/21 21:18:47 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/22 20:20:19 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 //SECTION Draw Map
-//ANCHOR - Angle init
-void	ft_fdfinit(t_fdf *fdf)
-{
-	fdf->flags.focal = 1;
-	fdf->flags.translation_x = fdf->imagelength / 2 - fdf->margin;
-	fdf->flags.translation_y = fdf->imageheight / 2 - fdf->margin;
-	fdf->angle.x = ft_toradian(0);
-	fdf->angle.y = ft_toradian(0);
-	fdf->angle.z = ft_toradian(30);
-}
-
 //ANCHOR - Plot axis
 static void	ft_plotaxis(t_window *window, t_fdf *fdf)
 {
@@ -57,12 +46,13 @@ int	ft_plotmap(void *param)
 	t_params	*params;
 
 	params = (t_params *)param;
-	ft_plotaxis(params->win, params->fdf);
-	ft_project(params->win, params->fdf, params->matrix, params->map);
-	ft_printheader(params->win, params->fdf);
+	printf("angle inside plot%f\n", params->fdf->angle.z);
+	ft_plotaxis(params->window, params->fdf);
+	ft_project(params->window, params->fdf, params->matrix, params->map);
+	ft_printheader(params->window, params->fdf);
 	//ft_printfdf(params->fdf);
-	mlx_put_image_to_window(params->win->mlx, params->win->win,
-		params->win->img, params->fdf->margin, params->fdf->margin);
+	mlx_put_image_to_window(params->window->mlx, params->window->win,
+		params->window->img, params->fdf->margin, params->fdf->margin);
 	return(EXIT_SUCCESS);
 }
 //!SECTION

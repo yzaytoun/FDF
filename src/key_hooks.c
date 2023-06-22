@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:32:02 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/21 21:23:08 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/22 20:01:11 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ static int	ft_printkeys(int keycode, void *param)
 	if (keycode == KEY_ESCAPE)
 	{
 		//mlx_destroy_image(window->mlx, window->win);
-		mlx_destroy_window(params->win->mlx, params->win->win);
+		mlx_destroy_window(params->window->mlx, params->window->win);
 		exit(EXIT_SUCCESS);
 	}
-	printf("angle %f\n", params->fdf->angle.z);
 	if (keycode == 13)
-		params->fdf->angle.z += 20;
-	printf("angle %f\n", params->fdf->angle.z);
+		params->fdf->angle.z += ft_toradian(20);
 	printf("keycode = %i\n", keycode);
 	return (TRUE);
 }
@@ -43,10 +41,10 @@ static int	ft_key(int keycode, void *param)
 	return (TRUE);
 }
 */
+
 //ANCHOR - Main Func
 void	ft_keyhooks(t_params *params)
 {
-	mlx_key_hook(params->win->win, ft_printkeys, params);
-	//mlx_key_hook(window->win, ft_key, fdf);
+	mlx_key_hook(params->window->win, ft_printkeys, params);
 }
 //!SECTION
