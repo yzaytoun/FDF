@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apply.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:30:00 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/20 21:46:46 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/22 20:43:30 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,8 @@ void	ft_increment(t_vector *vector, t_fdf *fdf)
 //ANCHOR - Translate
 void	ft_translate(t_vector *vector, t_fdf *fdf)
 {
-	if (fdf->flags.operation == ADD)
-	{
-		vector->x += fdf->flags.translation_x;
-		vector->y += fdf->flags.translation_y;
-		//vector->z += fdf->flags.translation;
-	}
-	else if (fdf->flags.operation == SUB)
-	{
-		vector->x -= fdf->flags.translation_x;
-		vector->y -= fdf->flags.translation_y;
-		//vector->z -= fdf->flags.translation;
-	}
+	vector->x += fdf->flags.translation_x;
+	vector->y += fdf->flags.translation_y;
 }
 
 //ANCHOR - Normalize

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:45:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/22 20:20:19 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/22 20:28:08 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	ft_plotmap(void *param)
 	t_params	*params;
 
 	params = (t_params *)param;
-	printf("angle inside plot%f\n", params->fdf->angle.z);
 	ft_plotaxis(params->window, params->fdf);
 	ft_project(params->window, params->fdf, params->matrix, params->map);
 	ft_printheader(params->window, params->fdf);

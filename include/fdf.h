@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/22 20:16:01 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/22 20:29:46 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ void		ft_run(t_window *window, t_map *map, int height);
 void		ft_mousehooks(t_window *window);
 
 //ANCHOR - Key Events
-void		ft_keyhooks(t_params *params);
+int			ft_keyhooks(int keycode, void *param);
 
 #endif /*FDF HEADER*/
