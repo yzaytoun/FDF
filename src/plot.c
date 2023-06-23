@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:45:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/22 20:28:08 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/23 19:49:05 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ int	ft_plotmap(void *param)
 	//ft_printfdf(params->fdf);
 	mlx_put_image_to_window(params->window->mlx, params->window->win,
 		params->window->img, params->fdf->margin, params->fdf->margin);
-	return(EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
 //!SECTION

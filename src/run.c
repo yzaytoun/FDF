@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:07:25 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/22 20:27:13 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/23 21:05:14 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ void	ft_run(t_window *window, t_map *map, int height)
 		return ;
 	params->window = window;
 	params->map = map;
-	ft_mousehooks(window);
+	params->hook = ft_calloc(sizeof(t_hook), 1);
+	if (!params->hook)
+		return ;
+	ft_mousehooks(params);
 	mlx_key_hook(params->window->win, ft_keyhooks, params);
 	mlx_loop_hook(window->mlx, ft_plotmap, params);
 	mlx_loop(window->mlx);

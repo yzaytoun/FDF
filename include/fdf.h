@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/22 20:29:46 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/23 21:04:10 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,19 @@
 # define ADD 2
 
 /*MAIN Struct*/
+typedef struct s_hook
+{
+	int		buttonpress;
+	int		buttonrelease;
+}			t_hook;
+
 typedef struct s_params
 {
 	t_fdf		*fdf;
 	t_matrix	*matrix;
 	t_window	*window;
 	t_map		*map;
+	t_hook		*hook;
 }			t_params;
 
 /*Basic Functions*/
@@ -70,7 +77,7 @@ void		ft_createimage(t_window *window, t_fdf *fdf);
 void		ft_run(t_window *window, t_map *map, int height);
 
 //ANCHOR - Mouse Events
-void		ft_mousehooks(t_window *window);
+void		ft_mousehooks(t_params *params);
 
 //ANCHOR - Key Events
 int			ft_keyhooks(int keycode, void *param);

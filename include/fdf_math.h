@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:07:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/22 19:47:43 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/23 19:56:52 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ int			ft_toint(float num);
 //ANCHOR - Project
 void		ft_project(t_window *window, t_fdf *fdf, t_matrix *matrix,
 				t_map *map);
-void		ft_fdfinit(t_fdf *fdf);
 
 //ANCHOR - Bresenham
 void		ft_printheader(t_window *window, t_fdf *fdf);
