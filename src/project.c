@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:44:24 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/22 20:43:41 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/26 21:56:28 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void
 	ft_project(t_window *window, t_fdf *fdf, t_matrix *matrix, t_map *map)
 {
 	ft_resetimage(window, fdf);
+	ft_plotaxis(window, fdf);
 	ft_project_to_image(window, fdf, matrix, map);
 }
 

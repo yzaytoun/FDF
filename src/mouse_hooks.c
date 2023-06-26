@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_hooks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:31:28 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/26 19:32:28 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/26 22:13:11 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 static int	ft_move(int x, int y, void *param)
 {
-	t_params	*params;
-
-	params = (t_params *)param;
+	//t_params	*params;
+	(void)param;
+	//params = (t_params *)param;
 	//if (params->hook.buttonpress == 1)
 	printf("x=%i y=%i\n", x, y);
 	return (EXIT_SUCCESS);
@@ -67,10 +67,11 @@ static int	ft_buttonrelease(int button, int x, int y,void *param)
 	t_params	*params;
 
 	params = (t_params *)param;
-	printf("%i --> x=%d y=%d", button, x, y);
+	params->hook->x = x;
+	params->hook->y = y;
 	if (button == 1)
 		params->hook->buttonrelease = 1;
-	printf("%i\n", params->hook->buttonpress);
+	printf("Key Release%i\n", params->hook->buttonrelease);
 	return (EXIT_SUCCESS);
 }
 
@@ -79,7 +80,6 @@ static int	ft_buttonpress(int button, void *param)
 	t_params	*params;
 
 	params = (t_params *)param;
-	printf("%i\n", button);
 	if (button == 1)
 		params->hook->buttonpress = 1;
 	return (EXIT_SUCCESS);
@@ -99,8 +99,8 @@ static int	ft_closewindow(void *param)
 void	ft_mousehooks(t_params *params)
 {
 	mlx_hook(params->window->win, 17, 0, ft_closewindow, params->window);
-	mlx_hook(params->window->win, 4, 1L << 2, ft_buttonpress, params);
 	mlx_hook(params->window->win, 5, 1L << 3, ft_buttonrelease, params);
+	mlx_hook(params->window->win, 4, 1L << 2, ft_buttonpress, params);
 	mlx_hook(params->window->win, 6, 1L << 6, ft_move, params);
 	mlx_mouse_hook(params->window->win, ft_mousebutton, params);
 }

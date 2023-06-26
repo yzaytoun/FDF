@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_math.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:07:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/23 19:56:52 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/26 21:57:14 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ void		ft_rotate_z(t_vector *vector, t_fdf *fdf);
 void		ft_rotate_x(t_vector *vector, t_fdf *fdf);
 
 //ANCHOR - Plot
+void		ft_plotaxis(t_window *window, t_fdf *fdf);
 void		ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix);
 int			ft_plotmap(void *param);
 

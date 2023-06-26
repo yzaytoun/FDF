@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plot.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:45:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/23 19:49:05 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/26 22:04:27 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 //SECTION Draw Map
 //ANCHOR - Plot axis
-static void	ft_plotaxis(t_window *window, t_fdf *fdf)
+void	ft_plotaxis(t_window *window, t_fdf *fdf)
 {
-	fdf->v0.x = fdf->imagelength / 2 - fdf->margin;
-	fdf->v0.y = fdf->imageheight / 2 - fdf->margin;
-	fdf->v1.x = fdf->imagelength / 2 - fdf->margin;
+	fdf->v0.x = 0;
+	fdf->v0.y = 0;
+	fdf->v1.x = fdf->imagelength - fdf->margin;
+	fdf->v1.y = 0;
+	ft_bresenham(window, fdf);
+	fdf->v0.x = 0;
+	fdf->v0.y = 0;
+	fdf->v1.x = 0;
 	fdf->v1.y = fdf->imageheight - fdf->margin;
 	ft_bresenham(window, fdf);
 }
@@ -46,7 +51,6 @@ int	ft_plotmap(void *param)
 	t_params	*params;
 
 	params = (t_params *)param;
-	ft_plotaxis(params->window, params->fdf);
 	ft_project(params->window, params->fdf, params->matrix, params->map);
 	ft_printheader(params->window, params->fdf);
 	//ft_printfdf(params->fdf);

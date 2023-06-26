@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:32:47 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/22 19:46:40 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/26 22:04:40 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,7 @@ void	ft_bresenham(t_window *window, t_fdf *fdf)
 	{
 		if (fdf->v0.x < fdf->imagelength
 			&& fdf->v0.y < fdf->imageheight)
-		{
 			ft_pixelput(window, fdf->v0.x, fdf->v0.y, 0xFFFF00);
-			//ft_pixelput(window, fdf->v0.y, fdf->v0.x, 0xF00000);
-		}
 		if (fdf->v0.x == fdf->v1.x && fdf->v0.y == fdf->v1.y)
 			break ;
 		fdf->ham.e2 = fdf->ham.err * 2;
