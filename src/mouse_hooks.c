@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:31:28 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/23 21:05:43 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:32:28 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,15 @@ static int	ft_mousebutton(int button, int x, int y, void *param)
 	return (TRUE);
 }
 
-static int	ft_buttonrelease(int button, void *param)
+static int	ft_buttonrelease(int button, int x, int y,void *param)
 {
 	t_params	*params;
 
 	params = (t_params *)param;
-	printf("%i\n", button);
+	printf("%i --> x=%d y=%d", button, x, y);
 	if (button == 1)
 		params->hook->buttonrelease = 1;
+	printf("%i\n", params->hook->buttonpress);
 	return (EXIT_SUCCESS);
 }
 
