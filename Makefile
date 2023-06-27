@@ -61,7 +61,7 @@ LIBFT = libft/libft.a
 # ------------------------ FDF ------------------------------
 SRC = map_reader.c map_aux.c window_manager.c aux_functions.c key_hooks.c\
 	mouse_hooks.c plot.c bresenham.c matrix.c apply.c matrix_aux.c run.c\
-	rotate.c print.c project.c matrix_operations.c camera.c
+	rotate.c print.c project.c matrix_operations.c camera.c mouse_hooks2.c
 
 OBJDIR = obj
 

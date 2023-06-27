@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/26 22:11:11 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/27 21:07:38 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 typedef struct s_hook
 {
 	int		buttonpress;
-	int		buttonrelease;
 	int		x;
 	int		y;
 }			t_hook;
@@ -79,6 +78,8 @@ void		ft_createimage(t_window *window, t_fdf *fdf);
 void		ft_run(t_window *window, t_map *map, int height);
 
 //ANCHOR - Mouse Events
+int			ft_mousebutton(int button, int x, int y, void *param);
+int			ft_closewindow(void *param);
 void		ft_mousehooks(t_params *params);
 
 //ANCHOR - Key Events
