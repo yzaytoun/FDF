@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/27 21:07:38 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:12:32 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define UPPERRIGHT 4
 # define SUB 1
 # define ADD 2
+# define FIRST_POINT 0
+# define SECOND_POINT 1
 
 /*MAIN Struct*/
 typedef struct s_hook

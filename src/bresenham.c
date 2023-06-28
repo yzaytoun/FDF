@@ -6,13 +6,28 @@
 /*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:32:47 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/26 22:04:40 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/28 21:12:40 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 //SECTION - Bresenham
+//ANCHOR - Get Coordination
+void	ft_getcoord(t_fdf *fdf, int x, int y, int point)
+{
+	if (point == FIRST_POINT)
+	{
+		fdf->v0.x = x;
+		fdf->v0.y = y;
+	}
+	else if (point == SECOND_POINT)
+	{
+		fdf->v1.x = x;
+		fdf->v1.y = y;
+	}
+}
+
 //ANCHOR - Mark point
 void	ft_markpoint(t_fdf *fdf, t_matrix *matrix)
 {

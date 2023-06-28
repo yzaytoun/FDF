@@ -6,7 +6,7 @@
 /*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:07:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/26 21:57:14 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/28 21:35:55 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ typedef struct s_fdf
 	float			distance_y;
 	int				imagelength;
 	int				imageheight;
+	int				maxlen_x;
+	int				maxlen_y;
 	double			scale;
 	int				margin;
 	float			min_x;
@@ -110,6 +112,7 @@ void		ft_project(t_window *window, t_fdf *fdf, t_matrix *matrix,
 				t_map *map);
 
 //ANCHOR - Bresenham
+void		ft_getcoord(t_fdf *fdf, int x, int y, int point);
 void		ft_printheader(t_window *window, t_fdf *fdf);
 void		ft_markpoint(t_fdf *fdf, t_matrix *matrix);
 void		ft_bresenham(t_window *window, t_fdf *fdf);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:07:25 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/26 19:30:02 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:46:36 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	ft_run(t_window *window, t_map *map, int height)
 	params->hook = ft_calloc(sizeof(t_hook), 1);
 	if (!params->hook)
 		return ;
+	params->fdf->maxlen_x = params->fdf->imagelength;
+	params->fdf->maxlen_y = params->fdf->imageheight - (2 * params->fdf->margin);
 	ft_mousehooks(params);
 	mlx_key_hook(params->window->win, ft_keyhooks, params);
 	mlx_loop_hook(window->mlx, ft_plotmap, params);
