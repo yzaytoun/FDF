@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:32:47 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/28 21:12:40 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/29 19:09:41 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,14 @@ void	ft_markpoint(t_fdf *fdf, t_matrix *matrix)
 {
 	fdf->v0.x = ft_toint(matrix->vector[matrix->count_y][matrix->count_x].x);
 	fdf->v0.y = ft_toint(matrix->vector[matrix->count_y][matrix->count_x].y);
+	fdf->v0.color
+		= ft_toint(matrix->vector[matrix->count_y][matrix->count_x].color);
 	fdf->v1.x
 		= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].x);
 	fdf->v1.y
 		= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].y);
+	fdf->v1.color
+		= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].color);
 }
 
 //ANCHOR - Pixel Put
@@ -63,6 +67,10 @@ static void	ft_bresenaux(t_fdf *fdf)
 		fdf->ham.sy = 1;
 	else
 		fdf->ham.sy = -1;
+	if (fdf->v0.color < fdf->v1.color)
+		fdf->ham.cy = 1;
+	else
+		fdf->ham.cy = -1;
 	fdf->ham.err = fdf->ham.dx + fdf->ham.dy;
 }
 
@@ -76,7 +84,7 @@ void	ft_bresenham(t_window *window, t_fdf *fdf)
 	{
 		if (fdf->v0.x < fdf->imagelength
 			&& fdf->v0.y < fdf->imageheight)
-			ft_pixelput(window, fdf->v0.x, fdf->v0.y, 0xFFFF00);
+			ft_pixelput(window, fdf->v0.x, fdf->v0.y, fdf->v0.color);
 		if (fdf->v0.x == fdf->v1.x && fdf->v0.y == fdf->v1.y)
 			break ;
 		fdf->ham.e2 = fdf->ham.err * 2;
@@ -90,6 +98,8 @@ void	ft_bresenham(t_window *window, t_fdf *fdf)
 			fdf->ham.err += fdf->ham.dx;
 			fdf->v0.y += fdf->ham.sy;
 		}
+		if (fdf->v0.color != fdf->v1.color)
+			fdf->v0.color += fdf->ham.cy;
 	}
 }
 

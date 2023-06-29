@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:30:00 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/22 20:43:30 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/29 20:04:34 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_normalize(t_vector *vector, t_fdf *fdf)
 void	ft_topositive(t_vector *vector, t_fdf *fdf)
 {
 	if (vector->x < 0)
-		vector->x +=  fabsf(fdf->min_x);
+		vector->x += fabsf(fdf->min_x);
 	if (vector->y < 0)
 		vector->y += fabsf(fdf->min_y);
 }

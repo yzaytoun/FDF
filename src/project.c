@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:44:24 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/28 20:58:00 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/29 21:06:11 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,14 @@ static void	ft_project_to_image(t_window *window, t_fdf *fdf, t_matrix *matrix,
 	ft_matrix_map(map, &matrix);
 	fdf->flags.operation = ADD;
 	ft_apply(matrix, ft_increment, fdf);
+	ft_get_midpoint(fdf, matrix);
+	ft_apply(matrix, ft_tocenter, fdf);
 	ft_apply(matrix, ft_rotate_z, fdf);
 	ft_apply(matrix, ft_translate, fdf);
 	ft_matrixmin(matrix, fdf);
+	ft_printmatrix(matrix);
+	printf("midpoint ? x = %f y = %f z = %f\n", fdf->mid_v.x, fdf->mid_v.y, fdf->mid_v.z);
+	printf("\n\n");
 	/*if (fdf->min_x < 0 || fdf->min_y < 0)
 		ft_apply(matrix, ft_topositive, fdf); */
 	ft_plot(window, fdf, matrix);

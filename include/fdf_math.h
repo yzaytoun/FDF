@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_math.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:07:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/28 21:35:55 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/29 20:54:16 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_vector
 	float	x;
 	float	y;
 	float	z;
+	int		color;
 }				t_vector;
 
 typedef struct s_line
@@ -59,6 +60,8 @@ typedef struct s_ham
 	int		sx;
 	int		x2;
 	int		ed;
+	int		color;
+	int		cy;
 }			t_ham;
 
 
@@ -99,6 +102,7 @@ typedef struct s_fdf
 	float			min_y;
 	t_fdfflags		flags;
 	t_matrix		*rotatemat;
+	t_vector		mid_v;
 }					t_fdf;
 
 /*FUNCTIONS*/
@@ -106,6 +110,11 @@ typedef struct s_fdf
 void		ft_exception(char *str);
 float		ft_toradian(int angle);
 int			ft_toint(float num);
+void		ft_get_midpoint(t_fdf *fdf, t_matrix *matrix);
+//NOTE - Apply Functions
+void		ft_tocenter(t_vector *vector, t_fdf *fdf);
+
+
 
 //ANCHOR - Project
 void		ft_project(t_window *window, t_fdf *fdf, t_matrix *matrix,
