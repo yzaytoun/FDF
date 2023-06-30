@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plot.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:45:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/28 21:41:19 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/30 17:56:33 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ void	ft_plotaxis(t_window *window, t_fdf *fdf)
 	ft_getcoord(fdf, fdf->maxlen_x / 2, fdf->maxlen_y / 2, FIRST_POINT);
 	ft_getcoord(fdf, fdf->maxlen_x, fdf->maxlen_y / 2, SECOND_POINT);
 	ft_bresenham(window, fdf);
-	ft_getcoord(fdf, fdf->maxlen_x / 2, fdf->maxlen_y / 2 , FIRST_POINT);
+	ft_getcoord(fdf, fdf->maxlen_x / 2, fdf->maxlen_y / 2, FIRST_POINT);
 	ft_getcoord(fdf, fdf->maxlen_x / 2, 0, SECOND_POINT);
+	ft_bresenham(window, fdf);
+	ft_getcoord(fdf, 0, 55, FIRST_POINT);
+	ft_getcoord(fdf, fdf->imagelength, 55, SECOND_POINT);
 	ft_bresenham(window, fdf);
 }
 
@@ -28,11 +31,15 @@ void	ft_plotaxis(t_window *window, t_fdf *fdf)
 void	ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix)
 {
 	matrix->count_y = 0;
-	while (matrix->count_y < matrix->height)
+	while (matrix->count_y < matrix->height - 1)
 	{
 		matrix->count_x = 0;
 		while (matrix->count_x < matrix->length - 1)
 		{
+			fdf->flags.x_axis = 0;
+			ft_markpoint(fdf, matrix);
+			ft_bresenham(window, fdf);
+			fdf->flags.x_axis = 1;
 			ft_markpoint(fdf, matrix);
 			ft_bresenham(window, fdf);
 			++matrix->count_x;
@@ -48,10 +55,9 @@ int	ft_plotmap(void *param)
 
 	params = (t_params *)param;
 	ft_project(params->window, params->fdf, params->matrix, params->map);
-	ft_printheader(params->window, params->fdf);
-	//ft_printfdf(params->fdf);
 	mlx_put_image_to_window(params->window->mlx, params->window->win,
-		params->window->img, 0, params->fdf->margin);
+		params->window->img, 0, 0);
+	ft_printheader(params->window, params->fdf);
 	return (EXIT_SUCCESS);
 }
 //!SECTION

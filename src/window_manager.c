@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_manager.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/28 21:27:35 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/30 16:21:25 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_window	*ft_createwindow(char *title, int width, int height)
 			= mlx_new_window(window->mlx, scale * width, scale * height,
 				ft_strrchr(title, '/') + 1);
 	if (window->win == NULL)
-		ft_exception("New Window");
+		ft_exception("Error : New Window");
 	return (window);
 }
 

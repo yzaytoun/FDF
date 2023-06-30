@@ -6,13 +6,22 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:44:24 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/29 21:06:11 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:41:31 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 //SECTION - Project
+//ANCHOR - Create Wireframe
+static void	ft_createwireframe(t_vector *vector, t_fdf *fdf)
+{
+	ft_tocenter(vector, fdf);
+	ft_rotate_z(vector, fdf);
+	ft_rotate_x(vector, fdf);
+	ft_translate(vector, fdf);
+}
+
 //ANCHOR - Reset image
 static void	ft_resetimage(t_window *window, t_fdf *fdf)
 {
@@ -30,15 +39,10 @@ static void	ft_project_to_image(t_window *window, t_fdf *fdf, t_matrix *matrix,
 	fdf->flags.operation = ADD;
 	ft_apply(matrix, ft_increment, fdf);
 	ft_get_midpoint(fdf, matrix);
-	ft_apply(matrix, ft_tocenter, fdf);
-	ft_apply(matrix, ft_rotate_z, fdf);
-	ft_apply(matrix, ft_translate, fdf);
-	ft_matrixmin(matrix, fdf);
+	ft_apply(matrix, ft_createwireframe, fdf);
+	//ft_matrixmin(matrix, fdf);
 	ft_printmatrix(matrix);
-	printf("midpoint ? x = %f y = %f z = %f\n", fdf->mid_v.x, fdf->mid_v.y, fdf->mid_v.z);
 	printf("\n\n");
-	/*if (fdf->min_x < 0 || fdf->min_y < 0)
-		ft_apply(matrix, ft_topositive, fdf); */
 	ft_plot(window, fdf, matrix);
 }
 

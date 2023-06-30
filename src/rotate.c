@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:41:16 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/29 21:12:51 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:44:40 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,8 @@ void	ft_rotate_x(t_vector *vector, t_fdf *fdf)
 	x = vector->x;
 	y = vector->y;
 	z = vector->z;
-	vector->x = cosf(fdf->angle.y) * cosf(fdf->angle.z);
-	vector->y = (sinf(fdf->angle.x) * sinf(fdf->angle.y) * cosf(fdf->angle.z))
-		+ (sinf(fdf->angle.z) * cosf(fdf->angle.x));
-	vector->z = (-cosf(fdf->angle.x) * sinf(fdf->angle.y) * cosf(fdf->angle.z))
-		+ (sinf(fdf->angle.x) * sinf(fdf->angle.z));
+	vector->y = y * cosf(fdf->angle.x);
+	vector->z = z * cosf(fdf->angle.x);
 }
 
 //ANCHOR - Rotate Y
@@ -50,37 +47,8 @@ void	ft_rotate_z(t_vector *vector, t_fdf *fdf)
 	x = vector->x;
 	y = vector->y;
 	z = vector->z;
-	vector->x += x * cosf(fdf->angle.z);
-	vector->y += (x * sinf(fdf->angle.z) * cosf(fdf->angle.z));
-	vector->z = cosf(fdf->angle.x) * cosf(fdf->angle.y);
-}
-
-//ANCHOR - Rotation Matrix
-t_matrix	*ft_get_rotmat(t_fdf *fdf)
-{
-	t_matrix	*matrix;
-
-	if (!fdf)
-		return (NULL);
-	matrix = ft_creatematrix(3, 1);
-	if (!matrix)
-		return (NULL);
-	ft_rotate_x(&(matrix->vector)[0][0], fdf);
-	ft_rotate_y(&(matrix->vector)[0][1], fdf);
-	ft_rotate_z(&(matrix->vector)[0][2], fdf);
-	return (matrix);
-}
-
-//ANCHOR - Rotate
-void	ft_matrotate(t_vector *vector, t_fdf *fdf)
-{
-	t_matrix	*matrix;
-
-	matrix = ft_vecmult(vector, fdf->rotatemat);
-	vector->x = matrix->vector[0][0].x;
-	vector->y = matrix->vector[0][0].y;
-	vector->z = matrix->vector[0][0].z;
-	ft_destroyvector(&matrix->vector, matrix->height);
-	free(matrix);
+	vector->x = x * cosf(fdf->angle.z) + sinf(fdf->angle.z);
+	vector->y = y * sinf(fdf->angle.z);
+	//vector->z = cosf(fdf->angle.x) * cosf(fdf->angle.y);
 }
 //!SECTION

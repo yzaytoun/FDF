@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:32:47 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/29 19:09:41 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:54:32 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,20 @@ void	ft_markpoint(t_fdf *fdf, t_matrix *matrix)
 	fdf->v0.y = ft_toint(matrix->vector[matrix->count_y][matrix->count_x].y);
 	fdf->v0.color
 		= ft_toint(matrix->vector[matrix->count_y][matrix->count_x].color);
-	fdf->v1.x
-		= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].x);
-	fdf->v1.y
-		= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].y);
+	if (fdf->flags.x_axis == 1)
+	{
+		fdf->v1.x
+			= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].x);
+		fdf->v1.y
+			= ft_toint(matrix->vector[matrix->count_y][matrix->count_x].y);
+	}
+	else
+	{
+		fdf->v1.x
+			= ft_toint(matrix->vector[matrix->count_y][matrix->count_x].x);
+		fdf->v1.y
+			= ft_toint(matrix->vector[matrix->count_y + 1][matrix->count_x].y);
+	}
 	fdf->v1.color
 		= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].color);
 }

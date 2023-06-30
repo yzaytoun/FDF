@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:29:23 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/28 21:20:44 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/06/30 17:33:42 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,6 @@ void	ft_printheader(t_window *window, t_fdf *fdf)
 		ft_strjoin("Height: ", ft_itoa(fdf->imageheight / fdf->scale)));
 	mlx_string_put(window->mlx, window->win, 1, 30, 0xFFFF00,
 		ft_strjoin("Scale: ", ft_itoa((int)fdf->scale)));
-	ft_getcoord(fdf, 0, 0, FIRST_POINT);
-	ft_getcoord(fdf, fdf->imagelength, 0, SECOND_POINT);
-	ft_bresenham(window, fdf);
 }
 
  //FIXME - To be deleted -> Printer

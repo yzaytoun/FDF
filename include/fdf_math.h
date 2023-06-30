@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:07:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/29 20:54:16 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:54:01 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_fdfflags
 	float	translation_x;
 	float	translation_y;
 	int		operation;
+	int		x_axis;
 }			t_fdfflags;
 
 
