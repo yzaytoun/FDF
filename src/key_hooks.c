@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:32:02 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/30 16:15:56 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/02 19:51:37 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ static void	ft_keyrotate(int keycode, t_params *params)
 		params->fdf->angle.x += ft_toradian(20);
 	else if (keycode == 1)
 		params->fdf->angle.x -= ft_toradian(20);
+	else if (keycode == 14)
+		params->fdf->angle.y += ft_toradian(20);
+	else if (keycode == 12)
+		params->fdf->angle.y -= ft_toradian(20);
 }
 
 //ANCHOR - Main Func
@@ -67,7 +71,7 @@ int	ft_keyhooks(int keycode, void *param)
 	}
 	if (keycode <= 126 && keycode >= 123)
 		ft_keymove(keycode, params);
-	else if (keycode >= 0 && keycode <= 13)
+	else if (keycode >= 0 && keycode <= 14)
 		ft_keyrotate(keycode, params);
 	else if (keycode == 69 || keycode == 78)
 		ft_keymagnify(keycode, params);

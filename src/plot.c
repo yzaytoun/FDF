@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plot.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:45:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/30 17:56:33 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/02 21:15:26 by cxb0541          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,26 @@
 
 //SECTION Draw Map
 //ANCHOR - Plot axis
-void	ft_plotaxis(t_window *window, t_fdf *fdf)
+//FIXME - 
+void	ft_closeshape(t_window *window, t_fdf *fdf, t_matrix *matrix)
 {
-	ft_getcoord(fdf, fdf->maxlen_x / 2, fdf->maxlen_y / 2, FIRST_POINT);
-	ft_getcoord(fdf, fdf->maxlen_x, fdf->maxlen_y / 2, SECOND_POINT);
-	ft_bresenham(window, fdf);
-	ft_getcoord(fdf, fdf->maxlen_x / 2, fdf->maxlen_y / 2, FIRST_POINT);
-	ft_getcoord(fdf, fdf->maxlen_x / 2, 0, SECOND_POINT);
-	ft_bresenham(window, fdf);
+	int	x1;
+	int	y1;
+
+	x1 = ft_toint(matrix->vector[matrix->count_y][matrix->length - 1].x);
+	y1 = ft_toint(matrix->vector[matrix->count_y][matrix->length - 1].y);
+	matrix->count_y = 0;
+	matrix->count_x = matrix->length - 1;
+	while (matrix->count_y < matrix->height)
+	{
+		ft_getcoord(fdf, x1, y0, FIRST_POINT);
+		ft_getcoord(fdf, x1, y1, SECOND_POINT);
+		ft_bresenham(window, fdf);
+		ft_getcoord(fdf, x0, y1, FIRST_POINT);
+		ft_getcoord(fdf, x1, y1, SECOND_POINT);
+		ft_bresenham(window, fdf);
+		matrix->count_y++;
+	}
 	ft_getcoord(fdf, 0, 55, FIRST_POINT);
 	ft_getcoord(fdf, fdf->imagelength, 55, SECOND_POINT);
 	ft_bresenham(window, fdf);
