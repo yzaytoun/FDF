@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:59:40 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/29 20:54:16 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:06:31 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_exception(char *str)
 }
 
 //ANCHOR - to radian
-float	ft_toradian(int angle)
+float	ft_toradian(double angle)
 {
 	return ((angle * M_PI) / 180);
 }

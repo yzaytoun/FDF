@@ -6,13 +6,34 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:41:16 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/03 11:07:47 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:10:03 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 //SECTION - Rotate
+void	ft_set_projection(t_vector *vector, t_fdf *fdf)
+{
+	float	x;
+	float	y;
+	float	z;
+
+	x = vector->x;
+	y = vector->y;
+	z = vector->z;
+	if (fdf->flags.iso == TRUE)
+	{
+		vector->x = (x - y) * cosf(ft_toradian(30));
+		vector->y = -z + (x + y) * sinf(ft_toradian(30));
+	}
+	else
+	{
+		vector->x = (x - y) * cosf(ft_toradian(63.4));
+		vector->y = -z + (x + y) * sinf(ft_toradian(63.4));
+	}
+}
+
 //ANCHOR - Rotate X
 void	ft_rotate_x(t_vector *vector, t_fdf *fdf)
 {

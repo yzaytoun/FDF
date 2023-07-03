@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/30 16:21:25 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/03 16:38:22 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@ static void	ft_initfdf(t_fdf *fdf, t_map *map, int height)
 {
 	fdf->imagelength = (map->width * fdf->scale);
 	fdf->imageheight = (height * fdf->scale);
-	fdf->distance_x = (fdf->imagelength / map->width) / 4;
-	fdf->distance_y = (fdf->imageheight / height) / 4;
+	fdf->distance_x = (fdf->imagelength / map->width) / 3;
+	fdf->distance_y = (fdf->imageheight / height) / 3;
+	fdf->distance_z = fdf->scale / 4;
 	if (fdf->imageheight > fdf->imagelength)
 		fdf->margin = (fdf->imageheight / 10);
 	else
 		fdf->margin = (fdf->imagelength / 10);
-	fdf->flags.focal = 1;
 	fdf->flags.translation_x = fdf->imagelength / 2 - fdf->margin;
 	fdf->flags.translation_y = fdf->imageheight / 2 - fdf->margin;
+	fdf->flags.iso = TRUE;
 }
 
 //ANCHOR - Get Scale
@@ -41,12 +42,12 @@ static double	ft_getscale(int width, int height)
 		scale = width;
 	else
 		scale = height;
-	if (scale <= 25)
+	if (scale <= 50)
 		scale = 50;
-	else if (scale <= 50)
-		scale = 10;
 	else if (scale <= 100)
-		scale = 5;
+		scale = 10;
+	else if (scale <= 200)
+		scale = 7;
 	else if (scale <= MAX_WIDTH)
 		scale = 2;
 	else
