@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:41:16 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/02 20:07:19 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/07/03 11:07:47 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	ft_rotate_z(t_vector *vector, t_fdf *fdf)
 {
 	float	x;
 	float	y;
-	
+
 	x = vector->x;
-	y = vector->y;	
+	y = vector->y;
 	vector->x = x * cosf(fdf->angle.z) - y * sinf(fdf->angle.z);
 	vector->y = x * sinf(fdf->angle.z) + y * cosf(fdf->angle.z);
 }

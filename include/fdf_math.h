@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_math.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:07:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/02 19:47:53 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/07/03 11:12:51 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void		ft_matrixmin(t_matrix *matrix, t_fdf *fdf);
 void		ft_apply(t_matrix *matrix, void (*func)(t_vector *, t_fdf *),
 				t_fdf *fdf);
 void		ft_normalize(t_vector *vector, t_fdf *fdf);
-void		ft_increment(t_vector *vector, t_fdf *fdf);
+void		ft_scale(t_vector *vector, t_fdf *fdf);
 void		ft_translate(t_vector *vector, t_fdf *fdf);
 void		ft_topositive(t_vector *vector, t_fdf *fdf);
 

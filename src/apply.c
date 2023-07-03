@@ -6,18 +6,18 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:30:00 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/29 20:04:34 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/03 11:12:51 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 //SECTION - Apply
-void	ft_increment(t_vector *vector, t_fdf *fdf)
+void	ft_scale(t_vector *vector, t_fdf *fdf)
 {
 	vector->x *= fdf->distance_x;
 	vector->y *= fdf->distance_y;
-	vector->z += 1;
+	vector->z += fdf->scale;
 }
 
 //ANCHOR - Translate
@@ -25,28 +25,6 @@ void	ft_translate(t_vector *vector, t_fdf *fdf)
 {
 	vector->x += fdf->flags.translation_x;
 	vector->y += fdf->flags.translation_y;
-}
-
-//ANCHOR - Normalize
-void	ft_normalize(t_vector *vector, t_fdf *fdf)
-{
-	float	invelen;
-
-	(void)fdf;
-	invelen = 1 / sqrtf(powf(vector->x, 2) + powf(vector->y, 2)
-			+ powf(vector->z, 2));
-	vector->x *= invelen;
-	vector->y *= invelen;
-	vector->z *= invelen;
-}
-
-//ANCHOR - Positive
-void	ft_topositive(t_vector *vector, t_fdf *fdf)
-{
-	if (vector->x < 0)
-		vector->x += fabsf(fdf->min_x);
-	if (vector->y < 0)
-		vector->y += fabsf(fdf->min_y);
 }
 
 //ANCHOR - Main func

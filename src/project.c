@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:44:24 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/02 20:58:44 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/07/03 11:12:51 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	ft_project_to_image(t_window *window, t_fdf *fdf, t_matrix *matrix,
 		return ;
 	ft_matrix_map(map, &matrix);
 	fdf->flags.operation = ADD;
-	ft_apply(matrix, ft_increment, fdf);
+	ft_apply(matrix, ft_scale, fdf);
 	ft_get_midpoint(fdf, matrix);
 	ft_apply(matrix, ft_createwireframe, fdf);
 	ft_plot(window, fdf, matrix);

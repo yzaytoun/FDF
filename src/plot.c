@@ -3,36 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   plot.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:45:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/02 21:15:26 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/07/03 11:05:13 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-//SECTION Draw Map
-//ANCHOR - Plot axis
-//FIXME - 
+//SECTION Plot
+//ANCHOR - Close shape
 void	ft_closeshape(t_window *window, t_fdf *fdf, t_matrix *matrix)
 {
-	int	x1;
-	int	y1;
-
-	x1 = ft_toint(matrix->vector[matrix->count_y][matrix->length - 1].x);
-	y1 = ft_toint(matrix->vector[matrix->count_y][matrix->length - 1].y);
 	matrix->count_y = 0;
 	matrix->count_x = matrix->length - 1;
-	while (matrix->count_y < matrix->height)
+	fdf->flags.x_axis = 0;
+	while (matrix->count_y < matrix->height - 1)
 	{
-		ft_getcoord(fdf, x1, y0, FIRST_POINT);
-		ft_getcoord(fdf, x1, y1, SECOND_POINT);
-		ft_bresenham(window, fdf);
-		ft_getcoord(fdf, x0, y1, FIRST_POINT);
-		ft_getcoord(fdf, x1, y1, SECOND_POINT);
+		ft_markpoint(fdf, matrix);
 		ft_bresenham(window, fdf);
 		matrix->count_y++;
+	}
+	matrix->count_y = matrix->height - 1;
+	matrix->count_x = 0;
+	fdf->flags.x_axis = 1;
+	while (matrix->count_x < matrix->length - 1)
+	{
+		ft_markpoint(fdf, matrix);
+		ft_bresenham(window, fdf);
+		matrix->count_x++;
 	}
 	ft_getcoord(fdf, 0, 55, FIRST_POINT);
 	ft_getcoord(fdf, fdf->imagelength, 55, SECOND_POINT);
