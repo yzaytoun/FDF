@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:07:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/03 18:15:32 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:38:54 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,14 @@ typedef struct s_ham
 
 typedef struct s_fdfflags
 {
-	int		orientation;
+	int		add_z;
 	float	translation_x;
 	float	translation_y;
+	float	translation_z;
 	int		operation;
 	int		x_axis;
 	int		iso;
-	float	offset;
+	float	focal_distance;
 	int		reset;
 }			t_fdfflags;
 
@@ -135,7 +136,8 @@ void		ft_apply(t_matrix *matrix, void (*func)(t_vector *, t_fdf *),
 				t_fdf *fdf);
 void		ft_scale(t_vector *vector, t_fdf *fdf);
 void		ft_translate(t_vector *vector, t_fdf *fdf);
-void	ft_normalize(t_vector *vector, t_fdf *fdf);
+void		ft_magnify(t_vector *vector, t_fdf *fdf);
+void		ft_to_2d(t_vector *vector, t_fdf *fdf);
 
 //ANCHOR - Rotate
 void		ft_set_projection(t_vector *vector, t_fdf *fdf);

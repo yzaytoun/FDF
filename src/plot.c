@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:45:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/03 11:05:13 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:02:14 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	ft_plotmap(void *param)
 	ft_project(params->window, params->fdf, params->matrix, params->map);
 	mlx_put_image_to_window(params->window->mlx, params->window->win,
 		params->window->img, 0, 0);
+	if (params->hook->spin == TRUE)
+		params->fdf->angle.z -= ft_toradian(0.5);
 	ft_printheader(params->window, params->fdf);
 	return (EXIT_SUCCESS);
 }

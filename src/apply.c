@@ -6,13 +6,21 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:30:00 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/03 18:19:04 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:53:15 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 //SECTION - Apply
+//ANCHOR - Center 
+void	ft_tocenter(t_vector *vector, t_fdf *fdf)
+{
+	vector->x -= fdf->mid_v.x;
+	vector->y -= fdf->mid_v.y;
+}
+
+//ANCHOR - Add Scale
 void	ft_scale(t_vector *vector, t_fdf *fdf)
 {
 	if (fdf->distance_x > 0 && fdf->distance_y > 0)
@@ -23,26 +31,6 @@ void	ft_scale(t_vector *vector, t_fdf *fdf)
 	vector->z *= fdf->distance_z;
 }
 
-//ANCHOR - Normalize
-void	ft_normalize(t_vector *vector, t_fdf *fdf)
-{
-	float	v;
-	float	x;
-	float	y;
-	float	z;
-
-	(void)fdf;
-	x = vector->x;
-	y = vector->y;
-	z = vector->z;
-	v = sqrtf(powf(x, 2) + powf(y, 2) + powf(z, 2));
-	if (z != 0)
-	{
-		vector->x = x / z;
-		vector->y = y / z;
-	}
-}
-
 //ANCHOR - Translate
 void	ft_translate(t_vector *vector, t_fdf *fdf)
 {
@@ -50,6 +38,17 @@ void	ft_translate(t_vector *vector, t_fdf *fdf)
 	{
 		vector->x += fdf->flags.translation_x;
 		vector->y += fdf->flags.translation_y;
+	}
+}
+
+//ANCHOR - Focal Distance
+void	ft_magnify(t_vector *vector, t_fdf *fdf)
+{
+	if (fdf->flags.focal_distance > 0)
+	{
+		vector->x *= fdf->flags.focal_distance;
+		vector->y *= fdf->flags.focal_distance;
+		vector->z *= fdf->flags.focal_distance;
 	}
 }
 

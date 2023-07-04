@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:29:23 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/30 17:33:42 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:21:28 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,32 +60,8 @@ void	ft_printheader(t_window *window, t_fdf *fdf)
 		ft_strjoin("Height: ", ft_itoa(fdf->imageheight / fdf->scale)));
 	mlx_string_put(window->mlx, window->win, 1, 30, 0xFFFF00,
 		ft_strjoin("Scale: ", ft_itoa((int)fdf->scale)));
-}
-
- //FIXME - To be deleted -> Printer
-void	ft_printmap(t_map *map)
-{
-	t_map	*node;
-	int		index;
-
-	index = 0;
-	if (map == NULL || map->width == 0)
-		return ;
-	node = map;
-	while (node != NULL)
-	{
-		index = 0;
-		printf("x = ");
-		while (index < node->width)
-		{
-			printf("%d ", node->x[index]);
-			//printf("color%d", node->color[index]);
-			index++;
-		}
-		printf("\t\t index = %d\n", node->y);
-		printf("\n");
-		node = node->next;
-	}
+	mlx_string_put(window->mlx, window->win, fdf->imagelength / 2,
+		30, 0xFFFF00, "Spin: M");
 }
 
 //!SECTION

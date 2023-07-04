@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:44:24 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/03 18:23:21 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:52:42 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ static void	ft_reset_parameters(t_fdf *fdf)
 	fdf->distance_y = fdf->imageheight / ((fdf->imageheight * 3 / fdf->scale));
 	fdf->flags.translation_x = fdf->imagelength / 2 - fdf->margin;
 	fdf->flags.translation_y = fdf->imageheight / 2 - fdf->margin;
+	fdf->flags.translation_z = fdf->imageheight / 2 - fdf->margin;
 	fdf->distance_z = fdf->scale / 4;
 	fdf->flags.iso = TRUE;
 	fdf->flags.reset = FALSE;
-	fdf->angle.x = 0;
-	fdf->angle.y = 0;
-	fdf->angle.z = 0;
-	fdf->flags.offset = 1;
+	fdf->angle.x = ft_toradian(0);
+	fdf->angle.y = ft_toradian(0);
+	fdf->angle.z = ft_toradian(0);
+	fdf->flags.focal_distance = 1;
 }
 
 //ANCHOR - Create Wireframe
@@ -37,6 +38,7 @@ static void	ft_createwireframe(t_vector *vector, t_fdf *fdf)
 	ft_rotate_y(vector, fdf);
 	ft_rotate_x(vector, fdf);
 	ft_set_projection(vector, fdf);
+	ft_magnify(vector, fdf);
 	ft_translate(vector, fdf);
 }
 

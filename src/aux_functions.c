@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:59:40 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/03 18:06:31 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:52:54 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,6 @@ int	ft_toint(float num)
 	return ((int)roundf(num));
 }
 
-//ANCHOR - Center 
-void	ft_tocenter(t_vector *vector, t_fdf *fdf)
-{
-	vector->x -= fdf->mid_v.x;
-	vector->y -= fdf->mid_v.y;
-	vector->z -= fdf->mid_v.z;
-}
-
 //ANCHOR - Get mid point
 void	ft_get_midpoint(t_fdf *fdf, t_matrix *matrix)
 {
@@ -48,8 +40,8 @@ void	ft_get_midpoint(t_fdf *fdf, t_matrix *matrix)
 
 	midx = round(matrix->length / 2);
 	midy = round(matrix->height / 2);
-	fdf->mid_v.x = ft_toint(matrix->vector[midy][midx].x);
-	fdf->mid_v.y = ft_toint(matrix->vector[midy][midx].y);
-	fdf->mid_v.z = ft_toint(matrix->vector[midy][midx].z);
+	fdf->mid_v.x = matrix->vector[midy][midx].x;
+	fdf->mid_v.y = matrix->vector[midy][midx].y;
+	fdf->mid_v.z = matrix->vector[midy][midx].z;
 }
 //!SECTION

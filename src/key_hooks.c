@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:32:02 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/03 16:18:54 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:45:49 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,27 @@
 static void	ft_keymagnify(int keycode, t_params *params)
 {
 	if (keycode == 78)
-	{
-		params->fdf->distance_x -= 5;
-		params->fdf->distance_y -= 5;
-	}
+		params->fdf->flags.focal_distance -= 1;
 	else if (keycode == 69)
-	{
-		params->fdf->distance_x += 5;
-		params->fdf->distance_y += 5;
-	}
+		params->fdf->flags.focal_distance += 1;
 	else if (keycode == 6)
 		params->fdf->distance_z += 1;
 	else if (keycode == 7)
 		params->fdf->distance_z -= 1;
+}
+
+static void	ft_keyexpand(int keycode, t_params *params)
+{
+	if (keycode == 37)
+	{
+		params->fdf->distance_x -= 5;
+		params->fdf->distance_y -= 5;
+	}
+	else if (keycode == 41)
+	{
+		params->fdf->distance_x += 5;
+		params->fdf->distance_y += 5;
+	}
 }
 
 //ANCHOR - Key Move
@@ -43,10 +51,6 @@ static void	ft_keymove(int keycode, t_params *params)
 		params->fdf->flags.translation_x -= 10;
 	else if (keycode == 124)
 		params->fdf->flags.translation_x += 10;
-	else if (keycode == 88)
-		params->fdf->flags.offset += 10;
-	else if (keycode == 86)
-		params->fdf->flags.offset -= 10;
 }
 
 //ANCHOR - Key rotate
@@ -68,6 +72,10 @@ static void	ft_keyrotate(int keycode, t_params *params)
 		params->fdf->flags.iso = TRUE;
 	else if (keycode == 31)
 		params->fdf->flags.iso = FALSE;
+	else if (keycode == 46 && params->hook->spin == TRUE)
+		params->hook->spin = FALSE;
+	else if (keycode == 46 && params->hook->spin == FALSE)
+		params->hook->spin = TRUE;
 }
 
 //ANCHOR - Main Func
@@ -87,7 +95,9 @@ int	ft_keyhooks(int keycode, void *param)
 		params->fdf->flags.reset = TRUE;
 	else if (keycode == 69 || keycode == 78 || keycode == 6 || keycode == 7)
 		ft_keymagnify(keycode, params);
-	else if (keycode >= 0 && keycode <= 40)
+	else if (keycode == 41 || keycode == 37)
+		ft_keyexpand(keycode, params);
+	else if (keycode >= 0 && keycode <= 46)
 		ft_keyrotate(keycode, params);
 	printf("keycode = %i\n", keycode);
 	return (TRUE);

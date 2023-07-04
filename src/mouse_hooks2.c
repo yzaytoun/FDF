@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 19:31:30 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/27 21:12:22 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/04 12:13:17 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,9 @@ int	ft_closewindow(void *param)
 static void	ft_mousemagnify(int button, t_params *params)
 {
 	if (button == 4)
-	{
-		params->fdf->distance_x -= 1;
-		params->fdf->distance_y -= 1;
-	}
+		params->fdf->flags.focal_distance -= 1;
 	else if (button == 5)
-	{
-		params->fdf->distance_x += 1;
-		params->fdf->distance_y += 1;
-	}
+		params->fdf->flags.focal_distance += 1;
 }
 
 //ANCHOR - Mouse Button
@@ -47,7 +41,13 @@ int	ft_mousebutton(int button, int x, int y, void *param)
 	if (button == 4 || button == 5)
 		ft_mousemagnify(button, params);
 	if (button == 1)
-		params->hook->buttonpress = 1;
+		params->hook->button_1_press = 1;
+	if (button == 2)
+	{
+		params->hook->button_2_press = 1;
+		params->hook->x = x;
+		params->hook->y = y;
+	}
 	printf("button = %d\t x = %d\t y = %d\n", button, x, y);
 	return (TRUE);
 }

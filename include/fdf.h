@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/03 13:17:25 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/04 12:25:54 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@
 /*MAIN Struct*/
 typedef struct s_hook
 {
-	int		buttonpress;
+	int		button_1_press;
+	int		button_2_press;
+	int		spin;
 	int		x;
 	int		y;
 }			t_hook;

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:07:25 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/29 20:53:04 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/04 12:56:10 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 //SECTION - Run program
 //ANCHOR - FDF AUX
-static void	ft_fdf_aux(t_fdf *fdf, t_matrix *matrix)
+static void	ft_fdf_aux(t_fdf *fdf)
 {
-	(void)matrix;
 	fdf->maxlen_x = fdf->imagelength;
 	fdf->maxlen_y = fdf->imageheight - (2 * fdf->margin);
 }
@@ -53,7 +52,7 @@ void	ft_run(t_window *window, t_map *map, int height)
 	params->hook = ft_calloc(sizeof(t_hook), 1);
 	if (!params->hook)
 		return ;
-	ft_fdf_aux(params->fdf, params->matrix);
+	ft_fdf_aux(params->fdf);
 	ft_mousehooks(params);
 	mlx_key_hook(params->window->win, ft_keyhooks, params);
 	mlx_loop_hook(window->mlx, ft_plotmap, params);

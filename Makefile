@@ -61,7 +61,7 @@ LIBFT = libft/libft.a
 # ------------------------ FDF ------------------------------
 SRC = map_reader.c map_aux.c window_manager.c aux_functions.c key_hooks.c\
 	mouse_hooks.c plot.c bresenham.c matrix.c apply.c run.c\
-	rotate.c print.c project.c camera.c mouse_hooks2.c
+	rotate.c print.c project.c mouse_hooks2.c
 
 OBJDIR = obj
 
@@ -107,7 +107,6 @@ clean:
 	@echo "Cleaning fdf"
 	
 
-re: fclean all #bonus
+re: fclean all
 
-#Add bonus
 .PHONY: all re fclean clean

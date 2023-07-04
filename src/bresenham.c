@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cxb0541 <cxb0541@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:32:47 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/02 20:07:06 by cxb0541          ###   ########.fr       */
+/*   Updated: 2023/07/04 15:03:03 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ void	ft_markpoint(t_fdf *fdf, t_matrix *matrix)
 			= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].x);
 		fdf->v1.y
 			= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].y);
+		fdf->v1.color
+			= ft_toint(matrix->vector
+			[matrix->count_y][matrix->count_x + 1].color);
 	}
 	else
 	{
@@ -48,9 +51,10 @@ void	ft_markpoint(t_fdf *fdf, t_matrix *matrix)
 			= ft_toint(matrix->vector[matrix->count_y + 1][matrix->count_x].x);
 		fdf->v1.y
 			= ft_toint(matrix->vector[matrix->count_y + 1][matrix->count_x].y);
+		fdf->v1.color
+			= ft_toint(matrix->vector
+			[matrix->count_y + 1][matrix->count_x].color);
 	}
-	fdf->v1.color
-		= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].color);
 }
 
 //ANCHOR - Pixel Put
@@ -77,10 +81,6 @@ static void	ft_bresenaux(t_fdf *fdf)
 		fdf->ham.sy = 1;
 	else
 		fdf->ham.sy = -1;
-	if (fdf->v0.color < fdf->v1.color)
-		fdf->ham.cy = 1;
-	else
-		fdf->ham.cy = -1;
 	fdf->ham.err = fdf->ham.dx + fdf->ham.dy;
 }
 
@@ -108,8 +108,6 @@ void	ft_bresenham(t_window *window, t_fdf *fdf)
 			fdf->ham.err += fdf->ham.dx;
 			fdf->v0.y += fdf->ham.sy;
 		}
-		if (fdf->v0.color != fdf->v1.color)
-			fdf->v0.color += fdf->ham.cy;
 	}
 }
 

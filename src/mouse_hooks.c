@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:31:28 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/29 19:55:40 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/04 12:22:42 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,25 @@ static int	ft_motiontracker(int x, int y, void *param)
 	t_params	*params;
 
 	params = (t_params *)param;
-	if (params->hook->buttonpress == 1)
+	if (params->hook->button_1_press == 1)
 	{
-		params->fdf->flags.translation_y = y - params->fdf->margin;
-		params->fdf->flags.translation_x = x - params->fdf->margin;
+		params->fdf->flags.translation_y = y;
+		params->fdf->flags.translation_x = x;
 	}
+	if (params->hook->button_2_press == 1
+		&& params->hook->button_1_press == 1 && params->hook->y > y)
+		params->fdf->angle.x += ft_toradian(1);
+	if (params->hook->button_2_press == 1
+		&& params->hook->button_1_press == 1 && params->hook->y < y)
+		params->fdf->angle.x -= ft_toradian(1);
+	if (params->hook->button_2_press == 1 && params->hook->x > x)
+		params->fdf->angle.z += ft_toradian(1);
+	if (params->hook->button_2_press == 1 && params->hook->x < x)
+		params->fdf->angle.z -= ft_toradian(1);
 	return (EXIT_SUCCESS);
 }
 
-static int	ft_buttonrelease(int button, int x, int y,void *param)
+static int	ft_buttonrelease(int button, int x, int y, void *param)
 {
 	t_params	*params;
 
@@ -35,7 +45,9 @@ static int	ft_buttonrelease(int button, int x, int y,void *param)
 	params->hook->x = x;
 	params->hook->y = y;
 	if (button == 1)
-		params->hook->buttonpress = 0;
+		params->hook->button_1_press = 0;
+	if (button == 2)
+		params->hook->button_2_press = 0;
 	return (EXIT_SUCCESS);
 }
 
