@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:05:14 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/06/07 19:53:51 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:10:06 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	main(int ac, char **av)
 		if (ft_checkmap(map) != TRUE)
 			ft_exception("Invalide Map");
 		ft_run(window, map, height);
-		ft_destroywindow(&window, map);
 	}
 	else
 		ft_exception("Map reader");

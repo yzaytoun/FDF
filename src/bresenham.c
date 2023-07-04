@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:32:47 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/04 15:03:03 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:27:18 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ void	ft_markpoint(t_fdf *fdf, t_matrix *matrix)
 {
 	fdf->v0.x = ft_toint(matrix->vector[matrix->count_y][matrix->count_x].x);
 	fdf->v0.y = ft_toint(matrix->vector[matrix->count_y][matrix->count_x].y);
-	fdf->v0.color
-		= ft_toint(matrix->vector[matrix->count_y][matrix->count_x].color);
+	fdf->v0.color = matrix->vector[matrix->count_y][matrix->count_x].color;
 	if (fdf->flags.x_axis == 1)
 	{
 		fdf->v1.x
@@ -42,8 +41,7 @@ void	ft_markpoint(t_fdf *fdf, t_matrix *matrix)
 		fdf->v1.y
 			= ft_toint(matrix->vector[matrix->count_y][matrix->count_x + 1].y);
 		fdf->v1.color
-			= ft_toint(matrix->vector
-			[matrix->count_y][matrix->count_x + 1].color);
+			= matrix->vector[matrix->count_y][matrix->count_x + 1].color;
 	}
 	else
 	{
@@ -52,24 +50,23 @@ void	ft_markpoint(t_fdf *fdf, t_matrix *matrix)
 		fdf->v1.y
 			= ft_toint(matrix->vector[matrix->count_y + 1][matrix->count_x].y);
 		fdf->v1.color
-			= ft_toint(matrix->vector
-			[matrix->count_y + 1][matrix->count_x].color);
+			= matrix->vector[matrix->count_y + 1][matrix->count_x].color;
 	}
 }
 
 //ANCHOR - Pixel Put
 static void	ft_pixelput(t_window *window, int dist_x, int dist_y, int color)
 {
-	char	*dst;
+	int		i;
 
 	if (dist_x < 0 || dist_y < 0)
 		return ;
-	dst = window->addr
-		+ (window->size_line * dist_y + dist_x * (window->bpp / 8));
-	if (dst != NULL)
-		*(unsigned int *)dst = mlx_get_color_value(window->mlx, color);
+	i = (window->size_line * dist_y + dist_x * (window->bpp / 8));
+	window->addr[i] = color;
+	window->addr[++i] = color >> 8;
+	window->addr[++i] = color >> 16;
+	window->addr[++i] = 0;
 }
-
 
 static void	ft_bresenaux(t_fdf *fdf)
 {

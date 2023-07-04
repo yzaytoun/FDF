@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/04 12:25:54 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:29:19 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@
 
 /*Macros*/
 # define MAX_WIDTH 500
-# define LOWERLEFT 1
-# define LOWERRIGHT 2
-# define UPPERLEFT 3
-# define UPPERRIGHT 4
-# define SUB 1
-# define ADD 2
 # define FIRST_POINT 0
 # define SECOND_POINT 1
 
@@ -61,11 +55,6 @@ char		*ft_readfile(char **av);
 t_map		*ft_readmap(char **av, int *height);
 void		ft_deletemap(t_map **map);
 int			ft_checkmap(t_map *map);
-
-//FIXME - Print
-void		ft_printmap(t_map *map);
-void		ft_printmatrix(t_matrix *matrix);
-void		ft_printfdf(t_fdf *fdf);
 
 //ANCHOR - Map Aux
 int			ft_readarr(char **str, t_map **map);
