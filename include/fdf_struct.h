@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:33:22 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/04 17:34:48 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:11:18 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,20 @@ typedef struct s_window
 	int		endian;
 }				t_window;
 
+
 typedef struct s_vector
 {
 	float	x;
 	float	y;
 	float	z;
-	int		color;
+	double	color;
 }				t_vector;
 
 typedef struct s_line
 {
-	int		x;
-	int		y;
-	int		color;
+	int			x;
+	int			y;
+	double		color;
 }				t_line;
 
 typedef struct s_ham
@@ -59,7 +60,6 @@ typedef struct s_ham
 	int		sx;
 	int		x2;
 	int		ed;
-	int		color;
 	int		cy;
 }			t_ham;
 
@@ -103,7 +103,14 @@ typedef struct s_fdf
 	double			scale;
 	int				margin;
 	t_fdfflags		flags;
+	float			isoangle;
 	t_vector		mid_v;
 }					t_fdf;
 
+typedef struct s_color
+{
+	double	red;
+	double	green;
+	double	blue;
+}				t_color;
 #endif		/*FDF Struct*/

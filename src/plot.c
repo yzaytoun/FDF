@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:45:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/04 13:02:14 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:35:33 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix)
 		matrix->count_x = 0;
 		while (matrix->count_x < matrix->length - 1)
 		{
-			fdf->flags.x_axis = 0;
+			fdf->flags.x_axis = 1;
 			ft_markpoint(fdf, matrix);
 			ft_bresenham(window, fdf);
-			fdf->flags.x_axis = 1;
+			fdf->flags.x_axis = 0;
 			ft_markpoint(fdf, matrix);
 			ft_bresenham(window, fdf);
 			++matrix->count_x;

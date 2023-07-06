@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:41:16 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/04 13:18:01 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:57:36 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	ft_set_projection(t_vector *vector, t_fdf *fdf)
 	y = vector->y;
 	z = vector->z;
 	if (fdf->flags.iso == TRUE)
-		angle = ft_toradian(30);
-	else
-		angle = ft_toradian(63.4);
-	vector->x = (x - y) * cosf(angle);
-	vector->y = -z + (x + y) * sinf(angle);
+	{
+		angle = ft_toradian(fdf->isoangle);
+		vector->x = (x + y) * cosf(angle);
+		vector->y = -z + (x - y) * sinf(angle);
+	}
 }
 
 //ANCHOR - Rotate X

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:07:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/04 17:35:24 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:05:44 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,8 @@ void		ft_rotate_x(t_vector *vector, t_fdf *fdf);
 void		ft_closeshape(t_window *window, t_fdf *fdf, t_matrix *matrix);
 void		ft_plot(t_window *window, t_fdf *fdf, t_matrix *matrix);
 int			ft_plotmap(void *param);
+
+//ANCHOR - color
+void		ft_colorgradient(t_fdf *fdf);
+
 #endif 					/*END FDF_MATH*/

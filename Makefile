@@ -60,7 +60,7 @@ PRINTF = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
 # ------------------------ FDF ------------------------------
 SRC = map_reader.c map_aux.c window_manager.c aux_functions.c key_hooks.c\
-	mouse_hooks.c plot.c bresenham.c matrix.c apply.c run.c\
+	mouse_hooks.c plot.c bresenham.c matrix.c apply.c run.c color.c\
 	rotate.c print.c project.c mouse_hooks2.c
 
 OBJDIR = obj
@@ -74,15 +74,15 @@ $(OBJDIR)/%.o:%.c
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(PRINTF) $(FDF_OBJ) $(LIBX)
-	@echo "$(YELLOW)Compiling" $@
+	@echo "$(WHITE)Compiling" $@
 	@$(CC) $(FDF_OBJ) $(LIBFT) $(PRINTF) -L$(MLX) $(FLAGX) main.c -o $@ $(SANITIAZE)
 	@chmod +x fdf
 	@echo "$(PURPLE)************DONE****************\n"
 
 $(PRINTF) $(LIBFT) &:
-	@echo "$(YELLOW)Making Libft"
+	@echo "$(WHITE)Making Libft"
 	@cd libft; make bonus;
-	@echo "$(YELLOW)Making ft_printf"
+	@echo "$(WHITE)Making ft_printf"
 	@$(MAKE) -C ft_printf
 	@echo "$(GREEN)Finished!!!"
 

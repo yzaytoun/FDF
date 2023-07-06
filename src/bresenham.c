@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:32:47 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/04 17:27:18 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:10:13 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_markpoint(t_fdf *fdf, t_matrix *matrix)
 		fdf->v1.color
 			= matrix->vector[matrix->count_y + 1][matrix->count_x].color;
 	}
+	//ft_getcolor(fdf);
 }
 
 //ANCHOR - Pixel Put

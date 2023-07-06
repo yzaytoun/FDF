@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:32:02 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/04 17:37:50 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:04:44 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@ static void	ft_keyrotate(int keycode, t_params *params)
 		params->hook->spin = FALSE;
 	else if (keycode == 46 && params->hook->spin == FALSE)
 		params->hook->spin = TRUE;
+	else if (keycode == 17)
+		params->fdf->isoangle += ft_toradian(120);
+	else if (keycode == 32)
+		params->fdf->isoangle -= ft_toradian(120);
 }
 
 //ANCHOR - Main Func

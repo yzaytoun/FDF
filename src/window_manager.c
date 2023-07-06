@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/04 11:57:12 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:24:15 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	ft_initfdf(t_fdf *fdf, t_map *map, int height)
 	fdf->flags.translation_z = fdf->imageheight / 2 - fdf->margin;
 	fdf->flags.iso = TRUE;
 	fdf->flags.focal_distance = 1;
+	fdf->isoangle = 30;
 }
 
 //ANCHOR - Get Scale

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/04 18:04:00 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:52:44 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,6 @@ int	ft_readarr(char **str, t_map **map)
 	}
 	(*map)->width = index;
 	return (TRUE);
-}
-
-//ANCHOR - Map Reverse
-void	ft_mapreverse(t_map **map)
-{
-	t_map	*next;
-	t_map	*current;
-	t_map	*prev;
-
-	next = NULL;
-	prev = NULL;
-	current = (*map);
-	while (current != NULL)
-	{
-		next = current->next;
-		current->next = prev;
-		prev = current;
-		current = next;
-	}
-	(*map) = prev;
 }
 
 //ANCHOR - Color Flood

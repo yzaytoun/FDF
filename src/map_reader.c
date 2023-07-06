@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:12:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/04 17:56:01 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:53:18 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ t_map	*ft_readmap(char **av, int *height)
 		*height += 1;
 	}
 	ft_freestr_arr(buff);
-	ft_mapreverse(&map);
 	return (map);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 19:31:30 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/04 12:13:17 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:51:44 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_closewindow(void *param)
 
 	window = (t_window *)param;
 	mlx_destroy_window(window->mlx, window->win);
-	exit(EXIT_SUCCESS);
+	exit (EXIT_SUCCESS);
 }
 
 //ANCHOR - Mouse Magnify

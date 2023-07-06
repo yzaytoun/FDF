@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/04 17:29:19 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:17:14 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 # define MAX_WIDTH 500
 # define FIRST_POINT 0
 # define SECOND_POINT 1
+# define BLUE 1
+# define GREEN 8
+# define RED 16
 
 /*MAIN Struct*/
 typedef struct s_hook
@@ -58,7 +61,6 @@ int			ft_checkmap(t_map *map);
 
 //ANCHOR - Map Aux
 int			ft_readarr(char **str, t_map **map);
-void		ft_mapreverse(t_map **map);
 void		ft_colorflood(int **array, int size, int color);
 
 //ANCHOR - Window Manager
