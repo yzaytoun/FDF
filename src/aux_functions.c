@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 18:59:40 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/05 18:06:28 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:41:51 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,25 @@ void	ft_get_midpoint(t_fdf *fdf, t_matrix *matrix)
 	fdf->mid_v.x = matrix->vector[midy][midx].x;
 	fdf->mid_v.y = matrix->vector[midy][midx].y;
 	fdf->mid_v.z = matrix->vector[midy][midx].z;
+}
+
+//ANCHOR - Mark black colors
+void	ft_get_blackpoints(t_matrix *matrix)
+{
+	matrix->count_y = 0;
+	while (matrix->count_y < matrix->height)
+	{
+		matrix->count_x = 0;
+		while (matrix->count_x < matrix->length - 1)
+		{
+			if (matrix->vector[matrix->count_y][matrix->count_x].x
+				== matrix->vector[matrix->count_y][matrix->count_x + 1].x
+				&& matrix->vector[matrix->count_y][matrix->count_x].y
+				== matrix->vector[matrix->count_y][matrix->count_x + 1].y)
+				matrix->vector[matrix->count_y][matrix->count_x].color = BLACK;
+			++matrix->count_x;
+		}
+		++matrix->count_y;
+	}
 }
 //!SECTION

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:07:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/08 15:07:53 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:41:58 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void		ft_exception(char *str);
 float		ft_toradian(double angle);
 int			ft_toint(float num);
 void		ft_get_midpoint(t_fdf *fdf, t_matrix *matrix);
+void		ft_get_blackpoints(t_matrix *matrix);
 
 //ANCHOR - Project
 void		ft_project(t_window *window, t_fdf *fdf, t_matrix *matrix,
