@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:33:22 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/06 21:11:18 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/08 16:05:46 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ typedef struct s_ham
 {
 	int		dx;
 	int		dy;
+	int		x;
+	int		y;
+	int		color;
 	int		err;
 	int		e2;
 	int		sy;
@@ -87,6 +90,13 @@ typedef struct s_matrix
 	int			count_y;
 }				t_matrix;
 
+typedef struct s_color
+{
+	int		red;
+	int		green;
+	int		blue;
+}				t_color;
+
 typedef struct s_fdf
 {
 	t_line			v0;
@@ -107,10 +117,4 @@ typedef struct s_fdf
 	t_vector		mid_v;
 }					t_fdf;
 
-typedef struct s_color
-{
-	double	red;
-	double	green;
-	double	blue;
-}				t_color;
 #endif		/*FDF Struct*/

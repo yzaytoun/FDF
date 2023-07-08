@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:32:47 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/06 20:10:13 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/08 16:29:42 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,34 +52,45 @@ void	ft_markpoint(t_fdf *fdf, t_matrix *matrix)
 		fdf->v1.color
 			= matrix->vector[matrix->count_y + 1][matrix->count_x].color;
 	}
-	//ft_getcolor(fdf);
 }
 
 //ANCHOR - Pixel Put
 static void	ft_pixelput(t_window *window, int dist_x, int dist_y, int color)
 {
-	int		i;
+	char	*addr;
 
 	if (dist_x < 0 || dist_y < 0)
 		return ;
-	i = (window->size_line * dist_y + dist_x * (window->bpp / 8));
-	window->addr[i] = color;
-	window->addr[++i] = color >> 8;
-	window->addr[++i] = color >> 16;
-	window->addr[++i] = 0;
+	addr = window->addr
+		+ (window->size_line * dist_y + dist_x * (window->bpp / 8));
+	*(unsigned int *)addr = color;
 }
 
-static void	ft_bresenaux(t_fdf *fdf)
+static void	ft_bresenaux(t_fdf *fdf, int key)
 {
-	if (fdf->v0.x < fdf->v1.x)
-		fdf->ham.sx = 1;
-	else
-		fdf->ham.sx = -1;
-	if (fdf->v0.y < fdf->v1.y)
-		fdf->ham.sy = 1;
-	else
-		fdf->ham.sy = -1;
-	fdf->ham.err = fdf->ham.dx + fdf->ham.dy;
+	if (key == INITIATE)
+	{
+		fdf->ham.x = fdf->v0.x;
+		fdf->ham.y = fdf->v0.y;
+		if (fdf->v0.x < fdf->v1.x)
+			fdf->ham.sx = 1;
+		else
+			fdf->ham.sx = -1;
+		if (fdf->v0.y < fdf->v1.y)
+			fdf->ham.sy = 1;
+		else
+			fdf->ham.sy = -1;
+		fdf->ham.err = fdf->ham.dx + fdf->ham.dy;
+	}
+	else if (key == GET_COLOR)
+	{
+		if (fdf->flags.x_axis == 1)
+			fdf->ham.color
+				= ft_get_colorgradient(fdf, fdf->v0.x, fdf->v1.x, fdf->ham.x);
+		else
+			fdf->ham.color
+				= ft_get_colorgradient(fdf, fdf->v0.y, fdf->v1.y, fdf->ham.y);
+	}
 }
 
 //ANCHOR - Draw Net
@@ -87,24 +98,27 @@ void	ft_bresenham(t_window *window, t_fdf *fdf)
 {
 	fdf->ham.dx = abs(fdf->v1.x - fdf->v0.x);
 	fdf->ham.dy = -abs(fdf->v1.y - fdf->v0.y);
-	ft_bresenaux(fdf);
+	ft_bresenaux(fdf, INITIATE);
 	while (TRUE)
 	{
-		if (fdf->v0.x < fdf->imagelength
-			&& fdf->v0.y < fdf->imageheight)
-			ft_pixelput(window, fdf->v0.x, fdf->v0.y, fdf->v0.color);
-		if (fdf->v0.x == fdf->v1.x && fdf->v0.y == fdf->v1.y)
+		if (fdf->ham.x < fdf->imagelength
+			&& fdf->ham.y < fdf->imageheight)
+		{
+			ft_bresenaux(fdf, GET_COLOR);
+			ft_pixelput(window, fdf->ham.x, fdf->ham.y, fdf->v0.color);
+		}
+		if (fdf->ham.x == fdf->v1.x && fdf->ham.y == fdf->v1.y)
 			break ;
 		fdf->ham.e2 = fdf->ham.err * 2;
 		if (fdf->ham.e2 >= fdf->ham.dy)
 		{
 			fdf->ham.err += fdf->ham.dy;
-			fdf->v0.x += fdf->ham.sx;
+			fdf->ham.x += fdf->ham.sx;
 		}
 		if (fdf->ham.e2 <= fdf->ham.dx)
 		{
 			fdf->ham.err += fdf->ham.dx;
-			fdf->v0.y += fdf->ham.sy;
+			fdf->ham.y += fdf->ham.sy;
 		}
 	}
 }

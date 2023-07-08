@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/06 21:17:14 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/08 14:49:02 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "../minilibx_macos/mlx.h"
 # include "fdf_math.h"
 
-/***********************Marcos************************/
+/***********************Macros************************/
 /*Keyboard keys*/
 # define KEY_ESCAPE	0x35
 
@@ -31,6 +31,8 @@
 # define BLUE 1
 # define GREEN 8
 # define RED 16
+# define INITIATE 3
+# define GET_COLOR 4
 
 /*MAIN Struct*/
 typedef struct s_hook
