@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/06 20:24:15 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:22:43 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,15 @@ static void	ft_initfdf(t_fdf *fdf, t_map *map, int height)
 		fdf->margin = (fdf->imageheight / 10);
 	else
 		fdf->margin = (fdf->imagelength / 10);
-	fdf->flags.translation_x = fdf->imagelength / 2 - fdf->margin;
-	fdf->flags.translation_y = fdf->imageheight / 2 - fdf->margin;
-	fdf->flags.translation_z = fdf->imageheight / 2 - fdf->margin;
+	fdf->flags.translation_x = fdf->imagelength / 2;
+	fdf->flags.translation_y = fdf->imageheight / 2;
+	fdf->flags.translation_z = fdf->imageheight / 2;
 	fdf->flags.iso = TRUE;
 	fdf->flags.focal_distance = 1;
 	fdf->isoangle = 30;
+	fdf->angle.x = ft_toradian(60);
+	fdf->angle.y = ft_toradian(220);
+	fdf->angle.z = ft_toradian(120);
 }
 
 //ANCHOR - Get Scale

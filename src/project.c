@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:44:24 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/06 20:43:20 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:29:09 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ static void	ft_reset_parameters(t_fdf *fdf)
 {
 	fdf->distance_x = fdf->imagelength / ((fdf->imagelength * 3 / fdf->scale));
 	fdf->distance_y = fdf->imageheight / ((fdf->imageheight * 3 / fdf->scale));
-	fdf->flags.translation_x = fdf->imagelength / 2 - fdf->margin;
-	fdf->flags.translation_y = fdf->imageheight / 2 - fdf->margin;
-	fdf->flags.translation_z = fdf->imageheight / 2 - fdf->margin;
+	fdf->flags.translation_x = fdf->imagelength / 2;
+	fdf->flags.translation_y = fdf->imageheight / 2;
+	fdf->flags.translation_z = fdf->imageheight / 2;
 	fdf->distance_z = fdf->scale / 4;
 	fdf->flags.iso = TRUE;
 	fdf->flags.reset = FALSE;
 	fdf->angle.x = ft_toradian(60);
-	fdf->angle.y = ft_toradian(60);
-	fdf->angle.z = ft_toradian(60);
+	fdf->angle.y = ft_toradian(220);
+	fdf->angle.z = ft_toradian(120);
 	fdf->flags.focal_distance = 1;
 }
 
@@ -56,7 +56,6 @@ static void	ft_project_to_image(t_window *window, t_fdf *fdf, t_matrix *matrix,
 	if (!window || !fdf || !matrix)
 		return ;
 	ft_matrix_map(map, &matrix);
-	//ft_apply(matrix, ft_getcolor, fdf);
 	ft_apply(matrix, ft_scale, fdf);
 	ft_get_midpoint(fdf, matrix);
 	if (fdf->flags.reset == TRUE)

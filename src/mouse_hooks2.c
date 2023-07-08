@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 19:31:30 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/06 20:51:44 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/08 16:34:34 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	ft_mousebutton(int button, int x, int y, void *param)
 		params->hook->x = x;
 		params->hook->y = y;
 	}
-	printf("button = %d\t x = %d\t y = %d\n", button, x, y);
 	return (TRUE);
 }
 

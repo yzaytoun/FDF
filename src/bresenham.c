@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:32:47 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/08 16:29:42 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/08 16:37:39 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	ft_bresenham(t_window *window, t_fdf *fdf)
 			&& fdf->ham.y < fdf->imageheight)
 		{
 			ft_bresenaux(fdf, GET_COLOR);
-			ft_pixelput(window, fdf->ham.x, fdf->ham.y, fdf->v0.color);
+			ft_pixelput(window, fdf->ham.x, fdf->ham.y, fdf->ham.color);
 		}
 		if (fdf->ham.x == fdf->v1.x && fdf->ham.y == fdf->v1.y)
 			break ;

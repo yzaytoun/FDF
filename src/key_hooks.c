@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:32:02 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/06 21:04:44 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/08 16:34:13 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ int	ft_keyhooks(int keycode, void *param)
 		ft_keyexpand(keycode, params);
 	else if (keycode >= 0 && keycode <= 46)
 		ft_keyrotate(keycode, params);
-	printf("keycode = %i\n", keycode);
 	return (TRUE);
 }
 //!SECTION

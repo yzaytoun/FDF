@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/08 14:49:02 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:27:22 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define RED 16
 # define INITIATE 3
 # define GET_COLOR 4
+# define BLACK 0x00
 
 /*MAIN Struct*/
 typedef struct s_hook

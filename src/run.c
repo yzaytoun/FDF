@@ -6,33 +6,13 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:07:25 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/04 18:13:09 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/08 16:37:22 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 //SECTION - Run program
-/*void	ft_printmatrix(t_matrix *matrix)
-{
-	if (!matrix || !matrix->vector)
-		return ;
-	matrix->count_y = 0;
-	while (matrix->count_y < matrix->height)
-	{
-		matrix->count_x = 0;
-		while (matrix->count_x < matrix->length)
-		{
-			printf("%d\t",
-				matrix->vector[matrix->count_y][matrix->count_x].color);
-			++matrix->count_x;
-		}
-		printf("\n");
-		++matrix->count_y;
-	}
-
-}*/
-
 //ANCHOR - Free All
 static void	ft_free_all(t_params *params)
 {
