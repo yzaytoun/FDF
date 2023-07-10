@@ -60,8 +60,8 @@ PRINTF = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
 # ------------------------ FDF ------------------------------
 SRC = map_reader.c map_aux.c window_manager.c aux_functions.c key_hooks.c\
-	mouse_hooks.c plot.c bresenham.c matrix.c apply.c run.c color.c\
-	rotate.c print.c project.c mouse_hooks2.c
+	mouse_hooks.c plot.c bresenham.c matrix.c apply.c run.c color.c apply_aux.c\
+	rotate.c print.c project.c mouse_hooks2.c ../main.c
 
 OBJDIR = obj
 
@@ -75,7 +75,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(PRINTF) $(FDF_OBJ) $(LIBX)
 	@echo "$(WHITE)Compiling" $@
-	@$(CC) $(FDF_OBJ) $(LIBFT) $(PRINTF) -L$(MLX) $(FLAGX) main.c -o $@ $(SANITIAZE)
+	@$(CC) $(FDF_OBJ) $(LIBFT) $(PRINTF) -L$(MLX) $(FLAGX) -o $@
 	@chmod +x fdf
 	@echo "$(PURPLE)************DONE****************\n"
 
@@ -87,10 +87,10 @@ $(PRINTF) $(LIBFT) &:
 	@echo "$(GREEN)Finished!!!"
 
 $(LIBX): $(BETAX)
-	@$(MAKE) -C $(MLX)
+	@$(MAKE) -C $(MLX) 2>/dev/null
 
 $(BETAX):
-	@$(MAKE) -C $(BETA)
+	@$(MAKE) -C $(BETA) 2>/dev/null
 
 fclean: clean
 	@cd $(MLX); make clean;

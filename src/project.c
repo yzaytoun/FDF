@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:44:24 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/08 17:42:11 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:20:00 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	ft_project(t_window *window, t_fdf *fdf, t_matrix *matrix,
 	ft_resetimage(window, fdf);
 	ft_matrix_map(map, &matrix);
 	ft_apply(matrix, ft_scale, fdf);
+	if (fdf->flags.addcolor == TRUE)
+		ft_apply(matrix, ft_addcolor, fdf);
 	ft_get_midpoint(fdf, matrix);
 	if (fdf->flags.reset == TRUE)
 		ft_reset_parameters(fdf);

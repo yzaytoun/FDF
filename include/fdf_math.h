@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:07:29 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/08 17:41:58 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:09:59 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ void		ft_tocenter(t_vector *vector, t_fdf *fdf);
 void		ft_scale(t_vector *vector, t_fdf *fdf);
 void		ft_translate(t_vector *vector, t_fdf *fdf);
 void		ft_magnify(t_vector *vector, t_fdf *fdf);
+
+//ANCHOR - Apply AUX
+void		ft_addcolor(t_vector *vector, t_fdf *fdf);
 
 //ANCHOR - Rotate
 void		ft_set_projection(t_vector *vector, t_fdf *fdf);

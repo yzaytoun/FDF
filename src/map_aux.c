@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/06 20:52:44 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:02:11 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,17 @@ int	ft_readarr(char **str, t_map **map)
 }
 
 //ANCHOR - Color Flood
-void	ft_colorflood(int **array, int size, int color)
+void	ft_colorflood(int **array, int size)
 {
 	int	index;
 
 	index = 0;
-	if (!*array || !size || !color || size == 0)
+	if (!*array || !size || size == 0)
 		return ;
 	while (index < size)
 	{
 		if ((*array)[index] == 0)
-			(*array)[index] = color;
+			(*array)[index] = WHITE;
 		index++;
 	}
 }

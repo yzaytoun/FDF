@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/08 17:35:44 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:57:45 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define GET_COLOR 4
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
+# define RED_COLOR 0xFF0000
+# define BLUE_COLOR 0x00FF00
 
 /*MAIN Struct*/
 typedef struct s_hook
@@ -65,7 +67,7 @@ int			ft_checkmap(t_map *map);
 
 //ANCHOR - Map Aux
 int			ft_readarr(char **str, t_map **map);
-void		ft_colorflood(int **array, int size, int color);
+void		ft_colorflood(int **array, int size);
 
 //ANCHOR - Window Manager
 t_window	*ft_createwindow(char *title, int width, int height);
@@ -73,6 +75,7 @@ void		ft_destroywindow(t_window **window, t_map *map);
 t_fdf		*ft_initstructs(t_window *window, t_map *map, int height);
 
 //ANCHOR - Run Program
+void		ft_freeall(t_params *params);
 void		ft_createimage(t_window *window, t_fdf *fdf);
 void		ft_run(t_window *window, t_map *map, int height);
 

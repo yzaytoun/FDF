@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:33:22 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/08 16:05:46 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:40:22 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_window
 	void	*win;
 	void	*img;
 	char	*addr;
+	int		freed;
 	int		bpp;
 	int		size_line;
 	int		endian;
@@ -78,6 +79,7 @@ typedef struct s_fdfflags
 	int		iso;
 	float	focal_distance;
 	int		reset;
+	int		addcolor;
 }			t_fdfflags;
 
 

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 19:31:30 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/08 16:34:34 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:41:20 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 //ANCHOR - Close Window
 int	ft_closewindow(void *param)
 {
-	t_window	*window;
+	t_params	*params;
 
-	window = (t_window *)param;
-	mlx_destroy_window(window->mlx, window->win);
+	params = (t_params *)param;
+	params->window->freed = TRUE;
+	ft_freeall(params);
 	exit (EXIT_SUCCESS);
 }
 
@@ -41,10 +42,10 @@ int	ft_mousebutton(int button, int x, int y, void *param)
 	if (button == 4 || button == 5)
 		ft_mousemagnify(button, params);
 	if (button == 1)
-		params->hook->button_1_press = 1;
+		params->hook->button_1_press = TRUE;
 	if (button == 2)
 	{
-		params->hook->button_2_press = 1;
+		params->hook->button_2_press = TRUE;
 		params->hook->x = x;
 		params->hook->y = y;
 	}

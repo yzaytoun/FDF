@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/08 17:22:43 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:42:40 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,11 @@ t_window	*ft_createwindow(char *title, int width, int height)
 void	ft_destroywindow(t_window **window, t_map *map)
 {
 	ft_deletemap(&map);
-	free((*window)->mlx);
-	free((*window)->win);
+	if ((*window)->freed == FALSE)
+	{
+		free((*window)->mlx);
+		free((*window)->win);
+	}
 	free((*window)->img);
 	free((*window)->addr);
 	free(*window);

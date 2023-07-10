@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:32:02 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/08 16:34:13 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:40:49 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ int	ft_keyhooks(int keycode, void *param)
 	params = (t_params *)param;
 	if (keycode == KEY_ESCAPE)
 	{
-		mlx_destroy_window(params->window->mlx, params->window->win);
+		params->window->freed = TRUE;
+		ft_freeall(params);
 		exit(EXIT_SUCCESS);
 	}
 	if ((keycode <= 126 && keycode >= 123) || keycode == 86 || keycode == 88)
@@ -101,6 +102,10 @@ int	ft_keyhooks(int keycode, void *param)
 		ft_keymagnify(keycode, params);
 	else if (keycode == 41 || keycode == 37)
 		ft_keyexpand(keycode, params);
+	else if (keycode == 8 && params->fdf->flags.addcolor == TRUE)
+		params->fdf->flags.addcolor = FALSE;
+	else if (keycode == 8 && params->fdf->flags.addcolor == FALSE)
+		params->fdf->flags.addcolor = TRUE;
 	else if (keycode >= 0 && keycode <= 46)
 		ft_keyrotate(keycode, params);
 	return (TRUE);

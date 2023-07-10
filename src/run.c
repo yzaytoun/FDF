@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:07:25 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/08 16:37:22 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/10 21:06:34 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 //SECTION - Run program
 //ANCHOR - Free All
-static void	ft_free_all(t_params *params)
+void	ft_freeall(t_params *params)
 {
-	mlx_destroy_window(params->window->mlx, params->window->win);
 	ft_destroyvector(&params->matrix->vector, params->matrix->height);
 	free(params->matrix);
-	ft_destroywindow(&params->window, params->map);
 	free(params->fdf);
 	free(params->hook);
+	mlx_destroy_window(params->window->mlx, params->window->win);
+	ft_destroywindow(&params->window, params->map);
 	free(params);
+	system("leaks fdf");
 }
 
 //ANCHOR - FDF AUX
@@ -69,6 +70,5 @@ void	ft_run(t_window *window, t_map *map, int height)
 	mlx_key_hook(params->window->win, ft_keyhooks, params);
 	mlx_loop_hook(window->mlx, ft_plotmap, params);
 	mlx_loop(window->mlx);
-	ft_free_all(params);
 }
 //!SECTION

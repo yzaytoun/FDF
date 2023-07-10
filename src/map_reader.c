@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:12:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/08 17:36:03 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/10 21:11:59 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_createmap(t_map **map, char *x, int y)
 	buff = ft_split(x, ' ');
 	if (ft_readarr(buff, &new) == FALSE)
 		return (FALSE);
-	ft_colorflood(&new->color, new->width, WHITE);
+	ft_colorflood(&new->color, new->width);
 	new->y = y;
 	new->min = ft_arraymin(new->x, new->width);
 	new->next = (*map);
@@ -73,6 +73,7 @@ t_map	*ft_readmap(char **av, int *height)
 	buff = ft_split(ft_readfile(av), '\n');
 	if (buff == NULL)
 		return (NULL);
+	system("leaks fdf");
 	while (buff[*height] != NULL)
 	{
 		if (ft_createmap(&map, buff[*height], *height) != TRUE)
