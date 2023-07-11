@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:07:25 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/10 21:06:34 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/11 19:57:31 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_freeall(t_params *params)
 	mlx_destroy_window(params->window->mlx, params->window->win);
 	ft_destroywindow(&params->window, params->map);
 	free(params);
-	system("leaks fdf");
 }
 
 //ANCHOR - FDF AUX

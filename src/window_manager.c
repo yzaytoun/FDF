@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/10 20:42:40 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:37:48 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static void	ft_initfdf(t_fdf *fdf, t_map *map, int height)
 	fdf->flags.iso = TRUE;
 	fdf->flags.focal_distance = 1;
 	fdf->isoangle = 30;
-	fdf->angle.x = ft_toradian(60);
-	fdf->angle.y = ft_toradian(220);
-	fdf->angle.z = ft_toradian(120);
+	fdf->angle.x = ft_toradian(0);
+	fdf->angle.y = ft_toradian(0);
+	fdf->angle.z = ft_toradian(0);
 }
 
 //ANCHOR - Get Scale

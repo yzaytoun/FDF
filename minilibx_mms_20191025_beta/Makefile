@@ -13,7 +13,7 @@ C_OBJ=$(C_SRC:.c=.o)
 NAME=libmlx.dylib
 
 INC=-I.
-
+.SILENT:
 all: $(NAME)
 
 $(NAME): $(MODULE_OBJ) $(OBJ) $(C_OBJ)
@@ -22,7 +22,7 @@ $(NAME): $(MODULE_OBJ) $(OBJ) $(C_OBJ)
 
 
 %.o: %.swift
-	swiftc $(INC) -parse-as-library -c $< -o $@
+	@swiftc $(INC) -parse-as-library -c $< -o $@
 
 %.swiftmodule: %.swift
 	@swiftc $(INC) -parse-as-library -c $< -o $@ -emit-module -module-name $(patsubst %.swift,%,$<) -module-link-name $(patsubst %.swift,%,$<)

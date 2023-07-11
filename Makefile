@@ -61,7 +61,7 @@ LIBFT = libft/libft.a
 # ------------------------ FDF ------------------------------
 SRC = map_reader.c map_aux.c window_manager.c aux_functions.c key_hooks.c\
 	mouse_hooks.c plot.c bresenham.c matrix.c apply.c run.c color.c apply_aux.c\
-	rotate.c print.c project.c mouse_hooks2.c ../main.c
+	rotate.c print.c project.c mouse_hooks2.c main.c
 
 OBJDIR = obj
 
@@ -87,6 +87,7 @@ $(PRINTF) $(LIBFT) &:
 	@echo "$(GREEN)Finished!!!"
 
 $(LIBX): $(BETAX)
+	@echo "$(LIGHTPURPLE)Building MLX"
 	@$(MAKE) -C $(MLX) 2>/dev/null
 
 $(BETAX):

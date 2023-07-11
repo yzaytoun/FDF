@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:32:02 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/10 20:40:49 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:25:18 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	ft_keyexpand(int keycode, t_params *params)
 		params->fdf->distance_x -= 5;
 		params->fdf->distance_y -= 5;
 	}
-	else if (keycode == 41)
+	else if (keycode == 40)
 	{
 		params->fdf->distance_x += 5;
 		params->fdf->distance_y += 5;
@@ -100,7 +100,7 @@ int	ft_keyhooks(int keycode, void *param)
 		params->fdf->flags.reset = TRUE;
 	else if (keycode == 69 || keycode == 78 || keycode == 6 || keycode == 7)
 		ft_keymagnify(keycode, params);
-	else if (keycode == 41 || keycode == 37)
+	else if (keycode == 40 || keycode == 37)
 		ft_keyexpand(keycode, params);
 	else if (keycode == 8 && params->fdf->flags.addcolor == TRUE)
 		params->fdf->flags.addcolor = FALSE;

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:33:22 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/10 20:40:22 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/11 19:02:29 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ typedef struct s_map
 	int				y;
 	int				width;
 	int				*color;
-	int				min;
 	struct s_map	*next;
 }					t_map;
 

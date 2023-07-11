@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:44:24 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/10 20:20:00 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:56:24 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ static void	ft_reset_parameters(t_fdf *fdf)
 	fdf->distance_z = fdf->scale / 4;
 	fdf->flags.iso = TRUE;
 	fdf->flags.reset = FALSE;
-	fdf->angle.x = ft_toradian(60);
-	fdf->angle.y = ft_toradian(220);
-	fdf->angle.z = ft_toradian(120);
+	fdf->angle.x = ft_toradian(0);
+	fdf->angle.y = ft_toradian(0);
+	fdf->angle.z = ft_toradian(0);
 	fdf->flags.focal_distance = 1;
+	fdf->isoangle = 30;
 }
 
 //ANCHOR - Rotate Wireframe

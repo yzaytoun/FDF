@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:12:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/10 21:11:59 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/11 19:47:09 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	ft_createmap(t_map **map, char *x, int y)
 		return (FALSE);
 	ft_colorflood(&new->color, new->width);
 	new->y = y;
-	new->min = ft_arraymin(new->x, new->width);
 	new->next = (*map);
 	(*map) = new;
 	ft_freestr_arr(buff);
@@ -66,14 +65,16 @@ t_map	*ft_readmap(char **av, int *height)
 {
 	t_map	*map;
 	char	**buff;
+	char	*string;
 
 	map = NULL;
 	if (ft_strnstr(av[1], ".fdf", ft_strlen(av[1])) == NULL)
 		return (NULL);
-	buff = ft_split(ft_readfile(av), '\n');
+	string = ft_readfile(av);
+	buff = ft_split(string, '\n');
 	if (buff == NULL)
 		return (NULL);
-	system("leaks fdf");
+	free(string);
 	while (buff[*height] != NULL)
 	{
 		if (ft_createmap(&map, buff[*height], *height) != TRUE)

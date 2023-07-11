@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/10 19:02:11 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/11 19:56:14 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,24 @@
 
 //SECTION - Map AUX
 //ANCHOR - Get color
-static int	ft_getcolor(char *str, t_map *map, int index)
+static int	ft_getcolor(char *str, t_map **map, int index)
 {
-	int	pos;
+	int		pos;
+	char	*string;
 
-	if (!str || !map)
+	if (!str || !(*map))
 		return (FALSE);
 	pos = ft_charpos(str, ',');
-	map->color[index] = ft_atoibase((ft_strchr(str, ',') + 1), 16);
-	if (ft_isdigitstr(ft_substr(str, 0, pos)) == TRUE)
-		map->x[index] = ft_atoi(ft_substr(str, 0, pos));
+	(*map)->color[index] = ft_atoibase((ft_strchr(str, ',') + 1), 16);
+	string = ft_substr(str, 0, pos);
+	if (ft_isdigitstr(string) == TRUE)
+		(*map)->x[index] = ft_atoi(string);
 	else
+	{
+		free(string);
 		return (FALSE);
+	}
+	free(string);
 	return (TRUE);
 }
 
@@ -45,7 +51,7 @@ int	ft_readarr(char **str, t_map **map)
 	{
 		if (ft_findchr(str[index], ',') == TRUE)
 		{
-			if (ft_getcolor(str[index], *map, index) != TRUE)
+			if (ft_getcolor(str[index], &(*map), index) != TRUE)
 				ft_exception("Invalid Map");
 		}
 		else if (ft_isdigitstr(str[index]) == TRUE)
