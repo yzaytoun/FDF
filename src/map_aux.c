@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/22 15:39:20 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:47:03 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int	ft_checkinput(t_map *map)
 				return (FALSE);
 			++count;
 		}
-		printf("\n");
 		node = node->next;
 	}
 	return (TRUE);
