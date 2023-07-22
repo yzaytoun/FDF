@@ -46,7 +46,7 @@ CC = gcc
 AR = ar
 ARFLAGS = -rcs
 INC = include
-CFLAGS = -Wall -Wextra -Werror -I $(INC) -g3
+CFLAGS = -Wall -Wextra -Werror -I $(INC)
 RM = rm -fr
 SANITIAZE = -fsanitize=address -g3
 # --------------------- MLX  ------------------------------------

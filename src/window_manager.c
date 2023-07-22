@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:11:37 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/11 20:37:48 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:45:39 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,5 @@ void	ft_destroywindow(t_window **window, t_map *map)
 	free((*window)->addr);
 	free(*window);
 }
-
 
 //!SECTION

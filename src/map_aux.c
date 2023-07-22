@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:36 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/11 19:56:14 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:39:20 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static int	ft_getcolor(char *str, t_map **map, int index)
 		return (FALSE);
 	pos = ft_charpos(str, ',');
 	(*map)->color[index] = ft_atoibase((ft_strchr(str, ',') + 1), 16);
+	if (ft_isvalid_int((*map)->color[index]) == FALSE)
+		return (FALSE);
 	string = ft_substr(str, 0, pos);
 	if (ft_isdigitstr(string) == TRUE)
 		(*map)->x[index] = ft_atoi(string);
@@ -46,7 +48,7 @@ int	ft_readarr(char **str, t_map **map)
 	(*map)->x = ft_createarray(ft_strlen_arr(str));
 	(*map)->color = ft_createarray(ft_strlen_arr(str));
 	if (!(*map)->color || !(*map)->x)
-		ft_exception("Failed to create int array");
+		ft_exception("Failed to create array");
 	while (str[index])
 	{
 		if (ft_findchr(str[index], ',') == TRUE)
@@ -65,7 +67,7 @@ int	ft_readarr(char **str, t_map **map)
 }
 
 //ANCHOR - Color Flood
-void	ft_colorflood(int **array, int size)
+void	ft_colorflood(long **array, int size)
 {
 	int	index;
 
@@ -78,6 +80,30 @@ void	ft_colorflood(int **array, int size)
 			(*array)[index] = WHITE;
 		index++;
 	}
+}
+
+//ANCHOR - Check Valid int
+int	ft_checkinput(t_map *map)
+{
+	t_map	*node;
+	int		count;
+
+	if (!map || map == NULL)
+		return (FALSE);
+	node = map;
+	while (node != NULL)
+	{
+		count = 0;
+		while (count < node->width)
+		{
+			if (ft_isvalid_int(node->x[count]) == FALSE)
+				return (FALSE);
+			++count;
+		}
+		printf("\n");
+		node = node->next;
+	}
+	return (TRUE);
 }
 
 //!SECTION

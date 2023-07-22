@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:05:14 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/11 19:58:03 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:39:47 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ int	main(int ac, char **av)
 		map = ft_readmap(av, &height);
 		if (!map)
 			ft_exception("Map reader");
+		if (ft_checkmap(map) != TRUE)
+			ft_exception("Invalide Map");
+		if (ft_checkinput(map) != TRUE)
+			ft_exception("Invalide Map");
 		window = ft_createwindow(av[1], map->width, height);
 		if (window == NULL)
 			ft_exception("Window");
-		if (ft_checkmap(map) != TRUE)
-			ft_exception("Invalide Map");
 		ft_run(window, map, height);
 	}
 	else

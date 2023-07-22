@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:33:22 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/11 19:02:29 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:29:31 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 typedef struct s_map
 {
-	int				*x;
+	long			*x;
 	int				y;
 	int				width;
-	int				*color;
+	long			*color;
 	struct s_map	*next;
 }					t_map;
 
@@ -33,7 +33,6 @@ typedef struct s_window
 	int		size_line;
 	int		endian;
 }				t_window;
-
 
 typedef struct s_vector
 {
@@ -66,7 +65,6 @@ typedef struct s_ham
 	int		cy;
 }			t_ham;
 
-
 typedef struct s_fdfflags
 {
 	int		add_z;
@@ -80,7 +78,6 @@ typedef struct s_fdfflags
 	int		reset;
 	int		addcolor;
 }			t_fdfflags;
-
 
 typedef struct s_matrix
 {

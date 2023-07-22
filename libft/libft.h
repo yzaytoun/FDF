@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 17:24:56 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/05/27 18:13:19 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:37:22 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int		ft_findchr(char *str, char c);
 int		ft_charpos(const char *str, char c);
 int		ft_atoibase(const char *str, int base);
 void	ft_lstrev(t_list **lst);
+int		ft_isvalid_int(long value);
 
 //String Array
 void	ft_freestr_arr(char **s);
@@ -98,7 +99,7 @@ char	**ft_copystrarr(char **s, int input, int *count);
 int		ft_strlen_arr(char **str);
 
 //Int Array
-int		*ft_createarray(int size);
+long	*ft_createarray(int size);
 int		ft_arraymin(int *arr, int size);
 int		*ft_copyarr(int *arr, int size);
 #endif	/*LIBFT HEADER*/

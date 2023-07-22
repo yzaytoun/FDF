@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:09:12 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/07/10 19:57:45 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:41:19 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int			ft_checkmap(t_map *map);
 
 //ANCHOR - Map Aux
 int			ft_readarr(char **str, t_map **map);
-void		ft_colorflood(int **array, int size);
+void		ft_colorflood(long **array, int size);
+int			ft_checkinput(t_map *map);
 
 //ANCHOR - Window Manager
 t_window	*ft_createwindow(char *title, int width, int height);
